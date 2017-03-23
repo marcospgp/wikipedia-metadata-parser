@@ -1,4 +1,3 @@
-/* interface.h */
 typedef struct TCD_istruct * TAD_istruct;
 TAD_istruct init();
 TAD_istruct load(TAD_istruct qs, int nsnaps, char* snaps_paths[]);
