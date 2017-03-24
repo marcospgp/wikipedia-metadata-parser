@@ -6,7 +6,7 @@
 
 //o array que vai receber a data
 // o array tem um tamanho limitado, vai ser imprevisivel o comportamento após 50 caracteres
-char array[8][50];
+char array[20][50];
 
 static void parse(const char *nomedoc)
 {
