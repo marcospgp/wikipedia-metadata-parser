@@ -14,14 +14,14 @@ static void parse(const char *nomedoc)
     xmlNodePtr cur = xmlDocGetRootElement(data);
     xmlChar *conteudo;
 
-    if (cur == NULL) {
-        printf("documento vazio \n");
-        xmlFreeDoc(data);
+    if (data == NULL) {
+        printf("O parse nao foi feito \n");
         return;
     }
 
-    if (data == NULL) {
-        printf("O parse nao foi feito \n");
+    if (cur == NULL) {
+        printf("documento vazio \n");
+        xmlFreeDoc(data);
         return;
     }
 
