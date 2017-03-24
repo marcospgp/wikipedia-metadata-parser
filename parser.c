@@ -30,17 +30,12 @@ static void parse(const char *nomedoc)
         if (cur->type != XML_ELEMENT_NODE) continue;
         conteudo = xmlNodeGetContent(cur);
         strcpy(array[i], conteudo);
+        printf("Conteudo no array na posição %d de <page>: %s\n", i, array[i]);
         i++;
         //printf("Conteudo lido de <page>: %s\n", conteudo);
         xmlFree(conteudo);
     }
     xmlFreeDoc(data);
-
-	// so we can print all the info atferwards
-	int j;
-	for (j = 0; j < i; j++) {
-		printf("Conteudo lido de <page>: %s\n", array[j]) ;
-	}
 
 }
 
