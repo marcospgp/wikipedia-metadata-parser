@@ -5,6 +5,7 @@
 #include <libxml2/include/libxml/parser.h>
 
 //o array que vai receber a data
+// o array tem um tamanho limitado, vai ser imprevisivel o comportamento após 50 caracteres
 char array[8][50];
 
 static void parse(const char *nomedoc)
@@ -19,7 +20,7 @@ static void parse(const char *nomedoc)
         return;
     }
 
-        if (data == NULL) {
+    if (data == NULL) {
         printf("O parse nao foi feito \n");
         return;
     }
@@ -28,7 +29,7 @@ static void parse(const char *nomedoc)
     for (cur = cur->children; cur != NULL; cur = cur->next) {
         if (cur->type != XML_ELEMENT_NODE) continue;
         conteudo = xmlNodeGetContent(cur);
-        strncpy(array[i], conteudo, 50);
+        strcpy(array[i], conteudo);
         i++;
         printf("Conteudo lido de <page>: %s\n", conteudo);
         xmlFree(conteudo);
@@ -37,5 +38,6 @@ static void parse(const char *nomedoc)
 }
 
 int main(int argc, char *argv[]){
-	parse("datateste");
+	// insere-se o nome do ficheiro à frente do ./parser
+	parse(argv[1]);
 }
