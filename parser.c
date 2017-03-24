@@ -6,7 +6,7 @@
 
 //o array que vai receber a data
 // o array tem um tamanho limitado, vai ser imprevisivel o comportamento após 50 caracteres
-char array[20][50];
+char* array[20];
 
 static void parse(const char *nomedoc)
 {
@@ -26,11 +26,10 @@ static void parse(const char *nomedoc)
     }
 
     int i=0;
-    for (cur = cur->children; (cur != NULL) && (cur->type != XML_ELEMENT_NODE); cur = cur->next) {
+    for (cur = cur->children; (cur != NULL) && (cur->type != XML_ELEMENT_NODE); cur = cur->next, i++) {
         	conteudo = xmlNodeGetContent(cur);
         	strcpy(array[i], conteudo);
         	printf("Conteudo no array na posição %d de <page>: %s\n", i, array[i]);
-       		i++;
         	//printf("Conteudo lido de <page>: %s\n", conteudo);
         	xmlFree(conteudo);
     }
