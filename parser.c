@@ -35,13 +35,14 @@ static void parse(const char *nomedoc)
         xmlFree(conteudo);
     }
     xmlFreeDoc(data);
-}
 
 	// so we can print all the info atferwards
 	int j;
 	for (j = 0; j < i; j++) {
-		printf("Conteudo lido de <page>: %s\n", array[j]);
+		printf("Conteudo lido de <page>: %s\n", array[j]) ;
 	}
+
+}
 
 int main(int argc, char *argv[]){
 	// insere-se o nome do ficheiro à frente do ./parser
