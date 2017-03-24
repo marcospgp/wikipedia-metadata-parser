@@ -26,12 +26,14 @@ static void parse(const char *nomedoc)
     }
 
     int i=0;
-    for (cur = cur->children; (cur != NULL) && (cur->type != XML_ELEMENT_NODE); cur = cur->next, i++) {
-        	conteudo = xmlNodeGetContent(cur);
-        	strcpy(array[i], conteudo);
-        	printf("Conteudo no array na posição %d de <page>: %s\n", i, array[i]);
-        	//printf("Conteudo lido de <page>: %s\n", conteudo);
-        	xmlFree(conteudo);
+    for (cur = cur->children; cur != NULL; cur = cur->next) {
+        if (cur->type != XML_ELEMENT_NODE) continue;
+        conteudo = xmlNodeGetContent(cur);
+        strcpy(array[i], conteudo);
+        printf("Conteudo no array na posição %d de <page>: %s\n", i, array[i]);
+        i++;
+        //printf("Conteudo lido de <page>: %s\n", conteudo);
+        xmlFree(conteudo);
     }
     xmlFreeDoc(data);
 
