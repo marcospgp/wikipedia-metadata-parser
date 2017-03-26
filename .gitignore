@@ -50,5 +50,6 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# Exemplos
+# Misc
 exemplos/
+datasets/

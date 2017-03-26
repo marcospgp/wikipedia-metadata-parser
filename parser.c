@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <libxml2/include/libxml/xmlmemory.h>
-#include <libxml2/include/libxml/parser.h>
+#include <libxml/xmlmemory.h>
+#include <libxml/parser.h>
 
 //o array que vai receber a data
 // o array tem um tamanho limitado, vai ser imprevisivel o comportamento após 50 caracteres

@@ -1,10 +1,16 @@
 CC = gcc
-LIBS =-I/usr/include/libxml2 -lxml2
+CFLAGS = -Wall
+LIBS = -I/usr/include/libxml2 -lxml2
+
+all: program
 
 program:
-	$(CC) $(LIBS) program.c -o program $(LIBS)
+	$(CC) $(CFLAGS) program.c -o program $(LIBS)
 
 parser:
-	$(CC) -o parser parser.c $(LIBS)
+	$(CC) $(CFLAGS) -o parser parser.c $(LIBS)
 
-.PHONY : program parser
+clean:
+	rm -f *.o *.exe
+
+.PHONY: clean # The .PHONY rule keeps make from doing something with a file named clean
