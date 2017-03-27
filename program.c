@@ -1,24 +1,19 @@
 #include "interface.h"
 
+// Apenas para testes
+#include "parser.h"
+
+/*
+	Este ficheiro vai ser substituído pelos professores.
+	Aqui devem ser executados testes usando as funções definidas no ficheiro interface.c e os datasets de teste
+*/
+
 int main(int argc, char const *argv[]) {
 
-TAD_istruct estrutura;
+	printf("Test me baby one more time\n");
 
-estrutura = init();
-load(estrutura, int nsnaps, char* snaps_paths[]);
+	// Insere-se o nome do ficheiro à frente do ./program
+	parse(argv[1]);
 
-all_articles(TAD_istruct estrutura);
-unique_articles(TAD_istruct estrutura);
-all_revisions(TAD_istruct estrutura);
-top_10_contributors(TAD_istruct estrutura);
-contributor_name(long contributor_id, TAD_istruct estrutura);
-top_20_largest_articles(TAD_istruct estrutura);
-article_title(long article_id, TAD_istruct estrutura);
-top_N_articles_with_more_words(int n, TAD_istruct estrutura);
-titles_with_prefix(char* prefix, TAD_istruct estrutura);
-article_timestamp(long article_id, long revision_id, TAD_istruct estrutura);
-
-clean(estrutura);
-
-	return 1;
+	return 0;
 }

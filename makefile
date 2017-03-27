@@ -4,11 +4,14 @@ LIBS = -I/usr/include/libxml2 -lxml2
 
 all: program
 
-program:
-	$(CC) $(CFLAGS) program.c -o program $(LIBS)
+program: interface.o parser.o
+	$(CC) $(CFLAGS) interface.o parser.o program.c $(LIBS)
 
-parser:
-	$(CC) $(CFLAGS) -o parser parser.c $(LIBS)
+interface.o: interface.c
+	$(CC) $(CFLAGS) interface.c $(LIBS)
+
+parser.o: parser.c
+	$(CC) $(CFLAGS) parser.c $(LIBS)
 
 clean:
 	rm -f *.o *.exe
