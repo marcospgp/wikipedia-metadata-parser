@@ -5,34 +5,35 @@
 #include <libxml/parser.h>
 #include "parser.h"
 
-/* Copiado do tutorial - work in progress
+void parse(const char *docname) {
 
-xmlDocPtr doc;
-xmlNodePtr cur;
+	xmlDocPtr doc;
+	xmlNodePtr cur;
 
-doc = xmlParseFile(docname);
+	doc = xmlParseFile(docname);
 
-if (doc == NULL ) {
-	fprintf(stderr,"Document not parsed successfully. \n");
-	return;
+	if (doc == NULL ) {
+		fprintf(stderr,"Document not parsed successfully. \n");
+		return;
+	}
+
+	cur = xmlDocGetRootElement(doc);
+
+	if (cur == NULL) {
+		fprintf(stderr,"Empty document\n");
+		xmlFreeDoc(doc);
+		return;
+	}
+
+	if (xmlStrcmp(cur->name, (const xmlChar *) "mediawiki")) {
+		fprintf(stderr,"Document of the wrong type, root node != mediawiki");
+		xmlFreeDoc(doc);
+		return;
+	}
+
 }
 
-cur = xmlDocGetRootElement(doc);
-
-if (cur == NULL) {
-	fprintf(stderr,"empty document\n");
-	xmlFreeDoc(doc);
-	return;
-}
-
-if (xmlStrcmp(cur->name, (const xmlChar *) "story")) {
-	fprintf(stderr,"document of the wrong type, root node != story");
-	xmlFreeDoc(doc);
-	return;
-}
-
-*/
-
+/*
 //o array que vai receber os dados
 // o array tem um tamanho limitado, vai ser imprevisivel o comportamento após 50 caracteres
 static char array[20][50];
@@ -68,3 +69,4 @@ void parse(const char *nomedoc) {
 
 	xmlFreeDoc(data);
 }
+*/

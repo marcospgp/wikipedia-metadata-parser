@@ -3,42 +3,42 @@
 		<title>Artigo1</title>
 		<ns>0</ns>
 		<id>24</id>
-		<redirect title="Amoeba" />
+		<redirect title="Jósé Álbértó Réis" />
 		<revision>
 			<id>627604809</id>
 			<parentid>625443465</parentid>
 			<timestamp>2014-09-29T22:26:03Z</timestamp>
 			<contributor>
-				<username>Invadibot</username>
-				<id>15934865</id>
+				<username>Invadibota</username>
+				<id>15934869</id>
 			</contributor>
 			<minor />
-			<comment>Bot: Fixing double redirect to [[Amoeba]]</comment>
+			<comment>Borboletas</comment>
 			<model>wikitext</model>
 			<format>text/x-wiki</format>
-			<text xml:space="preserve">Text example for this article....</text>
-			<sha1>afkde9noo6ive9c3gr5pq9sqlqf6w64</sha1>
+			<text xml:space="preserve">Texto 1 com 12 palavras que tornam este texto mesmo muito longo</text>
+			<sha1>sha de camomila</sha1>
 		</revision>
 	</page>
 	<page>
 		<title>Artigo2</title>
 		<ns>0</ns>
 		<id>25</id>
-		<redirect title="Amoeba" />
+		<redirect title="Amália Rodrigues" />
 		<revision>
-			<id>627604809</id>
-			<parentid>625443465</parentid>
-			<timestamp>2014-09-29T22:26:03Z</timestamp>
+			<id>627604810</id>
+			<parentid>62544385756</parentid>
+			<timestamp>2016-10-27T13:46:02Z</timestamp>
 			<contributor>
-				<username>Invadibot</username>
+				<username>Invadichinelo</username>
 				<id>15934865</id>
 			</contributor>
 			<minor />
-			<comment>Bot: Fixing double redirect to [[Amoeba]]</comment>
+			<comment>Pirilampos</comment>
 			<model>wikitext</model>
 			<format>text/x-wiki</format>
-			<text xml:space="preserve">Text example for this article....</text>
-			<sha1>afkde9noo6ive9c3gr5pq9sqlqf6w64</sha1>
+			<text xml:space="preserve">Texto 2 com 7 palavras muito fixes</text>
+			<sha1>sha de cidreira</sha1>
 		</revision>
 	</page>
 </mediawiki>

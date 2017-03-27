@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "interface.h"
 
 // Apenas para testes
@@ -5,7 +6,7 @@
 
 /*
 	Este ficheiro vai ser substituído pelos professores.
-	Aqui devem ser executados testes usando as funções definidas no ficheiro interface.c e os datasets de teste
+	Aqui devem ser executados testes usando as funções definidas em interface.h e os datasets de teste
 */
 
 int main(int argc, char const *argv[]) {
