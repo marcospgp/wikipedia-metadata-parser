@@ -31,6 +31,21 @@ void parse(const char *docname) {
 		return;
 	}
 
+	// Loop principal
+
+	cur = cur->children;
+
+	while (cur != null) {
+
+		if ((!xmlStrcmp(cur->name, (const xmlChar *)"storyinfo"))){
+			parseStory (doc, cur);
+		}
+
+		cur = cur->next;
+	}
+
+	// Libertar a memória
+	xmlFreeDoc(doc);
 }
 
 /*
