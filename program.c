@@ -17,6 +17,7 @@
 //qs = init();
 //load(qs, int nsnaps, char* snaps_paths[]);
 
+/*
 int corretos = 0;
 
 printf("Testing all_articles...\n");
@@ -45,6 +46,8 @@ char* article_timestamp(long article_id, long revision_id, TAD_istruct qs);
 //TAD_istruct clean(TAD_istruct qs);
 
 printf("Acertaste em %d de 10 testes.\n", corretos);
+
+*/
 
 int main(int argc, char const *argv[]) {
 
