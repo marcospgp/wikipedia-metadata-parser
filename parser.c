@@ -5,7 +5,7 @@
 #include <libxml/parser.h>
 #include "parser.h"
 
-void parseRevision(
+static void parseRevision(
 	xmlDocPtr doc,
 	xmlNodePtr cur,
 	long *revisionId,
@@ -73,7 +73,7 @@ void parseRevision(
 	}
 }
 
-void parsePage(xmlDocPtr doc, xmlNodePtr cur) {
+static void parsePage(xmlDocPtr doc, xmlNodePtr cur) {
 
 	char *title, *revisionContributorUsername, *revisionText;
 	long articleId, revisionId, revisionParentId, revisionContributorId;
