@@ -126,6 +126,9 @@ void parsePage(xmlDocPtr doc, xmlNodePtr cur) {
 	printf("--------------------\n");
 	*/
 
+	xmlFree(title);
+	xmlFree(revisionContributorUsername);
+	xmlFree(revisionText);
 }
 
 void parse(const char *docname) {
