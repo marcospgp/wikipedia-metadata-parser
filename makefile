@@ -1,9 +1,9 @@
-CC=gcc
-CCFLAGS=-Wall
+CC = gcc
+CCFLAGS = -Wall
 LIBS = -I/usr/include/libxml2 -lxml2
-SOURCES=$(wildcard *.c)
-OBJECTS=$(SOURCES:.c=.o)
-TARGET=program
+SOURCES = $(wildcard *.c)
+OBJECTS = $(SOURCES:.c=.o)
+TARGET = program
 
 all: $(TARGET)
 

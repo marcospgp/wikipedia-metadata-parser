@@ -1,25 +1,48 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-#include <libxml/xmlmemory.h>
+#include <string.h>
+#include <libxml/tree.h>
 #include <libxml/parser.h>
 #include "parser.h"
 
-void parsePage(xmlDocPtr doc, xmlNodePtr cur) {
-
-	printf("Parsing a page! Cur: %s\n",  cur->name);
-
-	cur = cur->children;
+void parseRevision(xmlDocPtr doc, xmlNodePtr cur) {
 
 	while(cur != NULL) {
 
 		if (cur->type == XML_ELEMENT_NODE) {
 
-			printf("%s\n", cur->name);
-
-			// Elemento "revision"
 			if (!xmlStrcmp(cur->name, (const xmlChar *) "revision")) {
-				parsePage(doc, cur);
+				parseRevision(doc, cur->children);
+			}
+		}
+
+		cur = cur->next;
+	}
+}
+
+void parsePage(xmlDocPtr doc, xmlNodePtr cur) {
+
+	char *title, *contributorName, *revisionText;
+	long articleId, revisionId, revisionParentId, revisionContributorId;
+
+
+	while(cur != NULL) {
+
+		if (cur->type == XML_ELEMENT_NODE) {
+
+			// Title
+			if (!xmlStrcmp(cur->name, (const xmlChar *) "title")) {
+				title = (char*) cur->content;
+			}
+
+			// Revision
+			if (!xmlStrcmp(cur->name, (const xmlChar *) "revision")) {
+				parseRevision(doc, cur->children);
+			}
+
+			// Revision
+			if (!xmlStrcmp(cur->name, (const xmlChar *) "revision")) {
+				parseRevision(doc, cur->children);
 			}
 		}
 
@@ -32,7 +55,7 @@ void parse(const char *docname) {
 	xmlDocPtr doc;
 	xmlNodePtr cur;
 
-	doc = xmlParseFile(docname);
+	doc = xmlReadFile(docname, NULL);
 
 	if (doc == NULL ) {
 		fprintf(stderr,"Document not parsed successfully. \n");
@@ -59,9 +82,9 @@ void parse(const char *docname) {
 
 	while (cur != NULL) {
 
-		if ((!xmlStrcmp(cur->name, (const xmlChar *)"page"))){
+		if (!xmlStrcmp(cur->name, (const xmlChar *)"page")) {
 
-			parsePage(doc, cur);
+			parsePage(doc, cur->children);
 		}
 
 		cur = cur->next;
