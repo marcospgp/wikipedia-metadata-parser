@@ -2,14 +2,14 @@
 #include <string.h>
 #include <stdlib.h>
 
-// tamanho de articleTitle é 255 a Wiki só permite até 85 caract no nome do user
+// tamanho de articleTitle é 255, a Wiki só permite até 255 caract no titulo
 
 
 struct hash *hashTable = NULL;
 int eleCount = 0;
 
 struct node {
-    int articleId, articleSize;
+    int articleId, articleSize, articleWords;
     char articleTitle[255];
     struct node *next;
 };
@@ -19,19 +19,20 @@ struct hash {
     int count;
 };
 
-struct node * createNode(int articleId, char *articleTitle, int articleSize) {
+struct node * createNode(int articleId, char *articleTitle, int articleSize, int articleWords) {
     struct node *newnode;
     newnode = (struct node *) malloc(sizeof(struct node));
     newnode->articleId = articleId;
     newnode->articleSize = articleSize;
+    newnode->articleWords = articleWords;
     strcpy(newnode->articleTitle, articleTitle);
     newnode->next = NULL;
     return newnode;
 }
 
-void insertToHash(int articleId, char *articleTitle, int articleSize) {
+void insertToHash(int articleId, char *articleTitle, int articleSize, int articleWords) {
     int hashIndex = articleId % eleCount;
-    struct node *newnode = createNode(articleId, articleTitle, articleSize);
+    struct node *newnode = createNode(articleId, articleTitle, articleSize, articleWords);
     /* head of list for the bucket with index "hashIndex" */
     if (!hashTable[hashIndex].head) {
         hashTable[hashIndex].head = newnode;
@@ -96,6 +97,7 @@ void searchInHash(int articleId) {
             printf("UserID  : %d\n", myNode->articleId);
             printf("articleTitle     : %s\n", myNode->articleTitle);
             printf("articleSize      : %d\n", myNode->articleSize);
+            printf("articleWords     : %d\n", myNode->articleWords);
             flag = 1;
             break;
         }
@@ -116,12 +118,13 @@ void display() {
         if (!myNode)
             continue;
         printf("\nData at index %d in Hash Table:\n", i);
-        printf("ArticleID      Title                         Size \n");
-        printf("---------------------------------------------------\n");
+        printf("ArticleID      Title                    Size      Words\n");
+        printf("-------------------------------------------------------\n");
         while (myNode != NULL) {
             printf("%-15d", myNode->articleId);
-            printf("%-30s", myNode->articleTitle);
-            printf("%d\n", myNode->articleSize);
+            printf("%-25s", myNode->articleTitle);
+            printf("%-10d", myNode->articleSize);
+            printf("%d\n", myNode->articleWords);
             myNode = myNode->next;
         }
     }
@@ -129,7 +132,7 @@ void display() {
 }
 
 int main() {
-    int n, ch, articleId, articleSize;
+    int n, ch, articleId, articleSize, articleWords;
     char articleTitle[255];
     printf("Enter the number of elements:");
     scanf("%d", &n);
@@ -151,8 +154,10 @@ int main() {
             articleTitle[strlen(articleTitle) - 1] = '\0';
             printf("articleSize:");
             scanf("%d", &articleSize);
+            printf("articleWords:");
+            scanf("%d", &articleWords);
             /*inserting new node to hash table */
-            insertToHash(articleId, articleTitle, articleSize);
+            insertToHash(articleId, articleTitle, articleSize, articleWords);
             break;
 
         case 2:
