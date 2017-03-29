@@ -117,10 +117,10 @@ void display() {
             continue;
         printf("\nData at index %d in Hash Table:\n", i);
         printf("UserID      contributorUsername           Npubs \n");
-        printf("---------------------------------\n");
+        printf("------------------------------------------------\n");
         while (myNode != NULL) {
             printf("%-12d", myNode->contributorId);
-            printf("%-15s", myNode->contributorUsername);
+            printf("%-30s", myNode->contributorUsername);
             printf("%d\n", myNode->numOfContributions);
             myNode = myNode->next;
         }
