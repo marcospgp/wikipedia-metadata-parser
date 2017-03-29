@@ -2,15 +2,15 @@
 #include <string.h>
 #include <stdlib.h>
 
-// tamanho de contributorUsername é 86 a Wiki só permite até 85 caract no nome do user
+// tamanho de articleTitle é 255 a Wiki só permite até 85 caract no nome do user
 
 
 struct hash *hashTable = NULL;
 int eleCount = 0;
 
 struct node {
-    int contributorId, numOfContributions;
-    char contributorUsername[86];
+    int articleId, articleSize;
+    char articleTitle[255];
     struct node *next;
 };
 
@@ -19,19 +19,19 @@ struct hash {
     int count;
 };
 
-struct node * createNode(int contributorId, char *contributorUsername, int numOfContributions) {
+struct node * createNode(int articleId, char *articleTitle, int articleSize) {
     struct node *newnode;
     newnode = (struct node *) malloc(sizeof(struct node));
-    newnode->contributorId = contributorId;
-    newnode->numOfContributions = numOfContributions;
-    strcpy(newnode->contributorUsername, contributorUsername);
+    newnode->articleId = articleId;
+    newnode->articleSize = articleSize;
+    strcpy(newnode->articleTitle, articleTitle);
     newnode->next = NULL;
     return newnode;
 }
 
-void insertToHash(int contributorId, char *contributorUsername, int numOfContributions) {
-    int hashIndex = contributorId % eleCount;
-    struct node *newnode = createNode(contributorId, contributorUsername, numOfContributions);
+void insertToHash(int articleId, char *articleTitle, int articleSize) {
+    int hashIndex = articleId % eleCount;
+    struct node *newnode = createNode(articleId, articleTitle, articleSize);
     /* head of list for the bucket with index "hashIndex" */
     if (!hashTable[hashIndex].head) {
         hashTable[hashIndex].head = newnode;
@@ -49,9 +49,9 @@ void insertToHash(int contributorId, char *contributorUsername, int numOfContrib
     return;
 }
 
-void deleteFromHash(int contributorId) {
+void deleteFromHash(int articleId) {
     /* find the bucket using hash index */
-    int hashIndex = contributorId % eleCount, flag = 0;
+    int hashIndex = articleId % eleCount, flag = 0;
     struct node *temp, *myNode;
     /* get the list head from current bucket */
     myNode = hashTable[hashIndex].head;
@@ -61,8 +61,8 @@ void deleteFromHash(int contributorId) {
     }
     temp = myNode;
     while (myNode != NULL) {
-        /* delete the node with given contributorId */
-        if (myNode->contributorId == contributorId) {
+        /* delete the node with given articleId */
+        if (myNode->articleId == articleId) {
             flag = 1;
             if (myNode == hashTable[hashIndex].head)
                 hashTable[hashIndex].head = myNode->next;
@@ -83,8 +83,8 @@ void deleteFromHash(int contributorId) {
     return;
 }
 
-void searchInHash(int contributorId) {
-    int hashIndex = contributorId % eleCount, flag = 0;
+void searchInHash(int articleId) {
+    int hashIndex = articleId % eleCount, flag = 0;
     struct node *myNode;
     myNode = hashTable[hashIndex].head;
     if (!myNode) {
@@ -92,10 +92,10 @@ void searchInHash(int contributorId) {
         return;
     }
     while (myNode != NULL) {
-        if (myNode->contributorId == contributorId) {
-            printf("UserID  : %d\n", myNode->contributorId);
-            printf("contributorUsername     : %s\n", myNode->contributorUsername);
-            printf("numOfContributions      : %d\n", myNode->numOfContributions);
+        if (myNode->articleId == articleId) {
+            printf("UserID  : %d\n", myNode->articleId);
+            printf("articleTitle     : %s\n", myNode->articleTitle);
+            printf("articleSize      : %d\n", myNode->articleSize);
             flag = 1;
             break;
         }
@@ -116,12 +116,12 @@ void display() {
         if (!myNode)
             continue;
         printf("\nData at index %d in Hash Table:\n", i);
-        printf("UserID      contributorUsername           Npubs \n");
-        printf("---------------------------------\n");
+        printf("ArticleID      Title                         Size \n");
+        printf("---------------------------------------------------\n");
         while (myNode != NULL) {
-            printf("%-12d", myNode->contributorId);
-            printf("%-15s", myNode->contributorUsername);
-            printf("%d\n", myNode->numOfContributions);
+            printf("%-15d", myNode->articleId);
+            printf("%-30s", myNode->articleTitle);
+            printf("%d\n", myNode->articleSize);
             myNode = myNode->next;
         }
     }
@@ -129,8 +129,8 @@ void display() {
 }
 
 int main() {
-    int n, ch, contributorId, numOfContributions;
-    char contributorUsername[86];
+    int n, ch, articleId, articleSize;
+    char articleTitle[255];
     printf("Enter the number of elements:");
     scanf("%d", &n);
     eleCount = n;
@@ -143,29 +143,29 @@ int main() {
         scanf("%d", &ch);
         switch (ch) {
         case 1:
-            printf("Enter the contributorId value:");
-            scanf("%d", &contributorId);
+            printf("Enter the articleId value:");
+            scanf("%d", &articleId);
             getchar();
-            printf("contributorUsername:");
-            fgets(contributorUsername, 86, stdin);
-            contributorUsername[strlen(contributorUsername) - 1] = '\0';
-            printf("numOfContributions:");
-            scanf("%d", &numOfContributions);
+            printf("articleTitle:");
+            fgets(articleTitle, 255, stdin);
+            articleTitle[strlen(articleTitle) - 1] = '\0';
+            printf("articleSize:");
+            scanf("%d", &articleSize);
             /*inserting new node to hash table */
-            insertToHash(contributorId, contributorUsername, numOfContributions);
+            insertToHash(articleId, articleTitle, articleSize);
             break;
 
         case 2:
-            printf("Enter the contributorId to perform deletion:");
-            scanf("%d", &contributorId);
-            /* delete node with "contributorId" from hash table */
-            deleteFromHash(contributorId);
+            printf("Enter the articleId to perform deletion:");
+            scanf("%d", &articleId);
+            /* delete node with "articleId" from hash table */
+            deleteFromHash(articleId);
             break;
 
         case 3:
-            printf("Enter the contributorId to search:");
-            scanf("%d", &contributorId);
-            searchInHash(contributorId);
+            printf("Enter the articleId to search:");
+            scanf("%d", &articleId);
+            searchInHash(articleId);
             break;
         case 4:
             display();
