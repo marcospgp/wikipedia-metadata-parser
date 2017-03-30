@@ -1,0 +1,1 @@
+O bernardo é lindo! Eu gosto muito dele! Ass vítor! <3
