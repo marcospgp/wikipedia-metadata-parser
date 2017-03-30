@@ -1,1 +1,4 @@
-O bernardo é lindo! Eu gosto muito dele! Ass vítor! <3
+#ifndef articles_h
+#define articles_h
+
+#endif
