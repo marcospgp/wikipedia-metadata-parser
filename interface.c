@@ -22,6 +22,8 @@ TAD_istruct init() {
 
 	// Inicializar hash tables
 	qs = initHashtables(qs);
+
+	return qs;
 }
 
 TAD_istruct load(TAD_istruct qs, int nsnaps, char* snaps_paths[]) {
@@ -35,6 +37,8 @@ TAD_istruct load(TAD_istruct qs, int nsnaps, char* snaps_paths[]) {
 			fprintf(stderr, "Erro ao processar dados do caminho %d\n", (i + 1));
 		}
 	}
+
+	return qs;
 }
 
 /*

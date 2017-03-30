@@ -3,6 +3,8 @@
 #include <string.h>
 #include <libxml/tree.h>
 #include <libxml/parser.h>
+#include "articles.h"
+#include "users.h"
 
 #include "parser.h"
 
