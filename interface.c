@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <glib.h>
 #include "parser.h"
 #include "hashtable.h"
 
@@ -15,17 +18,22 @@ TAD_istruct init() {
 
 	TCD_istruct dataStructure = {NULL, NULL, 0, 0, 0};
 
-	TAD_istruct qs = &dataStructure;
+	TAD_istruct qs = (TAD_istruct) &dataStructure;
 
 	// Inicializar hash tables
-	qs = initHashTables(qs);
+	qs = initHashtables(qs);
 }
 
 TAD_istruct load(TAD_istruct qs, int nsnaps, char* snaps_paths[]) {
 
 	int i;
 	for (i = 0; i < nsnaps; i++) {
+
 		qs = parseWikiData(qs, snaps_paths[i]);
+
+		if (qs == NULL) {
+			fprintf(stderr, "Erro ao processar dados do caminho %d\n", (i + 1));
+		}
 	}
 }
 

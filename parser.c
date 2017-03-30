@@ -177,7 +177,7 @@ TAD_istruct parseWikiData(TAD_istruct qs, const char *docname) {
 
 	if (doc == NULL ) {
 		fprintf(stderr,"Document not parsed successfully. \n");
-		return;
+		return NULL;
 	}
 
 	cur = xmlDocGetRootElement(doc);
@@ -185,13 +185,13 @@ TAD_istruct parseWikiData(TAD_istruct qs, const char *docname) {
 	if (cur == NULL) {
 		fprintf(stderr,"Empty document\n");
 		xmlFreeDoc(doc);
-		return;
+		return NULL;
 	}
 
 	if (xmlStrcmp(cur->name, (const xmlChar *) "mediawiki")) {
 		fprintf(stderr,"Document of the wrong type, root node != mediawiki");
 		xmlFreeDoc(doc);
-		return;
+		return NULL;
 	}
 
 	// Loop principal - itera pelas páginas
