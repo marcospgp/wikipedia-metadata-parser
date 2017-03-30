@@ -56,7 +56,7 @@ int main(int argc, char const *argv[]) {
 
 	char *paths[] = {"datateste"};
 
-	qs = load(qs, paths);
+	qs = load(qs, 1, paths);
 
 	// TODO - Adicionar chamadas de teste!
 
