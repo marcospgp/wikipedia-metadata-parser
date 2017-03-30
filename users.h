@@ -1,7 +1,7 @@
 #ifndef users_h
 #define users_h
 
-// Função chamada em parser que passa dados para users
-void onPageUsers(long revisionContributorId, char *revisionContributorUsername);
+// Função chamada em parser.c que passa dados para users.c
+TAD_istruct onPageUsers(TAD_istruct qs, long revisionContributorId, char *revisionContributorUsername);
 
 #endif

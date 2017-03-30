@@ -128,15 +128,17 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 	Nestes casos, deve-se ignorar este autor para os resultados da interrogação.
 	*/
 
-	/*
 	qs = onPageUsers(qs, revisionContributorId, revisionContributorUsername);
+
+	/*
 		-> no módulo, vai ter de chamar a função (da HASH) de procura por ID
 			-> se encontrar, chama a função (da HASH) que aumenta o numOfContributions
 			-> se não encontrar, chama a função (da HASH) que insere o ID+username+counter=1
 	*/
 
-	/*
 	qs = onPageArticles(qs, articleId, title, revisionText, revisionId, revisionParentId);
+
+	/*
 		-> chama a função de procura (da HASH) ID do artigo
 			-> se não encontrar, chama a func insere (da HASH) articleID+title+
 																sizeOfArticle(revisionText) (função do modulo ARTICLES)+
