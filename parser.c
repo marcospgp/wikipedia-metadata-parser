@@ -3,6 +3,7 @@
 #include <string.h>
 #include <libxml/tree.h>
 #include <libxml/parser.h>
+
 #include "parser.h"
 
 static void parseRevision(

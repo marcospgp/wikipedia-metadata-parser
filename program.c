@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include "interface.h"
 
-// Apenas para testes
-#include "parser.h"
-
 #define NUM_ALL_ARTICLES 1987654
 #define NUM_UNIQUE_ARTICLES 1234567
 #define NUM_ALL_REVISIONS 1347356
@@ -51,10 +48,17 @@ printf("Acertaste em %d de 10 testes.\n", corretos);
 
 int main(int argc, char const *argv[]) {
 
-	printf("Test me baby one more time\n");
+	printf("Calling init()\n");
 
-	// Insere-se o nome do ficheiro à frente do ./program
-	parse(argv[1]);
+	TAD_istruct qs = init();
+
+	printf("Calling load()\n");
+
+	char *paths[] = {"datateste"};
+
+	qs = load(qs, paths);
+
+	// TODO - Adicionar chamadas de teste!
 
 	return 0;
 }

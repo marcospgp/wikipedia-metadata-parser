@@ -1,16 +1,13 @@
 #include "parser.h"
 #include "interface.h"
+#include "hashtable.h"
 
-// Estrutura placeholder
-
-typedef struct nodoABP {
-	int valor;
-	struct nodoABP* direito;
-	struct nodoABP* esquerdo;
-} ABP_NODOT;
-
-typedef struct TCD_ABP {
-	ABP_NODOT* raiz;
+typedef struct __TCD_istruct {
+	GHashTable *users;
+	GHashTable *articles;
+	long allArticles;
+	long uniqueArticles;
+	long allRevisions;
 } TCD_istruct;
 
 /*
