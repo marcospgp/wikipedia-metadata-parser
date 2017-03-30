@@ -1,6 +1,6 @@
 CC = gcc
-CCFLAGS = -Wall
-LIBS = -I/usr/include/libxml2 -lxml2
+CCFLAGS = -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0`
+LIBS =  `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
 SOURCES = $(wildcard *.c)
 OBJECTS = $(SOURCES:.c=.o)
 TARGET = program
