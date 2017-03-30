@@ -4,9 +4,9 @@
 
 #include "users.h"
 
+TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username) {
 
-TAD_istruct onPageUsers(TAD_istruct qs, long revisionContributorId, char *revisionContributorUsername) {
+	qs = onUserContribution(qs, id, username);
 
-
-
+	return qs;
 }
