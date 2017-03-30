@@ -80,7 +80,7 @@ static void parseRevision(
 	}
 }
 
-static void parsePage(xmlDocPtr doc, xmlNodePtr cur) {
+static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 
 	char *title, *revisionContributorUsername, *revisionText, *revisionTimestamp;
 	long articleId, revisionId, revisionParentId, revisionContributorId;
@@ -129,14 +129,14 @@ static void parsePage(xmlDocPtr doc, xmlNodePtr cur) {
 	*/
 
 	/*
-	onPageUsers(revisionContributorId, revisionContributorUsername);
+	qs = onPageUsers(qs, revisionContributorId, revisionContributorUsername);
 		-> no módulo, vai ter de chamar a função (da HASH) de procura por ID
 			-> se encontrar, chama a função (da HASH) que aumenta o numOfContributions
 			-> se não encontrar, chama a função (da HASH) que insere o ID+username+counter=1
 	*/
 
 	/*
-	onPageArticles(articleId, title, revisionText, revisionId, revisionParentId);
+	qs = onPageArticles(qs, articleId, title, revisionText, revisionId, revisionParentId);
 		-> chama a função de procura (da HASH) ID do artigo
 			-> se não encontrar, chama a func insere (da HASH) articleID+title+
 																sizeOfArticle(revisionText) (função do modulo ARTICLES)+
@@ -158,13 +158,15 @@ static void parsePage(xmlDocPtr doc, xmlNodePtr cur) {
 	printf("--------------------\n");
 	*/
 
+	return qs;
+
 	xmlFree(title);
 	xmlFree(revisionTimestamp);
 	xmlFree(revisionContributorUsername);
 	xmlFree(revisionText);
 }
 
-void parse(const char *docname) {
+TAD_istruct parseWikiData(TAD_istruct qs, const char *docname) {
 
 	xmlDocPtr doc;
 	xmlNodePtr cur;
@@ -198,11 +200,13 @@ void parse(const char *docname) {
 
 		if (!xmlStrcmp(cur->name, (const xmlChar *)"page")) {
 
-			parsePage(doc, cur->children);
+			qs = parsePage(qs, doc, cur->children);
 		}
 
 		cur = cur->next;
 	}
+
+	return qs;
 
 	// Libertar a memória
 	xmlFreeDoc(doc);

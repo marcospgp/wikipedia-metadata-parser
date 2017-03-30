@@ -18,7 +18,9 @@ typedef struct __revision {
 	char timestamp[255];
 } revision;
 
-TAD_istruct init(TAD_istruct qs);
+/* Substitui os apontadores NULL da estrutura com apontadores para as respetivas hash tables
+ */
+TAD_istruct initHashtables(TAD_istruct qs);
 
 /* Esta função deve ser chamada quando é encontrada uma contribuição de um certo utilizador.
  * O módulo deve manter internamente o cálculo do número de contribuições de cada utilizador.

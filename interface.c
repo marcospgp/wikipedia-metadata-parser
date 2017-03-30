@@ -1,6 +1,7 @@
 #include "parser.h"
-#include "interface.h"
 #include "hashtable.h"
+
+#include "interface.h"
 
 typedef struct __TCD_istruct {
 	GHashTable *users;
@@ -10,11 +11,25 @@ typedef struct __TCD_istruct {
 	long allRevisions;
 } TCD_istruct;
 
+TAD_istruct init() {
+
+	TCD_istruct dataStructure = {NULL, NULL, 0, 0, 0};
+
+	TAD_istruct qs = &dataStructure;
+
+	// Inicializar hash tables
+	qs = initHashTables(qs);
+}
+
+TAD_istruct load(TAD_istruct qs, int nsnaps, char* snaps_paths[]) {
+
+	int i;
+	for (i = 0; i < nsnaps; i++) {
+		qs = parseWikiData(qs, snaps_paths[i]);
+	}
+}
+
 /*
-
-TAD_istruct init() {}
-
-TAD_istruct load(TAD_istruct qs, int nsnaps, char* snaps_paths[]) {}
 
 TAD_istruct clean(TAD_istruct qs) {}
 
