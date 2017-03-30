@@ -138,7 +138,7 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 			-> se não encontrar, chama a função (da HASH) que insere o ID+username+counter=1
 	*/
 
-	qs = onPageArticles(qs, articleId, title, revisionText, revisionId, revisionParentId);
+	qs = onPageArticles(qs, articleId, title, revisionText, revisionId, revisionParentId, revisionTimestamp);
 
 	/*
 		-> chama a função de procura (da HASH) ID do artigo
