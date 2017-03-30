@@ -3,6 +3,6 @@
 
 typedef struct TCD_istruct* TAD_istruct;
 
-void parseWikiData(TAD_istruct qs, const char *docname);
+TAD_istruct parseWikiData(TAD_istruct qs, const char *docname);
 
 #endif
