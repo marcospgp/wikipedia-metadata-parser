@@ -5,3 +5,8 @@
 #include "users.h"
 
 
+TAD_istruct onPageUsers(TAD_istruct qs, long revisionContributorId, char *revisionContributorUsername) {
+
+
+
+}
