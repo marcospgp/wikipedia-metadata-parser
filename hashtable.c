@@ -24,20 +24,26 @@ TAD_istruct onUserContribution(TAD_istruct qs, long id, char *username) {
 
 	if (userData == NULL) {
 
+		printf("Creating new user...");
+
 		// Criar novo utilizador
 
 		char *usernameCopy = g_strdup(username); // Copiar string porque o parser pode apagá-la
 
 		struct user newUser = {id, 1, usernameCopy};
 
-		userData = &newUser;
+		// Inserir novo utilizador na hash table
+		g_hash_table_insert(qs->users, &id, &newUser);
 
 	} else {
-		userData->contributions = (userData->contributions) + 1;
-	}
 
-	// Inserir utilizador na hash table
-	g_hash_table_insert(qs->users, &id, &userData);
+		printf("Updating user...");
+
+		userData->contributions = (userData->contributions) + 1;
+
+		// Nota - não é preciso inserir de novo na hashtable porque o que
+		// está lá é o endereço para a estrutura que alteramos
+	}
 
 	return qs;
 }
@@ -57,6 +63,8 @@ TAD_istruct onRevision(TAD_istruct qs, long id, char *title, long revisionId, ch
 
 	if (articleData == NULL) {
 
+		printf("Creating new article and adding revision...");
+
 		// Criar hashtable de revisões
 		GHashTable *revisions = g_hash_table_new(NULL, NULL);
 
@@ -70,6 +78,8 @@ TAD_istruct onRevision(TAD_istruct qs, long id, char *title, long revisionId, ch
 		g_hash_table_insert(qs->users, &id, &newArticle);
 
 	} else {
+
+		printf("Updating article...");
 
 		// Atualizar artigo já existente
 		// Apenas atualizar tamanho e nº de palavras do artigo se for maior que o anterior
@@ -93,6 +103,8 @@ TAD_istruct onRevision(TAD_istruct qs, long id, char *title, long revisionId, ch
 		articleData->title = newTitle;
 
 		// Adicionar revisão
+
+		printf("Adding revision...");
 
 		GHashTable *revisions = articleData->revisions;
 

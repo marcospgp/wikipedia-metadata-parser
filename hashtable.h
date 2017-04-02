@@ -14,7 +14,7 @@ struct TCD_istruct {
 };
 
 struct article {
-	long id, size, words;
+	long id, size, nWords;
 	char *title;
 	GHashTable *revisions; // Hashtable que guarda todas as revisoes do artigo, incluindo timestamp
 };
@@ -39,7 +39,7 @@ TAD_istruct initHashtables(TAD_istruct qs);
 TAD_istruct onUserContribution(TAD_istruct qs, long id, char *username);
 
 /* Esta função deve ser chamada quando é encontrada uma revisão de um artigo.
- * A função cria ou atualiza um artigo já existence na tabela. Caso seja feita uma
+ * A função cria ou atualiza um artigo já existente na tabela. Caso seja feita uma
  * atualização, o tamanho do artigo e número de palavras só é atualizado se for
  * maior que o anterior. Os valores restantes são sempre atualizados.
 */
