@@ -125,6 +125,11 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 	}
 
 	/*
+
+		TODO - Ignorar contributor caso apenas tenha <ip> e não <username> + <id>
+
+		TODO - Trocar os nodegetcontent pela função usada no tutorial
+
 		TODO - ADCIONAR IF PARA VERIFICAR SE VALORES NÃO HÁ NULLS OU -1, para passar ao módulo ARTICLES
 	Nota: Em algumas entradas dos backups, o campo <contributor> apenas contém a tag <ip>.
 	Nestes casos, deve-se ignorar este autor para os resultados da interrogação.
