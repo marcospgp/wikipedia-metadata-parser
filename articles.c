@@ -8,22 +8,24 @@
 // TENHO DE TESTAR!!
 
 long wordCounter(char *revisionText) {
-	char *str;
+	/*char *str;
 	int i;
 	long count = 0;
-	int foundLetter = False;
+	int foundLetter = 0;
 
 	for (i = 0; i < strlen(str); i++) {
 		if (str[i] == ' ')
-			foundLetter = False;
+			foundLetter = 0;
 		else {
-      		if (foundLetter == False)
+      		if (foundLetter == 0)
         		count++;
-    	foundLetter = True;
+    	foundLetter = 1;
 		}
 	}
 
-	return count;
+	return count;*/
+
+	return 1; // Comentei porque tava a dar erros ao compilar
 }
 
 /*
@@ -48,7 +50,7 @@ TAD_istruct onPageArticles(
 
 // TODO - fazer a função que conta o número de palavras e a função que conta o número de caracteres
 
-	long sizeBytes = strlen(revisionText)
+	long sizeBytes = strlen(revisionText);
 	long nWords = wordCounter(revisionText);
 
 
@@ -57,6 +59,6 @@ TAD_istruct onPageArticles(
  * atualização, o tamanho do artigo e número de palavras só é atualizado se for
  * maior que o anterior. Os valores restantes são sempre atualizados.
 */
-	qs = onRevision(articleId, title, revisionId, revisionTimestamp, sizeBytes, nWords);
+	qs = onRevision(qs, articleId, title, revisionId, revisionTimestamp, sizeBytes, nWords);
 
 }

@@ -1,7 +1,7 @@
 #ifndef articles_h
 #define articles_h
 
-typedef struct TCD_istruct* TAD_istruct;
+#include "hashtable.h"
 
 // Função chamada em parser.c que nos passa dados
 TAD_istruct onPageArticles(

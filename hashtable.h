@@ -1,22 +1,32 @@
 #ifndef hashtable_h
 #define hashtable_h
 
+#include <glib.h>
+
 typedef struct TCD_istruct* TAD_istruct;
 
-typedef struct __article {
+struct TCD_istruct {
+	GHashTable *users;
+	GHashTable *articles;
+	long allArticles;
+	long uniqueArticles;
+	long allRevisions;
+};
+
+struct article {
 	long id, size, words;
 	char title[255]; // Limite de tamanho de título da wikipédia
-} article;
+};
 
-typedef struct __user {
+struct user {
 	long id, contributions;
 	char username[255];
-} user;
+};
 
-typedef struct __revision {
+struct revision {
 	long id;
 	char timestamp[255];
-} revision;
+};
 
 /* Substitui os apontadores NULL da estrutura com apontadores para as respetivas hash tables
  */

@@ -10,6 +10,11 @@ TAD_istruct initHashtables(TAD_istruct qs) {
 
 	GHashTable *users = g_hash_table_new(NULL, NULL);
 	GHashTable *articles = g_hash_table_new(NULL, NULL);
+
+	qs->users = users;
+	qs->articles = articles;
+
+	return qs;
 }
 
 TAD_istruct onUserContribution(TAD_istruct qs, long id, char *username) {

@@ -6,17 +6,9 @@
 
 #include "interface.h"
 
-typedef struct __TCD_istruct {
-	GHashTable *users;
-	GHashTable *articles;
-	long allArticles;
-	long uniqueArticles;
-	long allRevisions;
-} TCD_istruct;
-
 TAD_istruct init() {
 
-	TCD_istruct dataStructure = {NULL, NULL, 0, 0, 0};
+	struct TCD_istruct dataStructure = {NULL, NULL, 0, 0, 0};
 
 	TAD_istruct qs = (TAD_istruct) &dataStructure;
 
