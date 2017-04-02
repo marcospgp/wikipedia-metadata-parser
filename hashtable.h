@@ -15,17 +15,18 @@ struct TCD_istruct {
 
 struct article {
 	long id, size, words;
-	char title[255]; // Limite de tamanho de título da wikipédia
+	char *title;
+	GHashTable *revisions; // Hashtable que guarda todas as revisoes do artigo, incluindo timestamp
 };
 
 struct user {
 	long id, contributions;
-	char username[255];
+	char *username;
 };
 
 struct revision {
 	long id;
-	char timestamp[255];
+	char *timestamp;
 };
 
 /* Substitui os apontadores NULL da estrutura com apontadores para as respetivas hash tables
