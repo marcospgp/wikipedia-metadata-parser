@@ -7,8 +7,8 @@
 
 TAD_istruct initHashtables(TAD_istruct qs) {
 
-	GHashTable *users = g_hash_table_new(g_int64_hash, g_int64_equal);
-	GHashTable *articles = g_hash_table_new(g_int64_hash, g_int64_equal);
+	GHashTable *users = g_hash_table_new_full(g_int64_hash, g_int64_equal, free, free);
+	GHashTable *articles = g_hash_table_new_full(g_int64_hash, g_int64_equal, free, free);
 
 	qs->users = users;
 	qs->articles = articles;
@@ -90,7 +90,7 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 		printf("Creating new article and adding revision...\n");
 
 		// Criar hashtable de revisões
-		GHashTable *revisions = g_hash_table_new(g_int64_hash, g_int64_equal);
+		GHashTable *revisions = g_hash_table_new_full(g_int64_hash, g_int64_equal, free, free);
 
 		// Adicionar revisão à hashtable de revisões
 		g_hash_table_insert(revisions, revisionIdCopyPtr, newRevision);

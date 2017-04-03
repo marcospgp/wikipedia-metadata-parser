@@ -59,9 +59,9 @@ int main(int argc, char const *argv[]) {
 
 	printf("Calling load()\n\n");
 
-	char *paths[] = {"datasets/dec16"};
+	char *paths[] = {"datasets/dec16", "datasets/jan17", "datasets/fev17"};
 
-	qs = load(qs, 1, paths);
+	qs = load(qs, 3, paths);
 
 	// TODO - Adicionar chamadas de teste!
 
