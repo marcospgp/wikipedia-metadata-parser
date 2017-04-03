@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include "interface.h"
 
 #define NUM_ALL_ARTICLES 1987654
@@ -48,17 +49,26 @@ printf("Acertaste em %d de 10 testes.\n", corretos);
 
 int main(int argc, char const *argv[]) {
 
+	printf("Starting timer\n");
+
+	clock_t execStart = clock();
+
 	printf("Calling init()\n");
 
 	TAD_istruct qs = init();
 
 	printf("Calling load()\n");
 
-	char *paths[] = {"datateste"};
+	char *paths[] = {"datasets/dec16"};
 
 	qs = load(qs, 1, paths);
 
 	// TODO - Adicionar chamadas de teste!
+
+	clock_t execEnd = clock();
+	float timeElapsed = (float)(execEnd - execStart) / CLOCKS_PER_SEC;
+
+	printf("Done. Time elapsed: %f seconds\n", timeElapsed);
 
 	return 0;
 }

@@ -5,6 +5,7 @@
 #include <libxml/parser.h>
 #include "articles.h"
 #include "users.h"
+#include "settings.h"
 
 #include "parser.h"
 
@@ -135,6 +136,8 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 	Nestes casos, deve-se ignorar este autor para os resultados da interrogação.
 	*/
 
+	printf("parser.c - Sending page data to users.c\n");
+
 	qs = onPageUsers(qs, revisionContributorId, revisionContributorUsername);
 
 	/*
@@ -142,6 +145,8 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 			-> se encontrar, chama a função (da HASH) que aumenta o numOfContributions
 			-> se não encontrar, chama a função (da HASH) que insere o ID+username+counter=1
 	*/
+
+	printf("parser.c - Sending page data to articles.c\n");
 
 	qs = onPageArticles(qs, articleId, title, revisionText, revisionId, revisionParentId, revisionTimestamp);
 

@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <glib.h>
+#include "settings.h"
 
 #include "hashtable.h"
 
-// TODO - guardar char *title ao receber antes de ser apagado
-
 TAD_istruct initHashtables(TAD_istruct qs) {
 
-	GHashTable *users = g_hash_table_new(NULL, NULL);
-	GHashTable *articles = g_hash_table_new(NULL, NULL);
+	GHashTable *users = g_hash_table_new(g_int64_hash, g_int64_equal);
+	GHashTable *articles = g_hash_table_new(g_int64_hash, g_int64_equal);
 
 	qs->users = users;
 	qs->articles = articles;
@@ -19,25 +18,31 @@ TAD_istruct initHashtables(TAD_istruct qs) {
 
 TAD_istruct onUserContribution(TAD_istruct qs, long id, char *username) {
 
+	printf("hashtable.c - Received user data\n");
+
 	// Procurar pelo utilizador na hash table
 	struct user *userData = (struct user*) g_hash_table_lookup(qs->users, &id);
 
 	if (userData == NULL) {
 
-		printf("Creating new user...");
+		printf("Creating new user with id %ld\n", id);
 
 		// Criar novo utilizador
 
 		char *usernameCopy = g_strdup(username); // Copiar string porque o parser pode apagá-la
 
-		struct user newUser = {id, 1, usernameCopy};
+		struct user *newUser = malloc(sizeof(struct user));
+
+		newUser->id = id;
+		newUser->contributions = 1;
+		newUser->username = usernameCopy;
 
 		// Inserir novo utilizador na hash table
 		g_hash_table_insert(qs->users, &id, &newUser);
 
 	} else {
 
-		printf("Updating user...");
+		printf("Updating user with id %ld\n", id);
 
 		userData->contributions = (userData->contributions) + 1;
 
@@ -50,12 +55,17 @@ TAD_istruct onUserContribution(TAD_istruct qs, long id, char *username) {
 
 TAD_istruct onRevision(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords) {
 
+	printf("hashtable.c - Received article revision data\n");
+
 	// Copiar strings porque o parser pode apagá-las
 	char *newTitle = g_strdup(title);
 	char *newTimestamp = g_strdup(revisionTimestamp);
 
 	// Criar nova revisão (necessária caso o artigo já exista ou não)
-	struct revision newRevision = {revisionId, newTimestamp};
+	struct revision *newRevision = malloc(sizeof(struct revision));
+
+	newRevision->id = revisionId;
+	newRevision->timestamp = newTimestamp;
 
 	// Verificar se este artigo já existe na hash table
 
@@ -63,7 +73,7 @@ TAD_istruct onRevision(TAD_istruct qs, long id, char *title, long revisionId, ch
 
 	if (articleData == NULL) {
 
-		printf("Creating new article and adding revision...");
+		printf("Creating new article and adding revision...\n");
 
 		// Criar hashtable de revisões
 		GHashTable *revisions = g_hash_table_new(NULL, NULL);
@@ -72,14 +82,20 @@ TAD_istruct onRevision(TAD_istruct qs, long id, char *title, long revisionId, ch
 		g_hash_table_insert(revisions, &revisionId, &newRevision);
 
 		// Criar novo artigo
-		struct article newArticle = {id, sizeBytes, nWords, newTitle, revisions};
+		struct article *newArticle = malloc(sizeof(struct article));
+
+		newArticle->id = id;
+		newArticle->size = sizeBytes;
+		newArticle->nWords = nWords;
+		newArticle->title = newTitle;
+		newArticle->revisions = revisions;
 
 		// Adicionar novo artigo à hashtable
 		g_hash_table_insert(qs->users, &id, &newArticle);
 
 	} else {
 
-		printf("Updating article...");
+		printf("Updating article...\n");
 
 		// Atualizar artigo já existente
 		// Apenas atualizar tamanho e nº de palavras do artigo se for maior que o anterior
@@ -104,7 +120,7 @@ TAD_istruct onRevision(TAD_istruct qs, long id, char *title, long revisionId, ch
 
 		// Adicionar revisão
 
-		printf("Adding revision...");
+		printf("Adding revision...\n");
 
 		GHashTable *revisions = articleData->revisions;
 

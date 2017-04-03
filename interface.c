@@ -3,14 +3,21 @@
 #include <glib.h>
 #include "parser.h"
 #include "hashtable.h"
+#include "users.h"
+#include "articles.h"
+#include "settings.h"
 
 #include "interface.h"
 
 TAD_istruct init() {
 
-	struct TCD_istruct dataStructure = {NULL, NULL, 0, 0, 0};
+	TAD_istruct qs = malloc(sizeof(struct TCD_istruct));
 
-	TAD_istruct qs = (TAD_istruct) &dataStructure;
+	qs->users = NULL;
+	qs->articles = NULL;
+	qs->allArticles = 0;
+	qs->uniqueArticles = 0;
+	qs->allRevisions = 0;
 
 	// Inicializar hash tables
 	qs = initHashtables(qs);
@@ -45,7 +52,13 @@ long all_revisions(TAD_istruct qs) {}
 
 long* top_10_contributors(TAD_istruct qs) {}
 
-char* contributor_name(long contributor_id, TAD_istruct qs) {}
+*/
+
+char* contributor_name(long contributor_id, TAD_istruct qs) {
+
+}
+
+/*
 
 long* top_20_largest_articles(TAD_istruct qs) {}
 

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hashtable.h"
+#include "settings.h"
 
 #include "articles.h"
 
@@ -48,6 +49,8 @@ TAD_istruct onPageArticles(
     char *revisionTimestamp
 ) {
 
+	printf("articles.c - Received article revision data\n");
+
 // TODO - fazer a função que conta o número de palavras e a função que conta o número de caracteres
 
 	long sizeBytes = strlen(revisionText);
@@ -55,10 +58,11 @@ TAD_istruct onPageArticles(
 
 
 /* Esta função deve ser chamada quando é encontrada uma revisão de um artigo.
- * A função cria ou atualiza um artigo já existence na tabela. Caso seja feita uma
+ * A função cria ou atualiza um artigo já existente na tabela. Caso seja feita uma
  * atualização, o tamanho do artigo e número de palavras só é atualizado se for
  * maior que o anterior. Os valores restantes são sempre atualizados.
 */
 	qs = onRevision(qs, articleId, title, revisionId, revisionTimestamp, sizeBytes, nWords);
 
+	return qs;
 }
