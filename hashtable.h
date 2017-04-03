@@ -45,6 +45,10 @@ TAD_istruct onUserContribution(TAD_istruct qs, long id, char *username);
 */
 TAD_istruct onRevision(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords);
 
+/* Retorna um utilizador a partir da sua id
+*/
+struct user * getUser(TAD_istruct qs, long id);
+
 // TODO - função que permita fazer loop pelas hash tables
 
 #endif

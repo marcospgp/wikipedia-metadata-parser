@@ -19,3 +19,9 @@ TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username) {
 
 	return qs;
 }
+
+char* getContributorName(TAD_istruct qs, long id) {
+	struct user *ourUser = getUser(qs, id);
+
+	return ourUser->username;
+}

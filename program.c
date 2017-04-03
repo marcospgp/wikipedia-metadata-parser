@@ -65,6 +65,28 @@ int main(int argc, char const *argv[]) {
 
 	// TODO - Adicionar chamadas de teste!
 
+	// Todas estas queries são em relação ao dataset dec16 - Marcos
+
+	char *query;
+
+	printf("Is user 9092818 Paine Ellsworth?\n");
+	query = contributor_name((long) 9092818, qs);
+	printf("Answer: %s\n\n", query);
+
+	printf("Is user 17585538 Telfordbuck?\n");
+	query = contributor_name((long) 17585538, qs);
+	printf("Answer: %s\n\n", query);
+
+	printf("Is user 7328338 Yobot?\n");
+	query = contributor_name((long) 7328338, qs);
+	printf("Answer: %s\n\n", query);
+
+	printf("Is user 9635580 Simple Bob?\n");
+	query = contributor_name((long) 9635580, qs);
+	printf("Answer: %s\n\n", query);
+
+	// Terminar timer
+
 	clock_t execEnd = clock();
 	float timeElapsed = (float)(execEnd - execStart) / CLOCKS_PER_SEC;
 

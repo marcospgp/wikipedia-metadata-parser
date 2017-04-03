@@ -55,7 +55,7 @@ long* top_10_contributors(TAD_istruct qs) {}
 */
 
 char* contributor_name(long contributor_id, TAD_istruct qs) {
-
+	return getContributorName(qs, contributor_id);
 }
 
 /*

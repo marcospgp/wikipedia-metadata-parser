@@ -129,3 +129,8 @@ TAD_istruct onRevision(TAD_istruct qs, long id, char *title, long revisionId, ch
 
 	return qs;
 }
+
+struct user * getUser(TAD_istruct qs, long id) {
+
+	return (struct user*) g_hash_table_lookup(qs->users, &id);
+}
