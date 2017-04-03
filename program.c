@@ -57,7 +57,7 @@ int main(int argc, char const *argv[]) {
 
 	TAD_istruct qs = init();
 
-	printf("Calling load()\n");
+	printf("Calling load()\n\n");
 
 	char *paths[] = {"datasets/dec16"};
 

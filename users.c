@@ -15,7 +15,7 @@ TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username) {
 
 	printf("users.c - Received user data\n");
 
-	qs = onUserContribution(qs, id, username);
+	qs = insertOrUpdateUser(qs, id, username);
 
 	return qs;
 }
