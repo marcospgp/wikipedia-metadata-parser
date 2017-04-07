@@ -45,10 +45,19 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username);
 */
 TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords);
 
-/* Retorna um utilizador a partir da sua id
-*/
+/* Retorna um utilizador a partir da sua id */
 struct user * getUser(TAD_istruct qs, long id);
 
-// TODO - função que permita fazer loop pelas hash tables
+/* Retorna um iterador para a hash table de utilizadores */
+void * getContributorsIterator(TAD_istruct qs);
+
+/* Retorna um iterador para a hash table de artigos */
+void * getArticlesIterator(TAD_istruct qs);
+
+/* Obter o próximo elemento de um iterador de hash table */
+void * getNextFromIterator(void *iterator);
+
+/* Liberta a memória ocupada por um iterador */
+void freeIterator(void *iterator);
 
 #endif

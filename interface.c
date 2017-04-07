@@ -50,9 +50,11 @@ long unique_articles(TAD_istruct qs) {}
 
 long all_revisions(TAD_istruct qs) {}
 
-long* top_10_contributors(TAD_istruct qs) {}
-
 */
+
+long* top_10_contributors(TAD_istruct qs) {
+	return getTop10Contributors(qs);
+}
 
 char* contributor_name(long contributor_id, TAD_istruct qs) {
 	return getContributorName(qs, contributor_id);

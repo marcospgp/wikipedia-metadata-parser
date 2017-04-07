@@ -149,3 +149,30 @@ struct user * getUser(TAD_istruct qs, long id) {
 
 	return (struct user*) g_hash_table_lookup(qs->users, &id);
 }
+
+void * getContributorsIterator(TAD_istruct qs) {
+
+	GHashTableIter *iter = malloc(sizeof(GHashTableIter));
+
+	g_hash_table_iter_init(iter, qs->users);
+
+	return (void*) iter;
+}
+
+void * getArticlesIterator(TAD_istruct qs) {
+
+	GHashTableIter *iter = malloc(sizeof(GHashTableIter));
+
+	g_hash_table_iter_init(iter, qs->articles);
+
+	return (void*) iter;
+}
+
+void getNextFromIterator(void *iterator, void *key, void *value) {
+
+	g_hash_table_iter_next(iterator, key, value);
+}
+
+void freeIterator(void *iterator) {
+	free(iterator);
+}
