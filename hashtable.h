@@ -45,7 +45,7 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username, int *use
  * atualização, o tamanho do artigo e número de palavras só é atualizado se for
  * maior que o anterior. Os valores restantes são sempre atualizados.
  *
- * @param userWasFound - Usado para retornar 1 se o utlizador foi atualizado, 0 se foi criado um novo
+ * @param articleWasFound - Usado para retornar 1 se o artigo foi atualizado, 0 se foi criado um novo
  */
 TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords, int *articleWasFound);
 
