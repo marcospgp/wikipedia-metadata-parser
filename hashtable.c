@@ -170,7 +170,7 @@ void * getArticlesIterator(TAD_istruct qs) {
 
 void getNextFromIterator(void *iterator, void *key, void *value) {
 
-	g_hash_table_iter_next(iterator, key, value);
+	g_hash_table_iter_next(iterator, (gpointer) key, (gpointer) value);
 }
 
 void freeIterator(void *iterator) {
