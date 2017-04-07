@@ -55,7 +55,7 @@ void * getContributorsIterator(TAD_istruct qs);
 void * getArticlesIterator(TAD_istruct qs);
 
 /* Obter o próximo elemento de um iterador de hash table */
-void * getNextFromIterator(void *iterator);
+void getNextFromIterator(void *iterator, void *key, void *value);
 
 /* Liberta a memória ocupada por um iterador */
 void freeIterator(void *iterator);
