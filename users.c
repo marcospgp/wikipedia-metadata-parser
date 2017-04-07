@@ -21,7 +21,17 @@ TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username) {
 }
 
 char* getContributorName(TAD_istruct qs, long id) {
+
 	struct user *ourUser = getUser(qs, id);
 
 	return ourUser->username;
+}
+
+long* getTop10Contributors(TAD_istruct qs) {
+
+	void *iterator = getContributorsIterator(qs);
+
+
+	// Importante - libertar a memória do iterador no final!
+	freeIterator(iterator);
 }

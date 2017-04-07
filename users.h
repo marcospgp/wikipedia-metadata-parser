@@ -6,4 +6,6 @@ TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username);
 
 char* getContributorName(TAD_istruct qs, long id);
 
+long* getTop10Contributors(TAD_istruct qs);
+
 #endif
