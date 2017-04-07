@@ -16,7 +16,7 @@ TAD_istruct initHashtables(TAD_istruct qs) {
 	return qs;
 }
 
-TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username) {
+TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username, int *userWasFound) {
 
 	printf("hashtable.c - Received user data\n");
 
@@ -26,6 +26,9 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username) {
 	if (userData == NULL) {
 
 		printf("Creating new user with id %ld\n", id);
+
+		// Informar que o utilizador não foi encontrado
+		*userWasFound = 0;
 
 		// Criar novo utilizador
 
@@ -48,6 +51,9 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username) {
 
 		printf("Updating user with id %ld\n", id);
 
+		// Informar que o utilizador foi encontrado
+		*userWasFound = 1;
+
 		userData->contributions = (userData->contributions) + 1;
 
 		// Nota - não é preciso inserir de novo na hashtable porque o que
@@ -57,7 +63,7 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username) {
 	return qs;
 }
 
-TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords) {
+TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords, int *articleWasFound) {
 
 	printf("hashtable.c - Received article revision data\n");
 
@@ -89,6 +95,9 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 
 		printf("Creating new article and adding revision...\n");
 
+		// Informar que o artigo não foi encontrado
+		*articleWasFound = 0;
+
 		// Criar hashtable de revisões
 		GHashTable *revisions = g_hash_table_new_full(g_int64_hash, g_int64_equal, free, free);
 
@@ -111,6 +120,9 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 	} else {
 
 		printf("Updating article...\n");
+
+		// Informar que o artigo foi encontrado
+		*articleWasFound = 1;
 
 		// Atualizar artigo já existente
 		// Apenas atualizar tamanho e nº de palavras do artigo se for maior que o anterior
