@@ -52,11 +52,8 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 /* Retorna um utilizador a partir da sua id */
 struct user * getUser(TAD_istruct qs, long id);
 
-/* Retorna um iterador para a hash table de utilizadores */
-void * getContributorsIterator(TAD_istruct qs);
-
-/* Retorna um iterador para a hash table de artigos */
-void * getArticlesIterator(TAD_istruct qs);
+/* Retorna um iterador para uma hash table */
+void * getHashtableIterator(GHashTable *hashtable);
 
 /* Obter o próximo elemento de um iterador de hash table */
 void getNextFromIterator(void *iterator, void *key, void *value);

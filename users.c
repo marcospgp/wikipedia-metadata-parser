@@ -29,8 +29,52 @@ char* getContributorName(TAD_istruct qs, long id) {
 
 long* getTop10Contributors(TAD_istruct qs) {
 
-	void *iterator = getContributorsIterator(qs);
+	void *iterator = getHashtableIterator(qs->users);
 
+	void *key;
+	struct user curUser;
+
+	struct user *top10[10];
+
+	// Inicializar array com dummy users para começar
+	int i;
+	for (i = 0; i < 10; i++) {
+		top10[i] = {(long) 0, (long) 0, ""};
+	}
+
+	int index = 9;
+
+	// Iterar pela hash table de utilizadores
+	while (getNextFromIterator(iterator, key, (void*) &curUser)) {
+
+		if (curUser->contributions >= top10[9]) {
+
+			// Diminuir o indíce enquanto o utilizador encaixar num rank superior
+			while (curUser->contributions >= (top10[index - 1])->contributions) {
+				index--;
+			}
+
+			// Neste ponto sabemos que o score deste user >= top[index]
+
+			if (curUser->contributions == top10[index]) {
+
+				// Comparar alfabeticamente
+
+				int result = strcmp(curUser->username, )
+
+				if (result > 0) {
+
+				} else if (result < 0) {
+
+				} else {
+					fprintf(stderr, "Erro ao comparar contribuicoes dos utilizadores %s e %s\n", curUser->username, (top10[index])->username);
+				}
+
+			} else {
+				// score deste user > top[index]
+			}
+		}
+	}
 
 	// Importante - libertar a memória do iterador no final!
 	freeIterator(iterator);
