@@ -94,7 +94,7 @@ int main(int argc, char const *argv[]) {
 
 	int i;
 	for (i = 0; i < 10; i++) {
-		printf("%d: %ld\n", (i + 1), top10Contributors[i]);
+		printf("%d: %ld (%s)\n", (i + 1), top10Contributors[i], contributor_name(top10Contributors[i], qs));
 	}
 
 	free(top10Contributors);
@@ -106,7 +106,7 @@ int main(int argc, char const *argv[]) {
 	clock_t execEnd = clock();
 	float timeElapsed = (float)(execEnd - execStart) / CLOCKS_PER_SEC;
 
-	printf("Done. Time elapsed: %f seconds\n", timeElapsed);
+	printf("\nAll done. Time elapsed: %f seconds\n", timeElapsed);
 
 	return 0;
 }
