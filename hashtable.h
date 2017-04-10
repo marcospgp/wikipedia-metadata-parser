@@ -56,7 +56,7 @@ struct user * getUser(TAD_istruct qs, long id);
 void * getHashtableIterator(GHashTable *hashtable);
 
 /* Obter o próximo elemento de um iterador de hash table */
-void getNextFromIterator(void *iterator, void *key, void *value);
+int getNextFromIterator(void *iterator, void *key, void *value);
 
 /* Liberta a memória ocupada por um iterador */
 void freeIterator(void *iterator);

@@ -171,9 +171,11 @@ void * getHashtableIterator(GHashTable *hashtable) {
 	return (void*) iter;
 }
 
-void getNextFromIterator(void *iterator, void *key, void *value) {
+int getNextFromIterator(void *iterator, void *key, void *value) {
 
-	g_hash_table_iter_next(iterator, (gpointer) key, (gpointer) value);
+	int result = (int) g_hash_table_iter_next(iterator, (gpointer) key, (gpointer) value);
+
+	return result;
 }
 
 void freeIterator(void *iterator) {

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "hashtable.h"
 #include "settings.h"
 
@@ -15,7 +16,9 @@ TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username) {
 
 	printf("users.c - Received user data\n");
 
-	qs = insertOrUpdateUser(qs, id, username);
+	int userWasFound;
+
+	qs = insertOrUpdateUser(qs, id, username, &userWasFound);
 
 	return qs;
 }
@@ -24,58 +27,110 @@ char* getContributorName(TAD_istruct qs, long id) {
 
 	struct user *ourUser = getUser(qs, id);
 
-	return ourUser->username;
+	if (ourUser) {
+		return ourUser->username;
+	} else {
+		return NULL;
+	}
 }
 
 long* getTop10Contributors(TAD_istruct qs) {
 
-	void *iterator = getHashtableIterator(qs->users);
+	printf("Getting top 10 contributors\n");
 
-	void *key;
-	struct user curUser;
+	void *iterator = getHashtableIterator(qs->users);
 
 	struct user *top10[10];
 
 	// Inicializar array com dummy users para começar
+
+	struct user nobody = {(long) 0, (long) 0, ""};
+
 	int i;
 	for (i = 0; i < 10; i++) {
-		top10[i] = {(long) 0, (long) 0, ""};
+		top10[i] = &nobody;
 	}
+
+	void *key = NULL;
+	struct user *curUser = NULL;
 
 	int index = 9;
 
 	// Iterar pela hash table de utilizadores
-	while (getNextFromIterator(iterator, key, (void*) &curUser)) {
+	while (getNextFromIterator(iterator, &key, &curUser)) {
 
-		if (curUser->contributions >= top10[9]) {
+		printf("Iterating through users hash table\n");
+
+		printf("%ld\n", curUser);
+		printf("%ld\n", curUser->contributions);
+		printf("%ld\n", top10[9]->contributions);
+
+		if (curUser->contributions >= (top10[9])->contributions) {
+
+			printf("A user's contributions >= top10[9]'s contributions\n");
 
 			// Diminuir o indíce enquanto o utilizador encaixar num rank superior
 			while (curUser->contributions >= (top10[index - 1])->contributions) {
 				index--;
 			}
 
+			printf("This user will be compared to index %d\n", index);
+
 			// Neste ponto sabemos que o score deste user >= top[index]
 
-			if (curUser->contributions == top10[index]) {
+			if (curUser->contributions == (top10[index])->contributions) {
 
-				// Comparar alfabeticamente
+				printf("The users contributions are equal\n");
 
-				int result = strcmp(curUser->username, )
+				// Score deste user == top[index]
+				// Comparar usernames alfabeticamente
 
-				if (result > 0) {
+				int result = strcmp(curUser->username, (top10[index])->username);
 
-				} else if (result < 0) {
+				if (result < 0) {
 
-				} else {
+					printf("The user alphabetically lost\n");
+
+					index++; // Colocar este utilizador uma posição abaixo no rank
+
+					if (index > 9) {
+
+						printf("User dropped to 11th place, skip\n");
+
+						continue; // Utilizador desceu para 11º, skipar
+					}
+
+				} else if (result == 0) {
 					fprintf(stderr, "Erro ao comparar contribuicoes dos utilizadores %s e %s\n", curUser->username, (top10[index])->username);
 				}
 
-			} else {
-				// score deste user > top[index]
+				printf("The user alphabetically won\n");
 			}
+
+			// Deslizar os outros utilizadores para baixo para termos espaço para o novo utilizador no rank
+
+			int i;
+			for (i = 9; i > index; i--) {
+
+				top10[i] = top10[i - 1];
+			}
+
+			// Colocar o utlizador na sua nova posição no rank
+			top10[index] = curUser;
 		}
 	}
 
 	// Importante - libertar a memória do iterador no final!
 	freeIterator(iterator);
+
+	// Obter array de ids e retorná-lo
+
+	long *top10Ids = malloc(10 * sizeof(long));
+
+	int j;
+	for (j = 0; j < 10; j++) {
+		top10Ids[j] = (top10[j])->id;
+	}
+
+	return top10Ids;
 }

@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include "interface.h"
@@ -61,7 +62,7 @@ int main(int argc, char const *argv[]) {
 
 	char *paths[] = {"datasets/dec16", "datasets/jan17", "datasets/fev17"};
 
-	qs = load(qs, 3, paths);
+	qs = load(qs, 1, paths);
 
 	// TODO - Adicionar chamadas de teste!
 
@@ -84,6 +85,21 @@ int main(int argc, char const *argv[]) {
 	printf("Is user 9635580 Simple Bob?\n");
 	query = contributor_name((long) 9635580, qs);
 	printf("Answer: %s\n\n", query);
+
+	// Testar top 10 contributors ------------
+
+	printf("Top 10 contributors:\n");
+
+	long *top10Contributors = top_10_contributors(qs);
+
+	int i;
+	for (i = 0; i < 10; i++) {
+		printf("%d: %ld\n", (i + 1), top10Contributors[i]);
+	}
+
+	free(top10Contributors);
+
+	// ---------------------------------------
 
 	// Terminar timer
 
