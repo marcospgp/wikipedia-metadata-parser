@@ -171,6 +171,11 @@ struct user * getUser(TAD_istruct qs, long id) {
 	return (struct user*) g_hash_table_lookup(qs->users, &id);
 }
 
+struct article * getArticle(TAD_istruct qs, long id) {
+
+	return (struct article*) g_hash_table_lookup(qs->articles, &id);
+}
+
 void * getHashtableIterator(GHashTable *hashtable) {
 
 	GHashTableIter *iter = malloc(sizeof(GHashTableIter));
