@@ -147,11 +147,17 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 
 		// Adicionar revisão
 
-		printf("Adding revision...\n");
-
 		GHashTable *revisions = articleData->revisions;
 
-		g_hash_table_insert(revisions, revisionIdCopyPtr, newRevision);
+		if (g_hash_table_lookup(revisions, &revisionId)) {
+
+			printf("Duplicated revision. Skipping...\n");
+
+		} else {
+
+			printf("Adding revision...\n");
+			g_hash_table_insert(revisions, revisionIdCopyPtr, newRevision);
+		}
 	}
 
 	return qs;
