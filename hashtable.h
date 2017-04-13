@@ -45,9 +45,10 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username, int *use
  * atualização, o tamanho do artigo e número de palavras só é atualizado se for
  * maior que o anterior. Os valores restantes são sempre atualizados.
  *
- * @param articleWasFound - Usado para retornar 1 se o artigo foi atualizado, 0 se foi criado um novo
+ * @param articleFound - Usado para retornar 1 se o artigo foi encontrado
+ * @param articleFound - Usado para retornar 1 se o artigo foi atualizado, 0 se a revisão foi ignorada porque era duplicada
  */
-TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords, int *articleWasFound);
+TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords, int *articleFound, int *articleUpdated);
 
 /* Retorna um utilizador a partir da sua id */
 struct user * getUser(TAD_istruct qs, long id);

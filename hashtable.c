@@ -63,7 +63,7 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username, int *use
 	return qs;
 }
 
-TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords, int *articleWasFound) {
+TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords, int *articleFound, int *articleUpdated) {
 
 	printf("hashtable.c - Received article revision data\n");
 
@@ -96,7 +96,8 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 		printf("Creating new article and adding revision...\n");
 
 		// Informar que o artigo não foi encontrado
-		*articleWasFound = 0;
+		*articleFound = 0;
+		*articleUpdated = 0;
 
 		// Criar hashtable de revisões
 		GHashTable *revisions = g_hash_table_new_full(g_int64_hash, g_int64_equal, free, free);
@@ -122,7 +123,7 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 		printf("Updating article...\n");
 
 		// Informar que o artigo foi encontrado
-		*articleWasFound = 1;
+		*articleFound = 1;
 
 		// Atualizar artigo já existente
 		// Apenas atualizar tamanho e nº de palavras do artigo se for maior que o anterior
@@ -152,11 +153,13 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 		if (g_hash_table_lookup(revisions, &revisionId)) {
 
 			printf("Duplicated revision. Skipping...\n");
+			*articleUpdated = 0;
 
 		} else {
 
 			printf("Adding revision...\n");
 			g_hash_table_insert(revisions, revisionIdCopyPtr, newRevision);
+			*articleUpdated = 1;
 		}
 	}
 
