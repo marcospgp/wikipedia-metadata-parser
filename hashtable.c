@@ -115,7 +115,7 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 		newArticle->revisions = revisions;
 
 		// Adicionar novo artigo à hashtable
-		g_hash_table_insert(qs->users, idCopyPtr, newArticle);
+		g_hash_table_insert(qs->articles, idCopyPtr, newArticle);
 
 	} else {
 
