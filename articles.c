@@ -110,5 +110,9 @@ long get_all_revisions(TAD_istruct qs) {
 char* get_article_title(long article_id, TAD_istruct qs) {
 	struct article *ourArticle = getArticle(qs, article_id);
 
-	return ourArticle->title;
+	if (ourArticle) {
+		return ourArticle->title;
+	} else {
+		return NULL;
+	}
 }
