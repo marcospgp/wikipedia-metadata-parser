@@ -81,7 +81,7 @@ TAD_istruct onPageArticles(
 		qs->uniqueArticles++;
 	}
 	// Para o caso de ser revisão
-	else {
+	if(articleWasUpdated) {
 		qs->allRevisions++;
 	}
 

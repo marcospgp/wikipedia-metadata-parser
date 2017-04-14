@@ -167,7 +167,7 @@ int main(int argc, char const *argv[]) {
 	printf("uniqueArticles: %ld\n", uniqueArticlesNum);
 
 	long allRevisionsNum = all_revisions(qs);
-	printf("allRevisions: artigos(%ld) + revisoes(%ld) = %ld\n", uniqueArticlesNum, allRevisionsNum, (uniqueArticlesNum+ allRevisionsNum));
+	printf("allRevisions:  %ld\n", allRevisionsNum);
 
 	// -------------------------------------------------------------
 

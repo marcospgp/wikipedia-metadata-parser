@@ -97,7 +97,7 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 
 		// Informar que o artigo não foi encontrado
 		*articleFound = 0;
-		*articleUpdated = 0;
+		*articleUpdated = 1;
 
 		// Criar hashtable de revisões
 		GHashTable *revisions = g_hash_table_new_full(g_int64_hash, g_int64_equal, free, free);
