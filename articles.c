@@ -5,10 +5,10 @@
 
 #include "articles.h"
 
-// TENHO DE TESTAR!!
 
+// Testada e a funcionar ------- 14 apr
 long wordCounter(char *revisionText) {
-	/*char *str;
+	char *str = revisionText;
 	int i;
 	long count = 0;
 	int foundLetter = 0;
@@ -23,9 +23,7 @@ long wordCounter(char *revisionText) {
 		}
 	}
 
-	return count;*/
-
-	return 1; // Comentei porque tava a dar erros ao compilar
+	return count;
 }
 
 /*
