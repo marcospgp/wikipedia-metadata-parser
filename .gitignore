@@ -53,5 +53,4 @@ dkms.conf
 # Misc
 exemplos/
 datasets/
-datatestes/
 *.stackdump
