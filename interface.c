@@ -46,7 +46,7 @@ TAD_istruct clean(TAD_istruct qs) {}
 
 */
 
-// ---------------------VITOR-----------------14-apr-2017
+// ---------------------VITOR-----------------14-apr-2017 -> quero testar com os datatestes que falei mas 32 bits fails
 
 long all_articles(TAD_istruct qs) {
 	return get_all_articles(qs);
