@@ -40,17 +40,28 @@ TAD_istruct load(TAD_istruct qs, int nsnaps, char* snaps_paths[]) {
 	return qs;
 }
 
+
 /*
 
 TAD_istruct clean(TAD_istruct qs) {}
 
-long all_articles(TAD_istruct qs) {}
-
-long unique_articles(TAD_istruct qs) {}
-
-long all_revisions(TAD_istruct qs) {}
-
 */
+
+// ---------------------VITOR-----------------14-apr-2017
+
+long all_articles(TAD_istruct qs) {
+	return get_all_articles(qs);
+}
+
+long unique_articles(TAD_istruct qs) {
+	return get_unique_articles(qs);
+}
+
+long all_revisions(TAD_istruct qs) {
+	return get_all_revisions(qs);
+}
+
+// ---------------------VITOR-----------------14-apr-2017
 
 long* top_10_contributors(TAD_istruct qs) {
 	return getTop10Contributors(qs);

@@ -90,19 +90,19 @@ TAD_istruct onPageArticles(
 
 
 // NAO TESTADO - 12 apr
-long all_articles(TAD_istruct qs) {
+long get_all_articles(TAD_istruct qs) {
 	struct TCD_istruct *ourTable = qs;
 
 	return ourTable->allArticles;
 }
 
-long unique_articles(TAD_istruct qs) {
+long get_unique_articles(TAD_istruct qs) {
 	struct TCD_istruct *ourTable = qs;
 
 	return ourTable->uniqueArticles;
 }
 
-long all_revisions(TAD_istruct qs) {
+long get_all_revisions(TAD_istruct qs) {
 	struct TCD_istruct *ourTable = qs;
 
 	return ourTable->allRevisions;
