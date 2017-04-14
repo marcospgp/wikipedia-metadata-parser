@@ -14,4 +14,10 @@ TAD_istruct onPageArticles(
     char *revisionTimestamp
 );
 
+long all_articles(TAD_istruct qs);
+
+long unique_articles(TAD_istruct qs);
+
+long all_revisions(TAD_istruct qs);
+
 #endif

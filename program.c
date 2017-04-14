@@ -118,7 +118,7 @@ int main(int argc, char const *argv[]) {
 
 	char *paths[] = {"datasets/dec16", "datasets/jan17", "datasets/fev17"};
 
-	qs = load(qs, 3, paths);
+	qs = load(qs, 1, paths);
 
 	// TODO - Adicionar chamadas de teste!
 
@@ -156,6 +156,20 @@ int main(int argc, char const *argv[]) {
 	free(top10Contributors);
 
 	// ---------------------------------------
+
+
+	// Testar allArticles, uniqueArticles, allRevisions ------------
+
+	long allArticlesNum = all_articles(qs);
+	printf("\nallArticles: %ld\n", allArticlesNum);
+
+	long uniqueArticlesNum = unique_articles(qs);
+	printf("uniqueArticles: %ld\n", uniqueArticlesNum);
+
+	long allRevisionsNum = all_revisions(qs);
+	printf("allRevisions: artigos(%ld) + revisoes(%ld) = %ld\n", uniqueArticlesNum, allRevisionsNum, (uniqueArticlesNum+ allRevisionsNum));
+
+	// -------------------------------------------------------------
 
 	// Terminar timer
 

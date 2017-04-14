@@ -57,12 +57,53 @@ TAD_istruct onPageArticles(
 	long nWords = wordCounter(revisionText);
 
 
+/* este int serve para a função da hash poder dizer se encontrou ou não o artigo,
+ * deste modo é possível dar update dos contadores dos articles
+ * --------- só está inicializado para não dar warning
+*/
+	int articleWasFound;
+	int articleWasUpdated;
+
+
 /* Esta função deve ser chamada quando é encontrada uma revisão de um artigo.
  * A função cria ou atualiza um artigo já existente na tabela. Caso seja feita uma
  * atualização, o tamanho do artigo e número de palavras só é atualizado se for
  * maior que o anterior. Os valores restantes são sempre atualizados.
 */
-	//qs = insertOrUpdateArticle(qs, articleId, title, revisionId, revisionTimestamp, sizeBytes, nWords);
+	qs = insertOrUpdateArticle(qs, articleId, title, revisionId, revisionTimestamp, sizeBytes, nWords, &articleWasFound, &articleWasUpdated);
+
+
+// Aumenta o allArticles sempre
+	qs->allArticles++;
+
+	// Aumenta o caso de ser a primeira vez que o artigo entra
+	if (!(articleWasFound)) {
+		qs->uniqueArticles++;
+	}
+	// Para o caso de ser revisão
+	else {
+		qs->allRevisions++;
+	}
 
 	return qs;
+}
+
+
+// NAO TESTADO - 12 apr
+long all_articles(TAD_istruct qs) {
+	struct TCD_istruct *ourTable = qs;
+
+	return ourTable->allArticles;
+}
+
+long unique_articles(TAD_istruct qs) {
+	struct TCD_istruct *ourTable = qs;
+
+	return ourTable->uniqueArticles;
+}
+
+long all_revisions(TAD_istruct qs) {
+	struct TCD_istruct *ourTable = qs;
+
+	return ourTable->allRevisions;
 }
