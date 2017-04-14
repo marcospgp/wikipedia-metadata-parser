@@ -106,3 +106,9 @@ long get_all_revisions(TAD_istruct qs) {
 
 	return ourTable->allRevisions;
 }
+
+char* get_article_title(long article_id, TAD_istruct qs) {
+	struct article *ourArticle = getArticle(qs, article_id);
+
+	return ourArticle->title;
+}

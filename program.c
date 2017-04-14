@@ -171,6 +171,21 @@ int main(int argc, char const *argv[]) {
 
 	// -------------------------------------------------------------
 
+	// Testar get_article_title ------------
+
+	char *title_query;
+
+	printf("\nIs article 10 named AccessibleComputing?\n");
+	title_query = article_title((long) 10, qs);
+	printf("Answer: %s\n\n", title_query);
+
+	printf("Is article 12 named Anarchism?\n");
+	title_query = article_title((long) 12, qs);
+	printf("Answer: %s\n\n", title_query);
+
+
+	// -------------------------------------------------------------
+
 	// Terminar timer
 
 	clock_t execEnd = clock();
