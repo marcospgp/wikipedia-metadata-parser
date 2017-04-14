@@ -13,17 +13,21 @@ long wordCounter(char *revisionText) {
 	long count = 0;
 	int foundLetter = 0;
 
-	for (i = 0; i < strlen(str); i++) {
-		if (str[i] == ' ')
-			foundLetter = 0;
-		else {
-      		if (foundLetter == 0)
-        		count++;
-    	foundLetter = 1;
+	if (str) {
+		for (i = 0; str[i] != '\0'; i++) {
+			if (str[i] == ' ')
+				foundLetter = 0;
+			else {
+				if (foundLetter == 0)
+    	    	count++;
+    			foundLetter = 1;
+			}
 		}
 	}
 
 	return count;
+
+	//return 1; // Comentei porque tava a dar erros ao compilar
 }
 
 /*
