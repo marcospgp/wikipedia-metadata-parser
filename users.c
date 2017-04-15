@@ -5,15 +5,18 @@
 
 #include "users.h"
 
-TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username) {
-
-/*
-	-> no módulo, vai ter de chamar a função (da HASH) de procura por ID
-		-> se encontrar, chama a função (da HASH) que aumenta o numOfContributions
-		-> se não encontrar, chama a função (da HASH) que insere o ID+username+counter=1
-*/
+TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username, long articleId, long revisionId) {
 
 	//printf("users.c - Received user data\n");
+
+	// Não fazer nada se isto for uma revisão duplicada
+
+	struct article *articlePtr = getArticle(qs, articleId);
+
+	if (articlePtr && getRevision(articlePtr->revisions, revisionId)) {
+
+		return qs;
+	}
 
 	int userWasFound;
 
@@ -25,8 +28,6 @@ TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username) {
 char* getContributorName(TAD_istruct qs, long id) {
 
 	struct user *ourUser = getUser(qs, id);
-
-	//printf("User contributions: %ld\n", ourUser->contributions);
 
 	if (ourUser) {
 		return ourUser->username;
@@ -55,12 +56,14 @@ long* getTop10Contributors(TAD_istruct qs) {
 	void *key = NULL;
 	struct user *curUser = NULL;
 
-	int index = 9;
+	int index;
 
 	//printf("Iterating through users hash table\n");
 
 	// Iterar pela hash table de utilizadores
 	while (getNextFromIterator(iterator, &key, &curUser)) {
+
+		index = 9; // Rank onde o utilizador vai ser colocado
 
 		if (curUser->contributions >= (top10[9])->contributions) {
 

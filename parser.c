@@ -137,7 +137,7 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 
 	//printf("parser.c - Sending page data to users.c\n");
 
-	qs = onPageUsers(qs, revisionContributorId, revisionContributorUsername);
+	qs = onPageUsers(qs, revisionContributorId, revisionContributorUsername, articleId, revisionId);
 
 	/*
 		-> no módulo, vai ter de chamar a função (da HASH) de procura por ID

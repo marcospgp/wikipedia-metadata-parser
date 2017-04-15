@@ -53,6 +53,7 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username, int *use
 		// Informar que o utilizador foi encontrado
 		*userWasFound = 1;
 
+		// Contar uma contribuição do utilizador
 		userData->contributions = (userData->contributions) + 1;
 
 		// Nota - não é preciso inserir de novo na hashtable porque o que
@@ -173,6 +174,11 @@ struct user * getUser(TAD_istruct qs, long id) {
 struct article * getArticle(TAD_istruct qs, long id) {
 
 	return (struct article*) g_hash_table_lookup(qs->articles, &id);
+}
+
+struct revision * getRevision(void *revisionsHashTable, long revisionId) {
+
+	return (struct revision*) g_hash_table_lookup(revisionsHashTable, &revisionId);
 }
 
 void * getHashtableIterator(GHashTable *hashtable) {

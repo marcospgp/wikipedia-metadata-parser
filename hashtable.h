@@ -56,6 +56,9 @@ struct user * getUser(TAD_istruct qs, long id);
 /* Retorna um artigo a partir da sua id */
 struct article * getArticle(TAD_istruct qs, long id);
 
+/* Retorna uma revisão a partir da hash table de revisões e da id */
+struct revision * getRevision(void *revisionsHashTable, long revisionId);
+
 /* Retorna um iterador para uma hash table */
 void * getHashtableIterator(GHashTable *hashtable);
 
