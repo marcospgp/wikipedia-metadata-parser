@@ -5,7 +5,6 @@
 #include "hashtable.h"
 #include "users.h"
 #include "articles.h"
-#include "settings.h"
 
 #include "interface.h"
 

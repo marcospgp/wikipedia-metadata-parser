@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hashtable.h"
-#include "settings.h"
 
 #include "articles.h"
 
@@ -49,7 +48,7 @@ TAD_istruct onPageArticles(
     char *revisionTimestamp
 ) {
 
-	printf("articles.c - Received article revision data\n");
+	//printf("articles.c - Received article revision data\n");
 
 // TODO - fazer a função que conta o número de palavras e a função que conta o número de caracteres
 
