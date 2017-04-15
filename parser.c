@@ -84,8 +84,8 @@ static void parseRevision(
 
 static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 
-	char *title, *revisionContributorUsername, *revisionText, *revisionTimestamp;
-	long articleId, revisionId, revisionParentId, revisionContributorId;
+	char *title, *revisionContributorUsername = NULL, *revisionText = NULL, *revisionTimestamp = NULL;
+	long articleId, revisionId = -1, revisionParentId = -1, revisionContributorId = -1;
 
 	char *temp, *longEndPtr; // Necessário para strtol()
 
@@ -125,9 +125,6 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 	}
 
 	/*
-
-		TODO - Ignorar contributor caso apenas tenha <ip> e não <username> + <id>
-
 		TODO - Trocar os nodegetcontent pela função usada no tutorial
 
 		TODO - ADCIONAR IF PARA VERIFICAR SE VALORES NÃO HÁ NULLS OU -1, para passar ao módulo ARTICLES
@@ -137,7 +134,10 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 
 	//printf("parser.c - Sending page data to users.c\n");
 
-	qs = onPageUsers(qs, revisionContributorId, revisionContributorUsername, articleId, revisionId);
+	// Ignorar contributor caso apenas tenha <ip> e não <username> + <id>
+	if (revisionContributorId != -1) {
+		qs = onPageUsers(qs, revisionContributorId, revisionContributorUsername, articleId, revisionId);
+	}
 
 	/*
 		-> no módulo, vai ter de chamar a função (da HASH) de procura por ID
