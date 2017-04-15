@@ -160,13 +160,13 @@ int main(int argc, char const *argv[]) {
 
 	// Testar allArticles, uniqueArticles, allRevisions ------------
 
-	long allArticlesNum = get_all_articles(qs);
+	long allArticlesNum = all_articles(qs);
 	printf("\nallArticles: %ld\n", allArticlesNum);
 
-	long uniqueArticlesNum = get_unique_articles(qs);
+	long uniqueArticlesNum = unique_articles(qs);
 	printf("uniqueArticles: %ld\n", uniqueArticlesNum);
 
-	long allRevisionsNum = get_all_revisions(qs);
+	long allRevisionsNum = all_revisions(qs);
 	printf("allRevisions:  %ld\n", allRevisionsNum);
 
 	// -------------------------------------------------------------
