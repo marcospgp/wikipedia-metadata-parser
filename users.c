@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hashtable.h"
-#include "settings.h"
 
 #include "users.h"
 
@@ -14,7 +13,7 @@ TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username) {
 		-> se não encontrar, chama a função (da HASH) que insere o ID+username+counter=1
 */
 
-	printf("users.c - Received user data\n");
+	//printf("users.c - Received user data\n");
 
 	int userWasFound;
 
@@ -27,6 +26,8 @@ char* getContributorName(TAD_istruct qs, long id) {
 
 	struct user *ourUser = getUser(qs, id);
 
+	//printf("User contributions: %ld\n", ourUser->contributions);
+
 	if (ourUser) {
 		return ourUser->username;
 	} else {
@@ -36,7 +37,7 @@ char* getContributorName(TAD_istruct qs, long id) {
 
 long* getTop10Contributors(TAD_istruct qs) {
 
-	printf("Getting top 10 contributors\n");
+	//printf("Getting top 10 contributors\n");
 
 	void *iterator = getHashtableIterator(qs->users);
 
@@ -56,31 +57,27 @@ long* getTop10Contributors(TAD_istruct qs) {
 
 	int index = 9;
 
+	//printf("Iterating through users hash table\n");
+
 	// Iterar pela hash table de utilizadores
 	while (getNextFromIterator(iterator, &key, &curUser)) {
 
-		printf("Iterating through users hash table\n");
-
-		printf("%ld\n", curUser);
-		printf("%ld\n", curUser->contributions);
-		printf("%ld\n", top10[9]->contributions);
-
 		if (curUser->contributions >= (top10[9])->contributions) {
 
-			printf("A user's contributions >= top10[9]'s contributions\n");
+			//printf("A user's contributions >= top10[9]'s contributions\n");
 
 			// Diminuir o indíce enquanto o utilizador encaixar num rank superior
 			while (curUser->contributions >= (top10[index - 1])->contributions) {
 				index--;
 			}
 
-			printf("This user will be compared to index %d\n", index);
+			//printf("This user will be compared to index %d\n", index);
 
 			// Neste ponto sabemos que o score deste user >= top[index]
 
 			if (curUser->contributions == (top10[index])->contributions) {
 
-				printf("The users contributions are equal\n");
+				//printf("The users contributions are equal\n");
 
 				// Score deste user == top[index]
 				// Comparar usernames alfabeticamente
@@ -89,13 +86,13 @@ long* getTop10Contributors(TAD_istruct qs) {
 
 				if (result < 0) {
 
-					printf("The user alphabetically lost\n");
+					//printf("The user alphabetically lost\n");
 
 					index++; // Colocar este utilizador uma posição abaixo no rank
 
 					if (index > 9) {
 
-						printf("User dropped to 11th place, skip\n");
+						//printf("User dropped to 11th place, skip\n");
 
 						continue; // Utilizador desceu para 11º, skipar
 					}
@@ -104,7 +101,7 @@ long* getTop10Contributors(TAD_istruct qs) {
 					fprintf(stderr, "Erro ao comparar contribuicoes dos utilizadores %s e %s\n", curUser->username, (top10[index])->username);
 				}
 
-				printf("The user alphabetically won\n");
+				//printf("The user alphabetically won\n");
 			}
 
 			// Deslizar os outros utilizadores para baixo para termos espaço para o novo utilizador no rank

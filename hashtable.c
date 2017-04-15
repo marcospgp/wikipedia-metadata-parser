@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <glib.h>
-#include "settings.h"
 
 #include "hashtable.h"
 
@@ -18,14 +17,14 @@ TAD_istruct initHashtables(TAD_istruct qs) {
 
 TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username, int *userWasFound) {
 
-	printf("hashtable.c - Received user data\n");
+	//printf("hashtable.c - Received user data\n");
 
 	// Procurar pelo utilizador na hash table
 	struct user *userData = (struct user*) g_hash_table_lookup(qs->users, &id);
 
 	if (userData == NULL) {
 
-		printf("Creating new user with id %ld\n", id);
+		//printf("Creating new user with id %ld\n", id);
 
 		// Informar que o utilizador não foi encontrado
 		*userWasFound = 0;
@@ -49,7 +48,7 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username, int *use
 
 	} else {
 
-		printf("Updating user with id %ld\n", id);
+		//printf("Updating user with id %ld\n", id);
 
 		// Informar que o utilizador foi encontrado
 		*userWasFound = 1;
@@ -65,7 +64,7 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username, int *use
 
 TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords, int *articleFound, int *articleUpdated) {
 
-	printf("hashtable.c - Received article revision data\n");
+	//printf("hashtable.c - Received article revision data\n");
 
 	// Copiar strings porque o parser pode apagá-las
 	// E a hash table só guarda um pointer
@@ -93,7 +92,7 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 
 	if (articleData == NULL) {
 
-		printf("Creating new article and adding revision...\n");
+		//printf("Creating new article and adding revision...\n");
 
 		// Informar que o artigo não foi encontrado
 		*articleFound = 0;
@@ -120,7 +119,7 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 
 	} else {
 
-		printf("Updating article...\n");
+		//printf("Updating article...\n");
 
 		// Informar que o artigo foi encontrado
 		*articleFound = 1;
@@ -152,12 +151,12 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 
 		if (g_hash_table_lookup(revisions, &revisionId)) {
 
-			printf("Duplicated revision. Skipping...\n");
+			//printf("Duplicated revision. Skipping...\n");
 			*articleUpdated = 0;
 
 		} else {
 
-			printf("Adding revision...\n");
+			//printf("Adding revision...\n");
 			g_hash_table_insert(revisions, revisionIdCopyPtr, newRevision);
 			*articleUpdated = 1;
 		}
