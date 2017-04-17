@@ -118,7 +118,7 @@ int main(int argc, char const *argv[]) {
 
 	char *paths[] = {"datasets/dec16", "datasets/jan17", "datasets/fev17"};
 
-	qs = load(qs, 3, paths);
+	qs = load(qs, 1, paths);
 
 	// TODO - Adicionar chamadas de teste!
 
@@ -172,6 +172,22 @@ int main(int argc, char const *argv[]) {
 	// -------------------------------------------------------------
 
 	// Testar get_article_title ------------
+
+	char *title_query;
+
+	printf("\nIs article 10 named AccessibleComputing?\n");
+	title_query = article_title((long) 10, qs);
+	printf("Answer: %s\n\n", title_query);
+
+	printf("Is article 12 named Anarchism?\n");
+	title_query = article_title((long) 12, qs);
+	printf("Answer: %s\n\n", title_query);
+
+
+	// -------------------------------------------------------------
+
+
+	// Testar contadores de palavras e bytes ------------
 
 	char *title_query;
 

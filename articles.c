@@ -7,9 +7,9 @@
 
 
 // Testada e a funcionar ------- 14 apr
-long wordCounter(char *revisionText) {
+long wordCounter(char *revisionText, long *sizeBytes) {
 	char *str = revisionText;
-	int i;
+	long i;
 	long count = 0;
 	int foundLetter = 0;
 
@@ -24,6 +24,8 @@ long wordCounter(char *revisionText) {
 			}
 		}
 	}
+
+	*sizeBytes = i;
 
 	return count;
 
@@ -52,10 +54,11 @@ TAD_istruct onPageArticles(
 
 	//printf("articles.c - Received article revision data\n");
 
-// TODO - fazer a função que conta o número de palavras e a função que conta o número de caracteres
+// nWords é atualizado pelo return do wordCounter que também dá o número de bytes do artigo pelo apontador
+	long sizeBytes;
+	long nWords = wordCounter(revisionText, &sizeBytes);
 
-	long sizeBytes = strlen(revisionText);
-	long nWords = wordCounter(revisionText);
+
 
 
 /* este int serve para a função da hash poder dizer se encontrou ou não o artigo,
