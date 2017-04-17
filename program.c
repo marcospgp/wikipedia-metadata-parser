@@ -171,7 +171,7 @@ int main(int argc, char const *argv[]) {
 
 	// -------------------------------------------------------------
 
-	// Testar get_article_title ------------
+	// Testar article_title ------------
 
 	char *title_query;
 
@@ -196,6 +196,22 @@ int main(int argc, char const *argv[]) {
 	size = get_article_size((long) 10, qs);
 	printf("\nNum of Words of article 10 is: %ld\n", nWords);
 	printf("Size of article 10 is: %ld\n", size);
+
+
+	// -------------------------------------------------------------
+
+
+	// Testar article_timestamp ------------ VER EM 64 BITS
+
+	char *time_query;
+
+	printf("\nIs article 10, revision 631144794, timestamped 2014-10-26T04:50:23Z ?\n");
+	time_query = article_timestamp((long) 10, (long) 631144794, qs);
+	printf("Answer: %s\n\n", time_query);
+
+	printf("Is article 12, revision 751573634, timestamped 2016-11-26T15:18:43Z ?\n");
+	time_query = article_timestamp((long) 12, (long) 751573634, qs);
+	printf("Answer: %s\n\n", time_query);
 
 
 	// -------------------------------------------------------------

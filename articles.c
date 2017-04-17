@@ -122,6 +122,19 @@ char* get_article_title(long article_id, TAD_istruct qs) {
 	}
 }
 
+char* get_article_timestamp(long article_id, long revision_id, TAD_istruct qs) {
+	struct article *ourArticle = getArticle(qs, article_id);
+
+	if (ourArticle) {
+		struct revision *ourRevision = getRevision(ourArticle->revisions, revision_id);
+		if (ourRevision) {
+			return ourRevision->timestamp;
+		}
+	}
+
+	return NULL;
+}
+
 // Para ver se o wordCounter está a funcionar
 long get_article_size(long article_id, TAD_istruct qs) {
 	struct article *ourArticle = getArticle(qs, article_id);

@@ -86,6 +86,8 @@ long* top_N_articles_with_more_words(int n, TAD_istruct qs) {}
 
 char** titles_with_prefix(char* prefix, TAD_istruct qs) {}
 
-char* article_timestamp(long article_id, long revision_id, TAD_istruct qs) {}
-
 */
+
+char* article_timestamp(long article_id, long revision_id, TAD_istruct qs) {
+	return get_article_timestamp(article_id, revision_id, qs);
+}

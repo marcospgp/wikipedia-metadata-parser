@@ -22,6 +22,9 @@ long get_all_revisions(TAD_istruct qs);
 
 char* get_article_title(long article_id, TAD_istruct qs);
 
+char* article_timestamp(long article_id, long revision_id, TAD_istruct qs);
+
+// SÓ PARA TESTAR
 long get_article_nWords(long article_id, TAD_istruct qs);
 
 long get_article_size(long article_id, TAD_istruct qs);
