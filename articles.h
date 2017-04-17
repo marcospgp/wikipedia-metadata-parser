@@ -22,4 +22,8 @@ long get_all_revisions(TAD_istruct qs);
 
 char* get_article_title(long article_id, TAD_istruct qs);
 
+long get_article_nWords(long article_id, TAD_istruct qs);
+
+long get_article_size(long article_id, TAD_istruct qs);
+
 #endif

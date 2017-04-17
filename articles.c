@@ -121,3 +121,25 @@ char* get_article_title(long article_id, TAD_istruct qs) {
 		return NULL;
 	}
 }
+
+// Para ver se o wordCounter está a funcionar
+long get_article_size(long article_id, TAD_istruct qs) {
+	struct article *ourArticle = getArticle(qs, article_id);
+
+	if (ourArticle) {
+		return ourArticle->size;
+	} else {
+		return (long) 0;
+	}
+}
+
+long get_article_nWords(long article_id, TAD_istruct qs) {
+	struct article *ourArticle = getArticle(qs, article_id);
+
+	if (ourArticle) {
+		return ourArticle->nWords;
+	} else {
+		return (long) 0;
+	}
+}
+

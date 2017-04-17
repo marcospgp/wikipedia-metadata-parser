@@ -188,16 +188,14 @@ int main(int argc, char const *argv[]) {
 
 
 	// Testar contadores de palavras e bytes ------------
+	// Por algum motivo parece que não existe struct porque retorna sempre o valor de falha !!!!!!!!!!!
 
-	char *title_query;
-
-	printf("\nIs article 10 named AccessibleComputing?\n");
-	title_query = article_title((long) 10, qs);
-	printf("Answer: %s\n\n", title_query);
-
-	printf("Is article 12 named Anarchism?\n");
-	title_query = article_title((long) 12, qs);
-	printf("Answer: %s\n\n", title_query);
+	long nWords;
+	nWords = get_article_nWords((long) 10, qs);
+	long size;
+	size = get_article_size((long) 10, qs);
+	printf("\nNum of Words of article 10 is: %ld\n", nWords);
+	printf("Size of article 10 is: %ld\n", size);
 
 
 	// -------------------------------------------------------------
