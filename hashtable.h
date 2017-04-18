@@ -50,6 +50,9 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username, int *use
  */
 TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords, int *articleFound, int *articleUpdated);
 
+/* Limpa todas as hashtables */
+TAD_istruct clean_everything(TAD_istruct qs);
+
 /* Retorna um utilizador a partir da sua id */
 struct user * getUser(TAD_istruct qs, long id);
 
