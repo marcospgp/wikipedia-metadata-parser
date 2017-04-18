@@ -166,6 +166,29 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 	return qs;
 }
 
+TAD_istruct clean_everything(TAD_istruct qs) {
+
+	// Remover todas as hash tables de revisões
+
+	void *iterator = getHashtableIterator(qs->articles);
+
+	int *key = NULL;
+	struct article *art = NULL;
+
+	while (getNextFromIterator(iterator, &key, &art)) {
+
+		g_hash_table_remove_all(art->revisions);
+	}
+
+	// Remover hash tables de users e articles
+
+	g_hash_table_remove_all(qs->users);
+
+	g_hash_table_remove_all(qs->articles);
+
+	return qs;
+}
+
 struct user * getUser(TAD_istruct qs, long id) {
 
 	return (struct user*) g_hash_table_lookup(qs->users, &id);
