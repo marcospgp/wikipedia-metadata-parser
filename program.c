@@ -118,7 +118,7 @@ int main(int argc, char const *argv[]) {
 
 	char *paths[] = {"datasets/dec16", "datasets/jan17", "datasets/fev17"};
 
-	qs = load(qs, 1, paths);
+	qs = load(qs, 3, paths);
 
 	// TODO - Adicionar chamadas de teste!
 
@@ -239,7 +239,7 @@ int main(int argc, char const *argv[]) {
 
 	// Testar top N more words ------------ IS IT WORKING- GOTTA 64 BITS THAT
 
-	int numTop = 12;
+	int numTop = 30;
 	printf("\nTop %d articles with more words:\n", numTop);
 	long *topNArticles = top_N_articles_with_more_words(numTop, qs);
 
