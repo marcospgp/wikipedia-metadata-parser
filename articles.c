@@ -244,7 +244,7 @@ long* getTop20LargestArticles(TAD_istruct qs) {
 
 long* getTopNArticlesWithMoreWords(int n, TAD_istruct qs) {
 
-	//printf("Getting top n largest articles\n");
+	//printf("Getting top n articles with more words\n");
 
 	void *iterator = getHashtableIterator(qs->articles);
 
@@ -271,12 +271,12 @@ long* getTopNArticlesWithMoreWords(int n, TAD_istruct qs) {
 
 		index = n-1; // Rank onde o utilizador vai ser colocado
 
-		if (curArticle->size >= (topN[n-1])->size) {
+		if (curArticle->nWords >= (topN[n-1])->nWords) {
 
-			//printf("A article's size >= topN[n-1]'s size\n");
+			//printf("A article's nWords >= topN[n-1]'s nWords\n");
 
 			// Diminuir o indíce enquanto o utilizador encaixar num rank superior
-			while ((index >= 1) && curArticle->size >= (topN[index - 1])->size) {
+			while ((index >= 1) && curArticle->nWords >= (topN[index - 1])->nWords) {
 				index--;
 			}
 
@@ -284,9 +284,9 @@ long* getTopNArticlesWithMoreWords(int n, TAD_istruct qs) {
 
 			// Neste ponto sabemos que o score deste article >= top[index]
 
-			if (curArticle->size == (topN[index])->size) {
+			if (curArticle->nWords == (topN[index])->nWords) {
 
-				//printf("The users size are equal\n");
+				//printf("The users nWords are equal\n");
 
 				// Score deste article == top[index]
 				// Comparar usernames alfabeticamente
