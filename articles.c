@@ -15,7 +15,7 @@ long wordCounter(char *revisionText, long *sizeBytes) {
 
 	if (str) {
 		for (i = 0; str[i] != '\0'; i++) {
-			if (str[i] == ' ')
+			if (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
 				foundLetter = 0;
 			else {
 				if (foundLetter == 0)
