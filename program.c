@@ -128,23 +128,23 @@ int main(int argc, char const *argv[]) {
 
 	printf("Is user 9092818 Paine Ellsworth?\n");
 	query = contributor_name((long) 9092818, qs);
-	printf("Answer: %s\n\n", query);
+	printf("Answer: %s\n", query);
 
 	printf("Is user 17585538 Telfordbuck?\n");
 	query = contributor_name((long) 17585538, qs);
-	printf("Answer: %s\n\n", query);
+	printf("Answer: %s\n", query);
 
 	printf("Is user 7328338 Yobot?\n");
 	query = contributor_name((long) 7328338, qs);
-	printf("Answer: %s\n\n", query);
+	printf("Answer: %s\n", query);
 
 	printf("Is user 9635580 Simple Bob?\n");
 	query = contributor_name((long) 9635580, qs);
-	printf("Answer: %s\n\n", query);
+	printf("Answer: %s\n", query);
 
 	// Testar top 10 contributors ------------
 
-	printf("Top 10 contributors:\n");
+	printf("\nTop 10 contributors:\n");
 
 	long *top10Contributors = top_10_contributors(qs);
 
@@ -177,28 +177,34 @@ int main(int argc, char const *argv[]) {
 
 	printf("\nIs article 10 named AccessibleComputing?\n");
 	title_query = article_title((long) 10, qs);
-	printf("Answer: %s\n\n", title_query);
+	printf("Answer: %s\n", title_query);
 
 	printf("Is article 12 named Anarchism?\n");
 	title_query = article_title((long) 12, qs);
-	printf("Answer: %s\n\n", title_query);
+	printf("Answer: %s\n", title_query);
 
 
 	// -------------------------------------------------------------
 
-
+	/*
 	// Testar contadores de palavras e bytes ------------
-	// Por algum motivo parece que não existe struct porque retorna sempre o valor de falha !!!!!!!!!!!
 
 	long nWords;
-	nWords = get_article_nWords((long) 10, qs);
 	long size;
+
+	nWords = get_article_nWords((long) 10, qs);
 	size = get_article_size((long) 10, qs);
+	printf("\nNum of Words of article 10 is: %ld\n", nWords);
+	printf("Size of article 10 is: %ld\n", size);
+
+	nWords = get_article_nWords((long) 12, qs);
+	size = get_article_size((long) 12, qs);
 	printf("\nNum of Words of article 10 is: %ld\n", nWords);
 	printf("Size of article 10 is: %ld\n", size);
 
 
 	// -------------------------------------------------------------
+	*/
 
 
 	// Testar article_timestamp ------------ VER EM 64 BITS
@@ -207,11 +213,11 @@ int main(int argc, char const *argv[]) {
 
 	printf("\nIs article 10, revision 631144794, timestamped 2014-10-26T04:50:23Z ?\n");
 	time_query = article_timestamp((long) 10, (long) 631144794, qs);
-	printf("Answer: %s\n\n", time_query);
+	printf("Answer: %s\n", time_query);
 
 	printf("Is article 12, revision 751573634, timestamped 2016-11-26T15:18:43Z ?\n");
 	time_query = article_timestamp((long) 12, (long) 751573634, qs);
-	printf("Answer: %s\n\n", time_query);
+	printf("Answer: %s\n", time_query);
 
 
 	// -------------------------------------------------------------
