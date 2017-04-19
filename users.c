@@ -70,7 +70,7 @@ long* getTop10Contributors(TAD_istruct qs) {
 			//printf("A user's contributions >= top10[9]'s contributions\n");
 
 			// Diminuir o indíce enquanto o utilizador encaixar num rank superior
-			while (curUser->contributions >= (top10[index - 1])->contributions) {
+			while (index > 0 && curUser->contributions >= (top10[index - 1])->contributions) {
 				index--;
 			}
 
