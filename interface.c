@@ -67,11 +67,9 @@ char* contributor_name(long contributor_id, TAD_istruct qs) {
 	return getContributorName(qs, contributor_id);
 }
 
-/*
-
-long* top_20_largest_articles(TAD_istruct qs) {}
-
-*/
+long* top_20_largest_articles(TAD_istruct qs) {
+	return getTop20LargestArticles(qs);
+}
 
 char* article_title(long article_id, TAD_istruct qs) {
 	return get_article_title(article_id, qs);

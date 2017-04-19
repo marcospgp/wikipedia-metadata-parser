@@ -207,7 +207,7 @@ int main(int argc, char const *argv[]) {
 	*/
 
 
-	// Testar article_timestamp ------------ VER EM 64 BITS
+	// Testar article_timestamp ------------
 
 	char *time_query;
 
@@ -221,6 +221,21 @@ int main(int argc, char const *argv[]) {
 
 
 	// -------------------------------------------------------------
+
+	// Testar top 20 articles ------------ IS IT WORKING- GOTTA 64 BITS THAT
+
+	printf("Top 20 articles:\n");
+
+	long *top20Contributors = top_20_largest_articles(qs);
+
+	int index;
+	for (index = 0; index < 20; index++) {
+		printf("%d: %ld (%s)\n", (index + 1), top20Contributors[index], article_title(top20Contributors[index], qs));
+	}
+
+	free(top20Contributors);
+
+	// ---------------------------------------
 
 	printf("\nCalling clean()\n");
 
