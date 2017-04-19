@@ -118,7 +118,7 @@ int main(int argc, char const *argv[]) {
 
 	char *paths[] = {"datasets/dec16", "datasets/jan17", "datasets/fev17"};
 
-	qs = load(qs, 3, paths);
+	qs = load(qs, 1, paths);
 
 	// TODO - Adicionar chamadas de teste!
 
@@ -222,20 +222,36 @@ int main(int argc, char const *argv[]) {
 
 	// -------------------------------------------------------------
 
-	// Testar top 20 articles ------------ IS IT WORKING- GOTTA 64 BITS THAT
+	// Testar top 20 articles ------------
 
 	printf("\nTop 20 articles:\n");
 
-	long *top20Contributors = top_20_largest_articles(qs);
+	long *top20Articles = top_20_largest_articles(qs);
 
 	int index;
 	for (index = 0; index < 20; index++) {
-		printf("%d: %ld (%s)\n", (index + 1), top20Contributors[index], article_title(top20Contributors[index], qs));
+		printf("%d: %ld (%s)\n", (index + 1), top20Articles[index], article_title(top20Articles[index], qs));
 	}
 
-	free(top20Contributors);
+	free(top20Articles);
 
 	// ---------------------------------------
+
+	// Testar top N more words ------------ IS IT WORKING- GOTTA 64 BITS THAT
+
+	int numTop = 12;
+	printf("\nTop %d articles with more words:\n", numTop);
+	long *topNArticles = top_N_articles_with_more_words(numTop, qs);
+
+	int ind;
+	for (ind = 0; ind < numTop; ind++) {
+		printf("%d: %ld (%s)\n", (ind + 1), topNArticles[ind], article_title(topNArticles[ind], qs));
+	}
+
+	free(topNArticles);
+
+	// ---------------------------------------
+
 
 	printf("\nCalling clean()\n");
 

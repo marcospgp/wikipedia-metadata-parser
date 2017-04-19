@@ -75,9 +75,11 @@ char* article_title(long article_id, TAD_istruct qs) {
 	return get_article_title(article_id, qs);
 }
 
-/*
+long* top_N_articles_with_more_words(int n, TAD_istruct qs) {
+	return getTopNArticlesWithMoreWords(n, qs);
+}
 
-long* top_N_articles_with_more_words(int n, TAD_istruct qs) {}
+/*
 
 char** titles_with_prefix(char* prefix, TAD_istruct qs) {}
 

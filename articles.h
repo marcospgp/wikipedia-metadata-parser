@@ -26,6 +26,8 @@ char* get_article_timestamp(long article_id, long revision_id, TAD_istruct qs);
 
 long* getTop20LargestArticles(TAD_istruct qs);
 
+long* getTopNArticlesWithMoreWords(int n, TAD_istruct qs);
+
 // SÓ PARA TESTAR
 long get_article_nWords(long article_id, TAD_istruct qs);
 

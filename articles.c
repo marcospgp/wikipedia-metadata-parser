@@ -93,12 +93,12 @@ TAD_istruct onPageArticles(
 }
 
 
-// NAO TESTADO - 12 apr
 long get_all_articles(TAD_istruct qs) {
 	struct TCD_istruct *ourTable = qs;
 
 	return ourTable->allArticles;
 }
+
 
 long get_unique_articles(TAD_istruct qs) {
 	struct TCD_istruct *ourTable = qs;
@@ -106,11 +106,13 @@ long get_unique_articles(TAD_istruct qs) {
 	return ourTable->uniqueArticles;
 }
 
+
 long get_all_revisions(TAD_istruct qs) {
 	struct TCD_istruct *ourTable = qs;
 
 	return ourTable->allRevisions;
 }
+
 
 char* get_article_title(long article_id, TAD_istruct qs) {
 	struct article *ourArticle = getArticle(qs, article_id);
@@ -121,6 +123,7 @@ char* get_article_title(long article_id, TAD_istruct qs) {
 		return NULL;
 	}
 }
+
 
 char* get_article_timestamp(long article_id, long revision_id, TAD_istruct qs) {
 	struct article *ourArticle = getArticle(qs, article_id);
@@ -135,26 +138,6 @@ char* get_article_timestamp(long article_id, long revision_id, TAD_istruct qs) {
 	return NULL;
 }
 
-// Para ver se o wordCounter está a funcionar
-long get_article_size(long article_id, TAD_istruct qs) {
-	struct article *ourArticle = getArticle(qs, article_id);
-
-	if (ourArticle) {
-		return ourArticle->size;
-	} else {
-		return (long) 0;
-	}
-}
-
-long get_article_nWords(long article_id, TAD_istruct qs) {
-	struct article *ourArticle = getArticle(qs, article_id);
-
-	if (ourArticle) {
-		return ourArticle->nWords;
-	} else {
-		return (long) 0;
-	}
-}
 
 long* getTop20LargestArticles(TAD_istruct qs) {
 
@@ -256,4 +239,124 @@ long* getTop20LargestArticles(TAD_istruct qs) {
 	//printf("returning top20Ids...\n");
 
 	return top20Ids;
+}
+
+
+long* getTopNArticlesWithMoreWords(int n, TAD_istruct qs) {
+
+	//printf("Getting top n largest articles\n");
+
+	void *iterator = getHashtableIterator(qs->articles);
+
+	struct article *topN[n];
+
+	// Inicializar array com stupid articles para começar
+
+	struct article nothing = {(long) 0, (long) 0, (long) 0, "", NULL};
+
+	int i;
+	for (i = 0; i < n; i++) {
+		topN[i] = &nothing;
+	}
+
+	void *key = NULL;
+	struct article *curArticle = NULL;
+
+	int index;
+
+	//printf("Iterating through users hash table\n");
+
+	// Iterar pela hash table de artigos
+	while (getNextFromIterator(iterator, &key, &curArticle)) {
+
+		index = n-1; // Rank onde o utilizador vai ser colocado
+
+		if (curArticle->size >= (topN[n-1])->size) {
+
+			//printf("A article's size >= topN[n-1]'s size\n");
+
+			// Diminuir o indíce enquanto o utilizador encaixar num rank superior
+			while ((index >= 1) && curArticle->size >= (topN[index - 1])->size) {
+				index--;
+			}
+
+			//printf("This article will be compared to index %d\n", index);
+
+			// Neste ponto sabemos que o score deste article >= top[index]
+
+			if (curArticle->size == (topN[index])->size) {
+
+				//printf("The users size are equal\n");
+
+				// Score deste article == top[index]
+				// Comparar usernames alfabeticamente
+
+				if (curArticle->id > (topN[index])->id) {
+
+					//printf("The article id lost\n");
+
+					index++; // Colocar este artigo uma posição abaixo no rank
+
+					if (index > n-1) {
+
+						//printf("User dropped to (n+1)st place, skip\n");
+
+						continue; // Utilizador desceu para (n+1)º, skipar
+					}
+
+				} else {
+					fprintf(stderr, "Erro ao comparar id dos artigos %ld e %ld\n", curArticle->id, (topN[index])->id);
+				}
+
+				//printf("The article id won\n");
+			}
+
+			// Deslizar os outros artigos para baixo para termos espaço para o novo artigo no rank
+
+			int i;
+			for (i = n-1; i > index; i--) {
+
+				topN[i] = topN[i - 1];
+			}
+
+			// Colocar o utlizador na sua nova posição no rank
+			topN[index] = curArticle;
+		}
+	}
+
+	// Importante - libertar a memória do iterador no final!
+	freeIterator(iterator);
+
+	// Obter array de ids e retorná-lo
+
+	long *topNIds = malloc(n * sizeof(long));
+
+	int j;
+	for (j = 0; j < n; j++) {
+		topNIds[j] = (topN[j])->id;
+	}
+
+	return topNIds;
+}
+
+
+// Para ver se o wordCounter está a funcionar
+long get_article_size(long article_id, TAD_istruct qs) {
+	struct article *ourArticle = getArticle(qs, article_id);
+
+	if (ourArticle) {
+		return ourArticle->size;
+	} else {
+		return (long) 0;
+	}
+}
+
+long get_article_nWords(long article_id, TAD_istruct qs) {
+	struct article *ourArticle = getArticle(qs, article_id);
+
+	if (ourArticle) {
+		return ourArticle->nWords;
+	} else {
+		return (long) 0;
+	}
 }
