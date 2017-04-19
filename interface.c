@@ -39,12 +39,9 @@ TAD_istruct load(TAD_istruct qs, int nsnaps, char* snaps_paths[]) {
 	return qs;
 }
 
-
-/*
-
-TAD_istruct clean(TAD_istruct qs) {}
-
-*/
+TAD_istruct clean(TAD_istruct qs) {
+	return clean_everything(qs);
+}
 
 // ---------------------VITOR-----------------14-apr-2017 -> quero testar com os datatestes que falei mas 32 bits fails
 

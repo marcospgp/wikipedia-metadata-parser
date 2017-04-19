@@ -216,6 +216,10 @@ int main(int argc, char const *argv[]) {
 
 	// -------------------------------------------------------------
 
+	printf("\nCalling clean()\n");
+
+	qs = clean(qs);
+
 	// Terminar timer
 
 	clock_t execEnd = clock();
