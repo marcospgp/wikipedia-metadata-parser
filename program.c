@@ -224,7 +224,7 @@ int main(int argc, char const *argv[]) {
 
 	// Testar top 20 articles ------------ IS IT WORKING- GOTTA 64 BITS THAT
 
-	printf("Top 20 articles:\n");
+	printf("\nTop 20 articles:\n");
 
 	long *top20Contributors = top_20_largest_articles(qs);
 

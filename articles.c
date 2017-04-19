@@ -158,7 +158,7 @@ long get_article_nWords(long article_id, TAD_istruct qs) {
 
 long* getTop20LargestArticles(TAD_istruct qs) {
 
-	//printf("Getting top 20 largest articles\n");
+	printf("Getting top 20 largest articles\n");
 
 	void *iterator = getHashtableIterator(qs->articles);
 
@@ -166,7 +166,7 @@ long* getTop20LargestArticles(TAD_istruct qs) {
 
 	// Inicializar array com shitty articles para começar
 
-	struct article nothing = {(long) 0, (long) 0, (long) 0, "", NULL};
+	struct article nothing = {(long) 1, (long) 1, (long) 1, "", NULL};
 
 	int i;
 	for (i = 0; i < 20; i++) {
@@ -178,7 +178,7 @@ long* getTop20LargestArticles(TAD_istruct qs) {
 
 	int index;
 
-	//printf("Iterating through users hash table\n");
+	printf("Iterating through users hash table\n");
 
 	// Iterar pela hash table de artigos
 	while (getNextFromIterator(iterator, &key, &curArticle)) {
@@ -187,33 +187,36 @@ long* getTop20LargestArticles(TAD_istruct qs) {
 
 		if (curArticle->size >= (top20[19])->size) {
 
-			//printf("A article's size >= top20[19]'s size\n");
+			printf("A article's size >= top20[19]'s size\n");
 
 			// Diminuir o indíce enquanto o artigo encaixar num rank superior
-			while (curArticle->size >= (top20[index - 1])->size) {
+			while ((index >= 1) && (curArticle->size >= (top20[index - 1])->size)) {
+				//printf("%d INDEX\n", index);
+				//printf("%ld\n", curArticle->size);
+				//printf("%ld\n", (top20[index - 1])->size);
 				index--;
 			}
 
-			//printf("This article will be compared to index %d\n", index);
+			printf("This article will be compared to index %d\n", index);
 
 			// Neste ponto sabemos que o score deste article >= top[index]
 
 			if (curArticle->size == (top20[index])->size) {
 
-				//printf("The users size are equal\n");
+				printf("The users size are equal\n");
 
 				// Score deste article == top[index]
 				// Comparar article id's
 
 				if (curArticle->id > (top20[index])->id) {
 
-					//printf("The article id lost\n");
+					printf("The article id lost\n");
 
 					index++; // Colocar este artigo uma posição abaixo no rank
 
 					if (index > 19) {
 
-						//printf("User dropped to 21st place, skip\n");
+						printf("User dropped to 21st place, skip\n");
 
 						continue; // Utilizador desceu para 21º, skipar
 					}
@@ -222,7 +225,7 @@ long* getTop20LargestArticles(TAD_istruct qs) {
 					fprintf(stderr, "Erro ao comparar id dos artigos %ld e %ld\n", curArticle->id, (top20[index])->id);
 				}
 
-				//printf("The article id won\n");
+				printf("The article id won\n");
 			}
 
 			// Deslizar os outros artigos para baixo para termos espaço para o novo artigo no rank
@@ -249,6 +252,8 @@ long* getTop20LargestArticles(TAD_istruct qs) {
 	for (j = 0; j < 20; j++) {
 		top20Ids[j] = (top20[j])->id;
 	}
+
+	printf("returning top20Ids...\n");
 
 	return top20Ids;
 }
