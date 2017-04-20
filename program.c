@@ -186,25 +186,6 @@ int main(int argc, char const *argv[]) {
 
 	// -------------------------------------------------------------
 
-	/*
-	// Testar contadores de palavras e bytes ------------
-
-	long nWords;
-	long size;
-
-	nWords = get_article_nWords((long) 10, qs);
-	size = get_article_size((long) 10, qs);
-	printf("\nNum of Words of article 10 is: %ld\n", nWords);
-	printf("Size of article 10 is: %ld\n", size);
-
-	nWords = get_article_nWords((long) 12, qs);
-	size = get_article_size((long) 12, qs);
-	printf("\nNum of Words of article 10 is: %ld\n", nWords);
-	printf("Size of article 10 is: %ld\n", size);
-
-
-	// -------------------------------------------------------------
-	*/
 
 	// Testar article_timestamp ------------
 

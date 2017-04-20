@@ -19,13 +19,13 @@ static void parseRevision(
 	char **revisionText
 ) {
 
-	char *temp, *longEndPtr; // Necessário para strtol()
+	char *temp, *longEndPtr; // Necessário para strtol().
 
 	while (cur != NULL) {
 
 		if (cur->type == XML_ELEMENT_NODE) {
 
-			// Revision ID
+			// Revision ID.
 			if (!xmlStrcmp(cur->name, (const xmlChar *) "id")) {
 
 				temp = (char*) xmlNodeGetContent(cur);
@@ -33,7 +33,7 @@ static void parseRevision(
 				xmlFree(temp);
 			}
 
-			// Revision Parent ID
+			// Revision Parent ID.
 			if (!xmlStrcmp(cur->name, (const xmlChar *) "parentid")) {
 
 				temp = (char*) xmlNodeGetContent(cur);
@@ -41,17 +41,17 @@ static void parseRevision(
 				xmlFree(temp);
 			}
 
-			// Revision Timestamp
+			// Revision Timestamp.
 			if (!xmlStrcmp(cur->name, (const xmlChar *) "timestamp")) {
 				*revisionTimestamp = (char*) xmlNodeGetContent(cur);
 			}
 
-			// Revision Text
+			// Revision Text.
 			if (!xmlStrcmp(cur->name, (const xmlChar *) "text")) {
 				*revisionText = (char*) xmlNodeGetContent(cur);
 			}
 
-			// Revision Contributor
+			// Revision Contributor.
 			if (!xmlStrcmp(cur->name, (const xmlChar *) "contributor")) {
 
 				xmlNodePtr current = cur->children;
@@ -60,12 +60,12 @@ static void parseRevision(
 
 					if (current->type == XML_ELEMENT_NODE) {
 
-						// Username
+						// Username.
 						if (!xmlStrcmp(current->name, (const xmlChar *) "username")) {
 							*revisionContributorUsername = (char*) xmlNodeGetContent(current);
 						}
 
-						// ID
+						// ID.
 						if (!xmlStrcmp(current->name, (const xmlChar *) "id")) {
 							temp = (char*) xmlNodeGetContent(current);
 							*revisionContributorId = strtol(temp, &longEndPtr, 10);
@@ -87,18 +87,18 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 	char *title, *revisionContributorUsername = NULL, *revisionText = NULL, *revisionTimestamp = NULL;
 	long articleId, revisionId = -1, revisionParentId = -1, revisionContributorId = -1;
 
-	char *temp, *longEndPtr; // Necessário para strtol()
+	char *temp, *longEndPtr; // Necessário para strtol().
 
 	while (cur != NULL) {
 
 		if (cur->type == XML_ELEMENT_NODE) {
 
-			// Title
+			// Title.
 			if (!xmlStrcmp(cur->name, (const xmlChar *) "title")) {
 				title = (char*) xmlNodeGetContent(cur);
 			}
 
-			// ID
+			// ID.
 			if (!xmlStrcmp(cur->name, (const xmlChar *) "id")) {
 
 				temp = (char*) xmlNodeGetContent(cur);
@@ -106,7 +106,7 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 				xmlFree(temp);
 			}
 
-			// Revision
+			// Revision.
 			if (!xmlStrcmp(cur->name, (const xmlChar *) "revision")) {
 				parseRevision(
 					doc,
@@ -124,59 +124,25 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 		cur = cur->next;
 	}
 
-	/*
-		TODO - Trocar os nodegetcontent pela função usada no tutorial
-
-		TODO - ADCIONAR IF PARA VERIFICAR SE VALORES NÃO HÁ NULLS OU -1, para passar ao módulo ARTICLES
-	Nota: Em algumas entradas dos backups, o campo <contributor> apenas contém a tag <ip>.
-	Nestes casos, deve-se ignorar este autor para os resultados da interrogação.
-	*/
-
-	//printf("parser.c - Sending page data to users.c\n");
 
 	// Ignorar contributor caso apenas tenha <ip> e não <username> + <id>
 	if (revisionContributorId != -1) {
+		// Funçaõ responsável por organizar e passar dados. Presente em users.c.
 		qs = onPageUsers(qs, revisionContributorId, revisionContributorUsername, articleId, revisionId);
 	}
 
-	/*
-		-> no módulo, vai ter de chamar a função (da HASH) de procura por ID
-			-> se encontrar, chama a função (da HASH) que aumenta o numOfContributions
-			-> se não encontrar, chama a função (da HASH) que insere o ID+username+counter=1
-	*/
-
-	//printf("parser.c - Sending page data to articles.c\n");
-
+	// Função responsável por organizar e passar dados. Presente em articles.c.
 	qs = onPageArticles(qs, articleId, title, revisionText, revisionId, revisionParentId, revisionTimestamp);
 
-	/*
-		-> chama a função de procura (da HASH) ID do artigo
-			-> se não encontrar, chama a func insere (da HASH) articleID+title+
-																sizeOfArticle(revisionText) (função do modulo ARTICLES)+
-																numOfWords(revisionText) (funcao do modulo ARTICLES)+
-																revisionId
-			-> se encontrar, tem de fazer update do título
-	*/
 
-	/*
-	//printf("Page:\n");
-	//printf("title: %s\n", title);
-	//printf("articleId: %ld\n", articleId);
-	//printf("revisionId: %ld\n", revisionId);
-	//printf("revisionParentId: %ld\n", revisionParentId);
-	//printf("revisionTimestamp: %s\n", revisionTimestamp);
-	//printf("revisionContributorId: %ld\n", revisionContributorId);
-	//printf("revisionContributorUsername: %s\n", revisionContributorUsername);
-	//printf("revisionText: %s\n", revisionText);
-	//printf("--------------------\n");
-	*/
-
-	return qs;
-
+	// Libertar memória.
 	xmlFree(title);
 	xmlFree(revisionTimestamp);
 	xmlFree(revisionContributorUsername);
 	xmlFree(revisionText);
+
+
+	return qs;
 }
 
 TAD_istruct parseWikiData(TAD_istruct qs, const char *docname) {
@@ -205,7 +171,7 @@ TAD_istruct parseWikiData(TAD_istruct qs, const char *docname) {
 		return NULL;
 	}
 
-	// Loop principal - itera pelas páginas
+	// Loop principal - itera pelas páginas.
 
 	cur = cur->children;
 
@@ -221,6 +187,6 @@ TAD_istruct parseWikiData(TAD_istruct qs, const char *docname) {
 
 	return qs;
 
-	// Libertar a memória
+	// Libertar a memória.
 	xmlFreeDoc(doc);
 }
