@@ -80,10 +80,7 @@ long* top_N_articles_with_more_words(int n, TAD_istruct qs) {
 }
 
 char** titles_with_prefix(char* prefix, TAD_istruct qs) {
-
-	// Para os testes correrem e vermos os resultados no site dos profs
-
-	return NULL;
+	return getTitlesWithPrefix(prefix, qs);
 }
 
 char* article_timestamp(long article_id, long revision_id, TAD_istruct qs) {

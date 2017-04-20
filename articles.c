@@ -32,6 +32,33 @@ long wordCounter(char *revisionText, long *sizeBytes) {
 	//return 1; // Comentei porque tava a dar erros ao compilar
 }
 
+int isTitlePrefix(char* prefix, char* title) {
+
+	char* prefixo = prefix;
+	char* string = title;
+	int i;
+
+	for (i = 0; (prefixo[i] != '\0'); i++) {
+		if (string[i] != '\0') {
+			if (prefixo[i] == string[i]) continue;
+			else {
+				//printf("0\n");
+				return 0;
+			}
+		}
+		// caso o prefix seja maior que o titulo
+		else {
+			//printf("0\n");
+			return 0;
+		}
+	}
+
+	//printf("1\n");
+	return 1;
+
+}
+
+
 /*
 	-> chama a função de procura (da HASH) ID do artigo
 		-> se não encontrar, chama a func insere (da HASH) articleID+title+
@@ -40,7 +67,6 @@ long wordCounter(char *revisionText, long *sizeBytes) {
 															revisionId
 		-> se encontrar, tem de fazer update do título
 */
-
 
 TAD_istruct onPageArticles(
     TAD_istruct qs,
@@ -340,23 +366,50 @@ long* getTopNArticlesWithMoreWords(int n, TAD_istruct qs) {
 }
 
 
-// Para ver se o wordCounter está a funcionar
-long get_article_size(long article_id, TAD_istruct qs) {
-	struct article *ourArticle = getArticle(qs, article_id);
+char** getTitlesWithPrefix(char* prefix, TAD_istruct qs) {
 
-	if (ourArticle) {
-		return ourArticle->size;
-	} else {
-		return (long) 0;
+	char** articlesWithPrefix = NULL;
+	int numOfTitles = 0;
+
+	void *iterator = getHashtableIterator(qs->articles);
+	void *key = NULL;
+	struct article *curArticle = NULL;
+
+	// Iterar pela hash table de artigos
+	while (getNextFromIterator(iterator, &key, &curArticle)) {
+
+		if (isTitlePrefix(prefix, curArticle->title)) {
+
+			numOfTitles++;
+			articlesWithPrefix = realloc(articlesWithPrefix, numOfTitles * sizeof(char *));
+			articlesWithPrefix[numOfTitles-1] = curArticle->title;
+
+		}
+
 	}
-}
 
-long get_article_nWords(long article_id, TAD_istruct qs) {
-	struct article *ourArticle = getArticle(qs, article_id);
+	//printf("ordenar...\n");
+	// Ordena alfabeticamente
+	char* tmp = NULL;
+	int i, j;
 
-	if (ourArticle) {
-		return ourArticle->nWords;
-	} else {
-		return (long) 0;
+	for (i = 1; i < numOfTitles; i++) {
+ 		for (j = 1; j < numOfTitles; j++) {
+ 			if (strcmp(articlesWithPrefix[j - 1], articlesWithPrefix[j]) > 0) {
+ 				//printf("aqui\n");
+ 				tmp = articlesWithPrefix[j - 1];
+ 				//printf("copia antes\n");
+ 				articlesWithPrefix[j - 1] = articlesWithPrefix[j];
+ 				//printf("dá o tmp\n");
+ 				articlesWithPrefix[j] = tmp;
+ 			}
+ 		}
 	}
+
+	//printf("finalizar...\n");
+	// Para a última posição retornar NULL
+	articlesWithPrefix = realloc(articlesWithPrefix, (numOfTitles + 1) * sizeof(char *));
+	articlesWithPrefix[numOfTitles] = NULL;
+
+	return articlesWithPrefix;
 }

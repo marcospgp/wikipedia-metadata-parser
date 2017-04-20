@@ -206,7 +206,6 @@ int main(int argc, char const *argv[]) {
 	// -------------------------------------------------------------
 	*/
 
-
 	// Testar article_timestamp ------------
 
 	char *time_query;
@@ -219,8 +218,8 @@ int main(int argc, char const *argv[]) {
 	time_query = article_timestamp((long) 12, (long) 751573634, qs);
 	printf("Answer: %s\n", time_query);
 
-
 	// -------------------------------------------------------------
+
 
 	// Testar top 20 articles ------------
 
@@ -237,6 +236,7 @@ int main(int argc, char const *argv[]) {
 
 	// ---------------------------------------
 
+
 	// Testar top N more words ------------ IS IT WORKING- GOTTA 64 BITS THAT
 
 	int numTop = 30;
@@ -249,6 +249,22 @@ int main(int argc, char const *argv[]) {
 	}
 
 	free(topNArticles);
+
+	// ---------------------------------------
+
+
+	// Testar top N more words ------------
+
+	char* prefixo = "Anax";
+	printf("\nArticles with the prefix: %s\n", prefixo);
+	char** listOfArticlesWithPrefix = titles_with_prefix(prefixo, qs);
+
+	int iPrefix;
+	for (iPrefix = 0; listOfArticlesWithPrefix[iPrefix] != NULL; iPrefix++) {
+		printf("%d: %s\n", (iPrefix + 1), listOfArticlesWithPrefix[iPrefix]);
+	}
+
+	free(listOfArticlesWithPrefix);
 
 	// ---------------------------------------
 
