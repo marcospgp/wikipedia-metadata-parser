@@ -1,0 +1,106 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel}
+\usepackage{a4wide}
+\usepackage{multicol}
+\usepackage{spverbatim}
+\usepackage{graphicx}
+
+\title{Projeto de LI3 - Wikipedia\\Grupo 69}
+\author{Sérgio Jorge (A77730) \and Vítor Castro (A77870) \and Marcos Pereira (A79116)}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Neste relatório vamos fazer uma análise acerca do trabalho realizado na primeira fase do projecto no âmbito da UC de Laboratórios de Informática III no qual surgiu o objetivo de desenvolver um programa tendo por base a linguagem de programação C. Além disso, o relatório apresenta também a solução encontrada pelo nosso grupo para o problema.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introdução}
+\label{sec:intro}
+
+Este projeto foi realizado com o objetivo de construir um aplicativo que faça uma análise dos artigos que estão nos backups da Wikipedia, fornecidos pelos professores e que foram realizados em diferentes meses, para que seja possível determinar e descobrir informações úteis acerca desses mesmos backups.
+Assim, foram propostas pelos professores, 10 interrogações e tarefas computacionais, realizadas na linguagem de programação C, às quais o nosso programa e o nosso trabalho devem responder com sucesso. A realização das 10 tarefas permitiram por um lado, melhorar e consolidar os conhecimentos adquiridos nas UCs de Programação Imperativa, Algoritmos e Complexidade e Arquitetura de Computadores. Por outro, permitiram também a aprendizagem de processos para a correta resolução de problemas tal como a divisão do projeto em alguns módulos afim de ser possível que todos os membros do grupo conseguissem ajudar à concretização do projeto de igual forma.
+Assim, de modo a facilitar a compreensão do projeto, o relatório está dividido da seguinte forma:
+\begin{description}
+    \item[Secção 2 :] Problema;
+    \item[Secção 3 :] Solução;
+    \item[Secção 4 :] Conclusão.
+\end{description}
+
+\section{Problema}
+\label{sec:problema}
+Neste projeto de LI3, é-nos pedido para a partir de backups da Wikipedia, fornecidos pelos professores, fazermos a leitura dos dados e a extração de informação que a equipa docente considera relevante. Assim, a informação que devemos gerar é:	
+\begin{description}
+\item[1 - All articles]\hfill \\ 
+devolve o número de artigos encontrados nos backups analisados. Para esta interrogação, artigos duplicados em backups sucessivos e novas revisões de artigos também contam.
+\item[2 - Unique articles]\hfill \\ 
+devolve o número de artigos únicos (com id único) encontrados nos vários backups analisados. Artigos duplicados ou revisões dos mesmos que estejam presentes em backups distintos não são contabilizados.
+\item[3 - All revisions]\hfill \\
+pretende saber quantas revisoões foram efetuadas naqueles backups (o numero total de versoes diferentes encontradas nos backups). O valor retornado deve incluir quer a versai base do artigo bem como as revisões feitas ao mesmo.
+\item[4 - Top 10 contributors]\hfill \\
+devolve um array com os identificadores dos 10 autores que contribuíram para um maior numero de revisoes de artigos (i.e., contar contribuições para artigos e respetivas revisões). O resultado deve ser ordenado pelos autores com mais contribuições. Se existirem autores com o mesmo número de contribuições, o resultado deve apresentar primeiro os autores com um identificador menor.
+\item[5 - Contributor name]\hfill \\
+devolve o nome do autor com um determinado identificador.
+\item[6 - Top 20 largest articles]\hfill \\
+devolve um array com os identificadores dos 20 artigos que possuem textos               com um maior tamanho em bytes. Para cada artigo deve ser contabilizado o maior texto               encontrado nas diversas versões(revisões) do mesmo. O resultado deve ser ordenado pelos            artigos com maior tamanho. Se existirem artigos com o mesmo tamanho, o resultado deve              apresentar primeiro os artigos com um identificador menor
+\item[7 - Article title]\hfill \\
+devolve o título do artigo com um determinado identificador.
+\item[8 - Top N articles with more words]\hfill \\
+devolve um array com os identificadoeres dos N (passado como argumento) artigos que possuem textos com o maior numero de palavras. Resultado ordenado pelos artigos com maior numero de palavras.
+\item[9 - Titles with prefix]\hfill \\
+devolve um array de títulos de artigos que começam com um prefixo passado como argumento e o resultado deve ser ordenado por ordem alfabética.
+\item[10 - Article timestamp]\hfill \\
+devolve o timestamp para uma certa revisão de um artigo.
+
+
+\end{description}
+
+\section{Solução}
+\label{sec:solucao}
+
+\subsection{Estrutura de Dados}
+
+As estruturas de dados são bastante importantes no desenvolvimento do programa pois permite a transformação e armazenamento dos dados. Destaca-se neste trabalho as seguintes estruturas:
+
+\begin{description}
+    \item[Hashtables :] Essenciais ao longo de todo o projeto;
+    
+\end{description}
+
+\subsection{Implementação}
+\subsubsection{All articles}
+\subsubsection{Unique articles}
+\subsubsection{All revisions}
+\subsubsection{Top 10 contributors}
+\subsubsection{Contributor name}
+\subsubsection{Top 20 largest articles}
+\subsubsection{Article title}
+\subsubsection{Top N articles with more words}
+\subsubsection{Titles with prefix}
+\subsubsection{Article timestamp}
+
+
+\pagebreak
+
+\subsection{Resultado Final}
+IMAGEM DO TERMINAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL
+\begin{figure}[!htb]
+\centering
+\end{figure}
+
+
+\section{Conclusões}
+\label{sec:conclusao}
+Este projeto serviu para aprofundarmos o conhecimento da linguagem C, assim como as bibliotecas que lhe estão associadas. Achámos que, com a realização de um trabalho deste tipo permite uma consolidação proveitosa da linguagem, não só em termos teóricos como também em termos práticos e acaba por ser uma forma diferente de cimentar os conteúdos de algumas das UCs que nos surgiram neste curso. Permite também melhorar as habilidades na resolução de problemas. Concluímos também que:
+
+\begin{itemize} 
+        \item Hoje em dia, é possível ler e manipular grandes quantidades de informação em poucos segundos;
+ 	    \item A separação do trabalho em módulos ajuda a dividir o trabalho pela equipa e também, neste contexto, ressalta-se também a utilidade que mais uma veja encontramos no "git";
+\end{itemize}
+
+\end{document}
