@@ -1,0 +1,61 @@
+Times:
+
+init() -> 0.024000 ms
+load() -> 11842.542000 ms
+all_articles() -> 0.000000 ms
+unique_articles() -> 0.000000 ms
+all_revisions() -> 0.000000 ms
+top_10_contributors() -> 0.381000 ms
+contributor_name(28903366) -> 0.001000 ms
+contributor_name(194203) -> 0.000000 ms
+contributor_name(1000) -> 0.000000 ms
+top_20_largest_articles() -> 0.527000 ms
+article_title(15910) -> 0.000000 ms
+top_N_articles_with_more_words(30) -> 0.549000 ms
+article_title(25507) -> 0.000000 ms
+article_title(1111) -> 0.000000 ms
+titles_with_prefix(Anax) -> 1.302000 ms
+article_timestamp(12,763082287) -> 0.001000 ms
+article_timestamp(12,755779730) -> 0.000000 ms
+article_timestamp(12,4479730) -> 0.000000 ms
+clean() -> 13.674000 ms
+
+Output:
+
+Cloning repository
+Cloning into 'grupo69'...
+done.
+rm: cannot remove ‘program’: No such file or directory
+rm -f *.o program
+gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c users.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c interface.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c articles.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c parser.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c hashtable.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c program.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -o program users.o interface.o articles.o parser.o hashtable.o program.o `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+time timeout 1800 ./program ../snapshot_dec16 ../snapshot_jan17 ../snapshot_fev17
+all_articles() -> 59593
+unique_articles() -> 19867
+all_revisions() -> 40131
+top_10_contributors() -> 28903366 13286072 27823944 27015025 194203 212624 7852030 7328338 7611264 14508071
+contributor_name(28903366) -> Bender the Bot
+contributor_name(194203) -> Graham87
+contributor_name(1000) -> (null)
+top_20_largest_articles() -> 15910, 23235, 11812, 28678, 14604, 23440, 26847, 25507, 26909, 18166, 4402, 14889, 23805, 25391, 7023, 13224, 12108, 13913, 23041, 18048,
+article_title(15910) -> List of compositions by Johann Sebastian Bach
+top_N_articles_with_more_words(30) -> 15910, 25507, 23235, 11812, 13224, 26847, 14889, 7023, 14604, 13289, 18166, 4402, 12157, 13854, 23805, 25401, 10186, 23041, 18048, 16772, 22936, 28678, 27069, 9516, 12108, 13913, 13890, 21217, 23440, 25391,
+article_title(25507) -> Roman Empire
+article_title(1111) -> Politics of American Samoa
+titles_with_prefix(Anax) -> Anaxagoras, Anaxarchus, Anaximander, Anaximenes of Lampsacus, Anaximenes of Miletus,
+article_timestamp(12,763082287) -> 2017-02-01T06:11:56Z
+article_timestamp(12,755779730) -> 2016-12-20T04:02:33Z
+article_timestamp(12,4479730) -> (null)
+
+real	0m11.940s
+user	0m11.300s
+sys	0m0.620s
+
+
+Diff between group results and Server results: If no output appears then there are no differences
+diff ../grupo69/results.txt ../Server/results.txt
