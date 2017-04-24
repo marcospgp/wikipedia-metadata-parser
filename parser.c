@@ -84,8 +84,8 @@ static void parseRevision(
 
 static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 
-	char *title, *revisionContributorUsername = NULL, *revisionText = NULL, *revisionTimestamp = NULL;
-	long articleId, revisionId = -1, revisionParentId = -1, revisionContributorId = -1;
+	char *title = NULL, *revisionContributorUsername = NULL, *revisionText = NULL, *revisionTimestamp = NULL;
+	long articleId = -1, revisionId = -1, revisionParentId = -1, revisionContributorId = -1;
 
 	char *temp, *longEndPtr; // Necessário para strtol().
 

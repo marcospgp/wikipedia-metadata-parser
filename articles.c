@@ -13,7 +13,7 @@
 */
 long wordCounter(char *revisionText, long *sizeBytes) {
 	char *str = revisionText;
-	long i;
+	long i = 0;
 	long count = 0;
 	int foundLetter = 0;
 
