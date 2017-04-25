@@ -17,7 +17,7 @@
 \maketitle
 
 \begin{abstract}
-Neste relatório faremos uma análise do trabalho realizado na primeira fase do projeto de Laboratórios de Informática III no qual, surgiu o objetivo de desenvolver um programa tendo por base a linguagem de programação C. Além disso, o relatório apresenta também a solução encontrada pelo nosso grupo para o problema.
+Neste relatório faremos uma análise do trabalho realizado na primeira fase do projeto de Laboratórios de Informática III, no qual surgiu o objetivo de desenvolver um programa tendo por base a linguagem de programação C. Este documento tem por vista apresentar detalhadamente a solução encontrada pelo nosso grupo para o problema.
 \end{abstract}
 
 \tableofcontents
@@ -35,11 +35,11 @@ Assim, de modo a facilitar a compreensão do projeto, o relatório está dividid
 
 \section{Problema}
 \label{sec:problema}
-Neste projeto de LI3, é-nos pedido para a partir de backups da Wikipedia, fornecidos pelos professores, fazermos a leitura dos dados e a extração de informação que a equipa docente considera relevante. Assim, a informação que devemos gerar é:	
+Neste projeto de LI3, é-nos pedido para a partir de backups da Wikipedia, fornecidos pelos professores, fazermos a leitura dos dados e a extração de informação que a equipa docente considera relevante. Assim, a informação que devemos gerar é:
 \begin{description}
-\item[1 - All articles]\hfill \\ 
+\item[1 - All articles]\hfill \\
 devolver o número de artigos encontrados nos backups.
-\item[2 - Unique articles]\hfill \\ 
+\item[2 - Unique articles]\hfill \\
 devolver o número de artigos únicos (com id único) encontrados nos vários backups analisados.
 \item[3 - All revisions]\hfill \\
 devolver quantas revisoões foram efetuadas nos backups.
@@ -60,11 +60,13 @@ devolver o timestamp para uma certa revisão de um artigo.
 \end{description}
 
 \section{Solução}
-A nossa solução foi implementada com base em diferentes módulos dos quais destacamos dois essenciais:
+A nossa solução foi implementada com base em diferentes módulos dos quais destacamos os quatro principais:
 
 \begin{itemize}
-    \item Parser;
-    \item Hashtable.
+    \item Parser
+    \item Hashtable
+    \item Users
+    \item Articles
 \end{itemize}
 \label{sec:solucao}
 
@@ -74,20 +76,28 @@ Assim, é-nos então possível percorrer o ficheiro, iterar pelas páginas, e fa
 A informação vai sendo transferida para a memória/hashtables criadas, para o efeito, pelo módulo hashtables explicado de seguida.
 
 \subsection{Hashtables}
-Módulo que atráves do uso da biblioteca glib, armazena os dados transmitidos pelo parser... optamos pela uso de 3 tipos de hashtables.
+Módulo que atráves do uso da biblioteca glib, armazena os dados transmitidos pelo parser. Optamos pela uso de 2 hashtables principais, uma das quais tem uma hashtable associada a cada uma das suas entradas.
 \begin{description}
-    \item[Hashtable de articles] Esta estrutura de dados, para cada "artigo", armazena o ID do artigo, o tamanho do texto em bytes, o número de palavras do texto, o título e cria uma hashtable de revisions e insere sempre lá a revisão. No caso de o artigo já existir no sistema, supõe-se então que a hash de revisões já foi anteriormente criada pelo faz-se apenas a inserção da revisão. Além disso, guarda também dois pointers (articleFound e articleUpdated) que se tornam essenciais para uma efetiva e correta contagem do número total de artigos, do número único de artigos e do número total de revisões.
-    
-    O tamanho do texto em bytes e o número de palavras do texto são calculados a partir de uma função 2 em 1 que, percorre o texto, recorrendo a um contador, e as palavras são então contadas e o contador devolve-nos o tamanho do texto.
-	\item[Hashtable de revisions] Cada artigo tem a ele associado uma estrutura de dados deste tipo com as revisões.
-	\item[Hashtable de users] Esta estrutura de dados, para cada "artigo", armazena o ID do contributor, o username do contributor e o seu número de contribuições. Faz-se também o uso de um pointer (userWasFound) para informar se o utilizador foi encontrado ou não na hash de utilizadores. Para o caso de surgir um contribuidor que já contribuiu antes, é apenas feito um incremento no seu número de contribuições.
+    \item[Hashtable de articles] Esta tabela armazena a ID de cada artigo, o tamanho do texto em bytes, o número de palavras do texto, o título, e além disso cria uma hashtable de revisions onde é inserida informação relativamente à revisão que está a ser processada.
+
+    O tamanho do texto em bytes e o número de palavras do texto são calculados a partir de uma função 2 em 1 que percorre o texto recorrendo a um contador, aproveitando para contar as palavras que atravessa enquanto calcula o tamanho do texto.
+
+    \item[Hashtable de revisions] Cada artigo tem a ele associado uma estrutura de dados deste tipo com as revisões.
+
+    \item[Hashtable de users] Esta estrutura de dados armazena o ID de cada contribuídor, o username do contribuídor e o seu número de contribuições.
 
 \end{description}
+
+\subsection{Users}
+ Este módulo trata de calcular as respostas a todas as queries relativas aos contribuídores, fazendo uso das hashtables já preenchidas. Além disso, faz a ligação entre o módulo Parser e o módulo Hashtable, transportando para este segundo a informação processada relativamente aos utilizadores.
+
+\subsection{Articles}
+ Muito semelhante ao Users, este módulo trata de calcular as respostas a todas as queries relativas aos artigos, fazendo uso das hashtable de artigos e da hashtable de revisões presente em cada entrada da anterior. Faz também a ligação entre o módulo Parser e o módulo Hashtable aquando do parse inicial dos dados.
 
 \subsection{Implementação}
 
 \subsubsection{All articles, Unique articles e All revisions}
-Para resolvermos estas interrogações, optamos por utilizar dois pointers (articleFound e articleUpdated), que são associados a cada artigo aquando da inserção da informação nas hashs e que, posteriormente, nos dizem o que aconteceu com aquele artigo. 
+Para resolvermos estas interrogações, optamos por utilizar dois pointers (articleFound e articleUpdated), que são associados a cada artigo aquando da inserção da informação nas hashs e que, posteriormente, nos dizem o que aconteceu com aquele artigo.
 Assim, sempre que se recebe um artigo, verifica-se se este já existe na estrutura de dados:
 Se não existe, Articlefound = 0 e Articleupdated = 1 e, cria o novo artigo na hashtable de artigos, cria a hashtable de revisões e adiciona a revisão à hashtable de revisões.
 Se o artigo já existe na estrutura de dados, Articlefound = 1 e verifica-se o que surgiu de diferente no artigo... Então, se de facto surgiram alterações ao artigo, Articleupdated = 1. Senão, Articleupdated = 0. Além disso, a revisão é introduzida na hashtable de revisões do artigo em questão.
@@ -97,7 +107,7 @@ Portanto, All articles é alcançado a partir de um contador que é incrementado
 Definimos um array com 10 posições para colocar o top. Percorremos a hash de utilizadores e, para cada user, vamos buscar o seu número de contribuições e comparamos se tem mais que o utilizador que está na última posição do top (índice 9). Em caso afirmativo, comparamos com as sucessivas posições, encontramos a posição e deslizamos o resto dos utilizadores para haver lugar para o current. Para os casos em que temos igual número de contribuições na comparação, faz-se um string compare dos dois ID dos users para sabermos qual o menor ID.
 
 \subsubsection{Contributor name}
-É devolvido percorrendo a hashtable de utilizadores e verificando se o ID do contributor dado como argumento mapeia na estrutura. Em caso afirmativo, retorna-se o username do contributor. Em caso negativo, retorna-se NULL.
+É devolvido percorrendo a hashtable de utilizadores e verificando se o ID do contribuídor dado como argumento mapeia na estrutura. Em caso afirmativo, retorna-se o username do contribuídor. Em caso negativo, retorna-se NULL.
 
 \subsubsection{Top 20 largest articles}
 Definimos um array com 20 posições para colocar o top. Percorremos a hash de artigos e, para cada artigo, vamos buscar o número do texto em bytes e comparamos se tem mais que o artigo que está na última posição do top (índice 19). Em caso afirmativo, comparamos com as sucessivas posições, encontramos a posição e deslizamos o resto dos artigos para haver lugar para o current. Para os casos em que temos igual número de contribuições na comparação, faz-se um string compare dos dois ID dos articles para sabermos qual o menor ID.
@@ -125,9 +135,9 @@ A forma que encontramos para resolver este problema foi implementar uma função
 \label{sec:conclusao}
 Este projeto serviu para aprofundarmos o conhecimento da linguagem C, assim como as bibliotecas que lhe estão associadas. Achámos que, com a realização de um trabalho deste tipo permite uma consolidação proveitosa da linguagem, não só em termos teóricos como também em termos práticos e acaba por ser uma forma diferente de cimentar os conteúdos de algumas das UCs que nos surgiram neste curso. Permite também melhorar as habilidades na resolução de problemas. Concluímos também que:
 
-\begin{itemize} 
-        \item Hoje em dia, é possível ler e manipular grandes quantidades de informação em poucos segundos;
- 	    \item A separação do trabalho em módulos ajuda a dividir o trabalho pela equipa e também, neste contexto, ressalta-se também a utilidade que encontramos no "git";
+\begin{itemize}
+        \item O uso da estrutura de dados adequada (hashtables) foi essencial de forma a obter um programa eficiente, que faça a manipulação necessária dos dados em tempo útil;
+ 	    \item A separação do trabalho em módulos permite uma fácil divisão do trabalho pela equipa, aliando-se ao uso do Git numa organização eficiente do trabalho do grupo.
 \end{itemize}
 
 \end{document}
