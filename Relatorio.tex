@@ -17,15 +17,15 @@
 \maketitle
 
 \begin{abstract}
-Neste relatório faremos uma análise do trabalho realizado na primeira fase do projeto de Laboratórios de Informática III, no qual surgiu o objetivo de desenvolver um programa tendo por base a linguagem de programação C. Este documento tem por vista apresentar detalhadamente a solução encontrada pelo nosso grupo para o problema.
+Neste relatório faremos uma análise do primeiro projeto de Laboratórios de Informática III, cujo objetivo era desenvolver um programa, na linguagem de programação C, que fizesse a leitura de backups em XML da Wikipedia, respondendo a diversas interrogações propostas. Assim, este documento apresenta detalhadamente a abordagem tomada, quer na sua generalidade, quer ao nível das interrogações individuais.
 \end{abstract}
 
 \tableofcontents
 
 \section{Introdução}
 \label{sec:intro}
-Este projeto foi realizado com o objetivo de construir um aplicativo que capaz de fazer uma análise dos artigos que estão nos backups da Wikipedia, fornecidos pelos professores e que foram realizados em diferentes meses, para que seja possível determinar e descobrir informações úteis acerca desses mesmos backups.
-Assim, foram propostas pelos professores, 10 interrogações ou tarefas computacionais, realizadas na linguagem de programação C, às quais o nosso programa e o nosso trabalho devem responder com sucesso. A realização das 10 tarefas permitiram por um lado, melhorar e consolidar os conhecimentos adquiridos nas UCs de Programação Imperativa, Algoritmos e Complexidade e Arquitetura de Computadores. Por outro, permitiram também a aprendizagem de processos para a correta resolução de problemas tal como a divisão do projeto em alguns módulos afim de ser possível que todos os membros do grupo conseguissem ajudar à concretização do projeto de igual forma.
+Este projeto foi realizado com o objetivo de construir um programa capaz de fazer uma análise dos artigos que estão nos backups da Wikipedia fornecidos pela equipa docente, para que seja possível determinar informações úteis acerca desses mesmos backups.
+Assim, foram propostas pelos professores 10 tarefas computacionais, às quais o nosso programa, construído em C, deverá responder com sucesso. A realização das 10 tarefas permitiram, por um lado, melhorar e consolidar os conhecimentos adquiridos nas UCs de Programação Imperativa, Algoritmos e Complexidade e Arquitetura de Computadores. Por outro, incentivaram à exploração de bibliotecas como a \textit{libxml2} e a \textit{GLib}, enquanto desafiaram à modularidade estritamente necessária para a participação capaz no desenvolvimento em grupo de um projeto como este.
 Assim, de modo a facilitar a compreensão do projeto, o relatório está dividido da seguinte forma:
 \begin{description}
     \item[Secção 2 :] Problema;
@@ -38,25 +38,25 @@ Assim, de modo a facilitar a compreensão do projeto, o relatório está dividid
 Neste projeto de LI3, é-nos pedido para a partir de backups da Wikipedia, fornecidos pelos professores, fazermos a leitura dos dados e a extração de informação que a equipa docente considera relevante. Assim, a informação que devemos gerar é:
 \begin{description}
 \item[1 - All articles]\hfill \\
-devolver o número de artigos encontrados nos backups.
+devolver o número de artigos analisados nos backups.
 \item[2 - Unique articles]\hfill \\
 devolver o número de artigos únicos (com id único) encontrados nos vários backups analisados.
 \item[3 - All revisions]\hfill \\
-devolver quantas revisoões foram efetuadas nos backups.
+devolver quantas revisões foram efetuadas nos backups.
 \item[4 - Top 10 contributors]\hfill \\
-devolver um array com os identificadores dos 10 autores que contribuíram para um maior numero de revisões de artigos (i.e., contar contribuições para artigos e respetivas revisões). O resultado deve ser ordenado pelos autores com mais contribuições. Se existirem autores com o mesmo número de contribuições, o resultado deve apresentar primeiro os autores com um identificador menor.
+devolver um array com os identificadores dos 10 autores que mais contribuíram, quer em artigos únicos, quer em revisões de artigos já existentes. O resultado deve ser ordenado pelos autores com mais contribuições, sendo que se existirem autores com o mesmo número de contribuições, o resultado deve apresentar primeiro os autores com um identificador menor.
 \item[5 - Contributor name]\hfill \\
-devolver o nome do autor com um determinado identificador.
+devolver o nome do autor com um determinado identificador, ou NULL caso não exista.
 \item[6 - Top 20 largest articles]\hfill \\
-devolver um array com os identificadores dos 20 artigos que possuem textos com um maior tamanho em bytes. Para cada artigo deve ser contabilizado o maior texto encontrado nas diversas versões(revisões) do mesmo. O resultado deve ser ordenado pelos artigos com maior tamanho. Se existirem artigos com o mesmo tamanho, o resultado deve apresentar primeiro os artigos com um identificador menor
+devolver um array com os identificadores dos 20 artigos que possuem textos com um maior tamanho em bytes. Para cada artigo deve ser contabilizado o maior texto encontrado nas diversas versões (revisões) do mesmo. O resultado deve ser ordenado pelos artigos com maior tamanho. Se existirem artigos com o mesmo tamanho, o resultado deve apresentar primeiro os artigos com um identificador menor.
 \item[7 - Article title]\hfill \\
-devolver o título do artigo com um determinado identificador.
+devolver o título do artigo com um determinado identificador, ou NULL caso não exista.
 \item[8 - Top N articles with more words]\hfill \\
 devolver um array com os identificadores dos N (passado como argumento) artigos que possuem textos com o maior numero de palavras e o resultado deve ser ordenado pelos artigos com maior numero de palavras.
 \item[9 - Titles with prefix]\hfill \\
-devolver um array de títulos de artigos que começam com um prefixo passado como argumento e o resultado deve ser ordenado por ordem alfabética.
+devolver um array de títulos de artigos que começam com um prefixo passado como argumento e o resultado deve ser ordenado por ordem alfabética, ou NULL caso não existam artigos com esse prefixo.
 \item[10 - Article timestamp]\hfill \\
-devolver o timestamp para uma certa revisão de um artigo.
+devolver o timestamp para uma certa revisão de um artigo, ou NULL caso não haja essa revisão.
 \end{description}
 
 \section{Solução}
@@ -71,20 +71,18 @@ A nossa solução foi implementada com base em diferentes módulos dos quais des
 \label{sec:solucao}
 
 \subsection{Parser}
-Módulo que funciona com base na biblioteca libxml2. A libxml2 é uma biblioteca para a linguagem C que nos permite trabalhar com ficheiros .xml .
-Assim, é-nos então possível percorrer o ficheiro, iterar pelas páginas, e fazer o parse extraindo elementos como: Title, ID e Revision (a cada Revision está associado: ID, ParentId, Timestamp, ContributorId, ContributorUsername, Text).
-A informação vai sendo transferida para a memória/hashtables criadas, para o efeito, pelo módulo hashtables explicado de seguida.
+Módulo que funciona com base na biblioteca \textit{libxml2}. A \textit{libxml2} é uma biblioteca para a linguagem C que nos permite trabalhar com ficheiros .xml e, em específico para o trabalho, percorrer o ficheiro de nodo em nodo, retirando o seus conteúdos ou tratando-os de forma útil.
+Assim, é-nos então possível percorrer o ficheiro, iterar pelas páginas, e fazer o parse extraindo elementos como: Title, ID e Revision (a cada Revision está associado: ID, ParentID, Timestamp, ContributorID, ContributorUsername, Text).
+A informação vai sendo transferida para a memória, que se concretiza na forma de hashtables criadas com a \textit{GLib}, estrutura que a seguir invocamos.
 
 \subsection{Hashtables}
-Módulo que atráves do uso da biblioteca glib, armazena os dados transmitidos pelo parser. Optamos pela uso de 2 hashtables principais, uma das quais tem uma hashtable associada a cada uma das suas entradas.
+Módulo que atráves do uso da biblioteca \textit{GLib}, armazena os dados transmitidos pelo parser. Optamos pela uso de 2 hashtables principais (\textit{articles} e \textit{users}), sendo que a primeira tem uma hastable \textit{revisions} para cada artigo.
 \begin{description}
-    \item[Hashtable de articles] Esta tabela armazena a ID de cada artigo, o tamanho do texto em bytes, o número de palavras do texto, o título, e além disso cria uma hashtable de revisions onde é inserida informação relativamente à revisão que está a ser processada.
+    \item[Hashtable \textit{articles}] Esta tabela armazena a ID de cada artigo, o tamanho do texto em bytes, o número de palavras do texto, o título, e além disso cria, caso o artigo não exista ainda, uma hashtable de revisions onde é inserida informação relativamente à revisão que está a ser processada.
 
-    O tamanho do texto em bytes e o número de palavras do texto são calculados a partir de uma função 2 em 1 que percorre o texto recorrendo a um contador, aproveitando para contar as palavras que atravessa enquanto calcula o tamanho do texto.
+    \item[Hashtable \textit{revisions}] Cada artigo tem a ele associado uma estrutura de dados deste tipo com as revisões.
 
-    \item[Hashtable de revisions] Cada artigo tem a ele associado uma estrutura de dados deste tipo com as revisões.
-
-    \item[Hashtable de users] Esta estrutura de dados armazena o ID de cada contribuídor, o username do contribuídor e o seu número de contribuições.
+    \item[Hashtable \textit{users}] Esta estrutura de dados armazena o ID de cada contribuídor, o username do contribuídor e o seu número de contribuições.
 
 \end{description}
 
