@@ -24,9 +24,9 @@ Neste relatório faremos uma análise do primeiro projeto de Laboratórios de In
 
 \section{Introdução}
 \label{sec:intro}
-Este projeto foi realizado com o objetivo de construir um programa capaz de fazer uma análise dos artigos que estão nos \textit{backups} da Wikipedia fornecidos pela equipa docente, para que seja possível determinar informações úteis acerca desses mesmos \textit{backups}.
+Este projeto foi realizado com o objetivo de construir um programa capaz de fazer uma análise dos artigos que estão nos \textit{backups} da \textit{Wikipedia} fornecidos pela equipa docente, para que seja possível determinar informações úteis acerca desses mesmos \textit{backups}.
 Assim, foram propostas pelos professores 10 tarefas computacionais, às quais o nosso programa, construído em C, deverá responder com sucesso. A realização das 10 tarefas permitiram, por um lado, melhorar e consolidar os conhecimentos adquiridos nas UCs de Programação Imperativa, Algoritmos e Complexidade e Arquitetura de Computadores. Por outro, incentivaram à exploração de bibliotecas como a \textit{libxml2} e a \textit{GLib}, enquanto desafiaram à modularidade estritamente necessária para a participação capaz no desenvolvimento em grupo de um projeto como este.
-Dado o tamanho dos \textit{backups} e da necessidade de fazer procuras rápidas, só hashtables fizeram sentido, pelo que é com elas que vamos fazer todo o armazenamento de dados.
+Dado o tamanho dos \textit{backups} e da necessidade de fazer procuras rápidas, só \textit{hashtables} fizeram sentido, pelo que é com elas que vamos fazer todo o armazenamento de dados.
 Assim, de modo a facilitar a compreensão do projeto, o relatório está dividido da seguinte forma:
 \begin{description}
     \item[Secção 2 :] Problema;
@@ -91,16 +91,16 @@ Módulo que atráves do uso da biblioteca \textit{GLib}, armazena os dados trans
  Este módulo trata de calcular as respostas a todas as \textit{queries} relativas aos contribuidores, fazendo uso das \textit{hashtables} já preenchidas. Além disso, faz a ligação entre o módulo \textbf{\textit{Parser}} e o módulo \textbf{\textit{Hashtable}}, processando toda a informação obtida no \textit{parsing} e enviando para a \textit{hashtable users} apenas informação relevante.
 
 \subsection{Articles}
- Muito semelhante ao Users, este módulo trata de calcular as respostas a todas as queries relativas aos artigos, fazendo uso das \textit{hashtable} de artigos e da \textit{hashtable} de revisões presente em cada entrada da anterior. Faz também a ligação entre o módulo Parser e o módulo Hashtable aquando do parse inicial dos dados, passando também apenas a informação relevante para as \textit{hashtables articles} e \textit{revisions}.
+ Muito semelhante ao \textbf{\textit{Users}}, este módulo trata de calcular as respostas a todas as queries relativas aos artigos, fazendo uso das \textit{hashtable} de artigos e da \textit{hashtable} de revisões presente em cada entrada da anterior. Faz também a ligação entre o módulo \textbf{\textit{Parser}} e o módulo \textbf{\textit{Hashtable}} aquando do parse inicial dos dados, passando também apenas a informação relevante para as \textit{hashtables articles} e \textit{revisions}.
 
 \subsection{Implementação}
 
 \subsubsection{All articles, Unique articles e All revisions}
 Para resolvermos estas interrogações, optamos por utilizar dois pointers (\textit{articleWasFound} e \textit{articleWasUpdated}), que são alterados em runtime quando se decide que campos das hashtable são criados ou alterados.
 Assim, sempre que se recebe um artigo, verifica-se se este já existe na estrutura de dados:
-Se não existe, \textit{articleWasFound} = 0 e \textit{articleWasUpdated} = 1 e, cria o novo artigo na hashtable de artigos, cria a hashtable de revisões e adiciona a revisão à hashtable de revisões. Apesar de não ser encontrado o artigo, é feito o update do mesmo, o que nos permite aumentar o contador allRevisions, presente na hashtable articles.
-Se o artigo já existe na estrutura de dados, \textit{articleWasFound} = 1 e verifica-se o que surgiu de diferente no artigo. Então, se de facto surgiram alterações ao artigo, \textit{articleWasUpdated} = 1. Senão, \textit{articleWasUpdated} = 0. Além disso, a revisão é introduzida na hashtable de revisões do artigo em questão, caso o artigo tenha algo diferente. Neste caso, em que adicionamos um novo artigo à tabela, incrementamos o contador uniqueArticles, presente na hashtable articles.
-Portanto, All articles é alcançado a partir de um contador que é incrementado sempre que é encontrado um artigo, independentemente dos apontadores \textit{articleWasFound} e \textit{articleWasUpdated}. Unique articles é devolvido a partir de um contador que é incrementado se e só se o \textit{articleWasFound} está com valor 0. All revisions é calculado também a partir de um contador que é incrementado quando o \textit{articleWasUpdated} = 1.
+Se não existe, \textit{articleWasFound} = 0 e \textit{articleWasUpdated} = 1 e, cria o novo artigo na hashtable de artigos, cria a hashtable de revisões e adiciona a revisão à hashtable de revisões. Apesar de não ser encontrado o artigo, é feito o update do mesmo, o que nos permite aumentar o contador allRevisions, presente na \textit{hashtables articles}.
+Se o artigo já existe na estrutura de dados, \textit{articleWasFound} = 1 e verifica-se o que surgiu de diferente no artigo. Então, se de facto surgiram alterações ao artigo, \textit{articleWasUpdated} = 1. Senão, \textit{articleWasUpdated} = 0. Além disso, a revisão é introduzida na hashtable de revisões do artigo em questão, caso o artigo tenha algo diferente. Neste caso, em que adicionamos um novo artigo à tabela, incrementamos o contador uniqueArticles, presente na \textit{hashtables articles}.
+Portanto, \textbf{\textit{All articles}} é alcançado a partir de um contador que é incrementado sempre que é encontrado um artigo, independentemente dos apontadores \textit{articleWasFound} e \textit{articleWasUpdated}. \textbf{\textit{Unique articles}} é devolvido a partir de um contador que é incrementado se e só se o \textit{articleWasFound} está com valor 0. \textbf{\textit{All revisions}} é calculado também a partir de um contador que é incrementado quando o \textit{articleWasUpdated} = 1.
 Termos estes contadores na \textit{hashtable} foi a maneira que nos pareceu mais eficiente de colher tais informações, uma vez que o custo seria apenas de mudar o valor de um apontador, contrariamente ao que seria o custo de, por exemplo, percorrer toda a \textit{hashtable} no fim e incrementar os mesmos contadores.
 
 \subsubsection{Top 10 contributors}
@@ -108,7 +108,7 @@ Definimos um \textit{array} com 10 posições para colocar o top. Percorremos a 
 Escolhemos fazer a comparação sempre pelo último lugar do top pois evitamos que, na maioria das vezes, se percorra o top sem necessidade.
 
 \subsubsection{Contributor name}
-É feita a procura passando o ID a uma função getUser do módulo hashtable que, caso exista tal ID na hashtable users, retorna uma estrutura de utilizador com todos os dados correspondentes àquele utilizador em específico. Caso não exista, retorna \textbf{NULL}. Depois, é feito o acesso ao campo username daquele user, na função \textbf{getContributorName} do módulo users.
+É feita a procura passando o ID a uma função getUser do módulo hashtable que, caso exista tal ID na \textit{hashtable users}, retorna uma estrutura de utilizador com todos os dados correspondentes àquele utilizador em específico. Caso não exista, retorna \textbf{NULL}. Depois, é feito o acesso ao campo username daquele user, na função \textbf{getContributorName} do módulo \textbf{\textit{Users}}.
 
 \subsubsection{Top 20 largest articles}
 Definimos um \textit{array} com 20 posições para colocar o top. Percorremos a \textit{hashtable} de artigos e, para cada artigo, vamos buscar o número do texto em bytes e comparamos se tem mais que o artigo que está na última posição do top (índice 19). Em caso afirmativo, comparamos com as sucessivas posições, encontramos a posição e deslizamos o resto dos artigos para haver lugar para o autal. Para os casos em que temos igual número de contribuições na comparação, faz-se uma compaação dos IDs dos articles para sabermos qual o menor ID.
@@ -126,8 +126,8 @@ Para ver o número de words usou-se a função \textbf{wordCounter}, do módulo 
 \subsubsection{Titles with prefix}
 A forma que encontramos para resolver este problema foi implementar a função \textbf{isTitlePrefix} que verifica se determinada \textit{string} é prefixo de outra \textit{string}. Assim, percorremos a \textit{hashtable} de artigos e chamamos a função implementada e verificamos se os títulos são prefixo. Em caso afirmativo, inserimos o título num \textit{array} definido para o efeito de armazenar todos os títulos com o prefixo dado como argumento. Posteriormente, o \textit{array} de títulos é ordenado por ordem alfabética.
 
-\subsubsection{Article \textit{timestamp}}
-É feita a procura passando o ID a uma função getArticle do módulo \textit{hashtable} que, caso exista tal ID na \textit{hashtable articles}, retorna uma estrutura de artigo com todos os dados correspondentes àquele artigo em específico. Caso não exista, retorna \textbf{NULL}. Depois, é feito o acesso ao campo \textit{timestamp} daquele \textit{article}, na função \textbf{get\_article\_timestamp} do módulo articles.
+\subsubsection{Article timestamp}
+É feita a procura passando o ID a uma função getArticle do módulo \textit{hashtable} que, caso exista tal ID na \textit{hashtable articles}, retorna uma estrutura de artigo com todos os dados correspondentes àquele artigo em específico. Caso não exista, retorna \textbf{NULL}. Depois, é feito o acesso ao campo \textit{timestamp} daquele \textit{article}, na função \textbf{get\_article\_timestamp} do módulo \textbf{\textit{Articles}}.
 
 \pagebreak
 \subsection{Resultado Final}
