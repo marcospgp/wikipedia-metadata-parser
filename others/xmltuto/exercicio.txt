@@ -1,0 +1,2 @@
+"Quantos artigos existem?
+Quantos artigos unicos existem?"
