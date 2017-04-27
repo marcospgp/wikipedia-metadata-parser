@@ -116,7 +116,7 @@ Tal como na solução \textbf{Top 10 contributors}, fizemos a comparação a par
 O tamanho em bytes é obtido através da função \textbf{wordCounter}, presente em articles, que atualiza um pointer com o valor do tamanho da \textit{string} analisada. Em \textbf{Top N articles with more words} explica-se um pouco melhor esta função.
 
 \subsubsection{Article title}
-É feita a procura passando o ID a uma função \textbf{getArticle} do módulo \textit{hashtable} que, caso exista tal ID na \textit{hashtable articles}, retorna uma estrutura de artigo com todos os dados correspondentes àquele artigo em específico. Caso não exista, retorna \textbf{NULL}. Depois, é feito o acesso ao campo \textit{title} daquele \textit{article}, na função \textbf{get_article_title} do módulo articles.
+É feita a procura passando o ID a uma função \textbf{getArticle} do módulo \textit{hashtable} que, caso exista tal ID na \textit{hashtable articles}, retorna uma estrutura de artigo com todos os dados correspondentes àquele artigo em específico. Caso não exista, retorna \textbf{NULL}. Depois, é feito o acesso ao campo \textit{title} daquele \textit{article}, na função \textbf{get\_article\_title} do módulo articles.
 
 \subsubsection{Top N articles with more words}
 Definimos um \textit{array} com n posições para colocar o top. Percorremos a \textit{hashtable} de artigos e, para cada artigo, vamos buscar o número de palavras e comparamos se tem mais que o artigo que está na última posição do top (índice n-1). Em caso afirmativo, comparamos com as sucessivas posições, encontramos a posição e deslizamos o resto dos artigos para haver lugar para o atual. Para os casos em que temos igual número de contribuições na comparação, faz-se um string compare dos dois ID dos articles para sabermos qual o menor ID.
@@ -127,8 +127,9 @@ Para ver o número de words usou-se a função \textbf{wordCounter}, do módulo 
 A forma que encontramos para resolver este problema foi implementar a função \textbf{isTitlePrefix} que verifica se determinada \textit{string} é prefixo de outra \textit{string}. Assim, percorremos a \textit{hashtable} de artigos e chamamos a função implementada e verificamos se os títulos são prefixo. Em caso afirmativo, inserimos o título num \textit{array} definido para o efeito de armazenar todos os títulos com o prefixo dado como argumento. Posteriormente, o \textit{array} de títulos é ordenado por ordem alfabética.
 
 \subsubsection{Article \textit{timestamp}}
-É feita a procura passando o ID a uma função getArticle do módulo \textit{hashtable} que, caso exista tal ID na \textit{hashtable articles}, retorna uma estrutura de artigo com todos os dados correspondentes àquele artigo em específico. Caso não exista, retorna \textbf{NULL}. Depois, é feito o acesso ao campo \textit{timestamp} daquele \textit{article}, na função \textbf{get_article_timestamp} do módulo articles.
+É feita a procura passando o ID a uma função getArticle do módulo \textit{hashtable} que, caso exista tal ID na \textit{hashtable articles}, retorna uma estrutura de artigo com todos os dados correspondentes àquele artigo em específico. Caso não exista, retorna \textbf{NULL}. Depois, é feito o acesso ao campo \textit{timestamp} daquele \textit{article}, na função \textbf{get\_article\_timestamp} do módulo articles.
 
+\pagebreak
 \subsection{Resultado Final}
 
 \begin{figure}[htbp]
