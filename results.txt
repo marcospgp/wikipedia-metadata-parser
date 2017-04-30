@@ -1,38 +1,42 @@
-Times:
+﻿Times:
 
-init() -> 0.024000 ms
-load() -> 11842.542000 ms
+real	0m9.449s
+user	0m8.712s
+sys	0m0.716s
+
+init() -> 0.023000 ms
+load() -> 9359.022000 ms
 all_articles() -> 0.000000 ms
 unique_articles() -> 0.000000 ms
 all_revisions() -> 0.000000 ms
-top_10_contributors() -> 0.381000 ms
-contributor_name(28903366) -> 0.001000 ms
+top_10_contributors() -> 0.323000 ms
+contributor_name(28903366) -> 0.000000 ms
 contributor_name(194203) -> 0.000000 ms
 contributor_name(1000) -> 0.000000 ms
-top_20_largest_articles() -> 0.527000 ms
+top_20_largest_articles() -> 0.424000 ms
 article_title(15910) -> 0.000000 ms
-top_N_articles_with_more_words(30) -> 0.549000 ms
-article_title(25507) -> 0.000000 ms
-article_title(1111) -> 0.000000 ms
-titles_with_prefix(Anax) -> 1.302000 ms
-article_timestamp(12,763082287) -> 0.001000 ms
+top_N_articles_with_more_words(30) -> 0.423000 ms
+article_title(25507) -> 0.001000 ms
+article_title(1111) -> 0.001000 ms
+titles_with_prefix(Anax) -> 0.785000 ms
+article_timestamp(12,763082287) -> 0.000000 ms
 article_timestamp(12,755779730) -> 0.000000 ms
 article_timestamp(12,4479730) -> 0.000000 ms
-clean() -> 13.674000 ms
+clean() -> 13.676000 ms
 
 Output:
 
 Cloning repository
 Cloning into 'grupo69'...
 done.
-rm: cannot remove ‘program’: No such file or directory
+rm: cannot remove â€˜programâ€™: No such file or directory
 rm -f *.o program
-gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c users.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
-gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c interface.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
-gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c articles.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
-gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c parser.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
-gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c hashtable.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
-gcc -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c program.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -O2 -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c users.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -O2 -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c interface.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -O2 -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c articles.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -O2 -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c parser.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -O2 -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c hashtable.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
+gcc -O2 -Wall -std=c11 -g `pkg-config --cflags libxml-2.0` `pkg-config --cflags glib-2.0` -c program.c `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
 gcc -o program users.o interface.o articles.o parser.o hashtable.o program.o `pkg-config --libs libxml-2.0` `pkg-config --libs glib-2.0`
 time timeout 1800 ./program ../snapshot_dec16 ../snapshot_jan17 ../snapshot_fev17
 all_articles() -> 59593
@@ -52,9 +56,9 @@ article_timestamp(12,763082287) -> 2017-02-01T06:11:56Z
 article_timestamp(12,755779730) -> 2016-12-20T04:02:33Z
 article_timestamp(12,4479730) -> (null)
 
-real	0m11.940s
-user	0m11.300s
-sys	0m0.620s
+real	0m9.449s
+user	0m8.712s
+sys	0m0.716s
 
 
 Diff between group results and Server results: If no output appears then there are no differences

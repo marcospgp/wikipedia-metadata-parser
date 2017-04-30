@@ -7,4 +7,4 @@
  
 ## Results
 
- With the help of glib's hashtables, we were able to parse 1.6GB of data and test several queries on it in a little under 12 seconds.
+ With the help of glib's hashtables, we were able to parse 1.6GB of data and test several queries on it in a little under 9.5 seconds (see results.txt).
