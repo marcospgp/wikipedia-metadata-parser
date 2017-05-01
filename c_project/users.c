@@ -5,10 +5,22 @@
 
 #include "users.h"
 
+/**
+ * @brief Função que trata os dados relativos a users, recebidos do
+ * parsing do XML, e os envia para a hashtable.
+ *
+ * Verifica se aquele artigo existe e se aquela revisão também já existe e,
+ * nesse caso, não modifica nada.
+ * Caso contrário, chama as funções de update da hashtable.
+ *
+ * @param qs A estrutura geral do programa.
+ * @param id A ID do contribuidor da revisão.
+ * @param username O username do contribuidor da revisão.
+ * @param articleId O ID do artigo.
+ * @param revisionId O ID da revisão.
+ * @return A estrutura geral atualizada.
+ */
 TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username, long articleId, long revisionId) {
-
-	// users.c - Received user data.
-	// Não fazer nada se isto for uma revisão duplicada.
 
 	struct article *articlePtr = getArticle(qs, articleId);
 
@@ -24,6 +36,17 @@ TAD_istruct onPageUsers(TAD_istruct qs, long id, char *username, long articleId,
 	return qs;
 }
 
+/**
+ * @brief Função que obtém o nome de um contribuidor através do seu ID.
+ *
+ * Verifica se aquele contributor existe e, caso exista, retorna o seu campo username.
+ *
+ * @see getUser()
+ *
+ * @param qs A estrutura geral do programa.
+ * @param id O ID do contribuidor a pesquisar.
+ * @return O username do contribuidor ou @c NULL.
+ */
 char* getContributorName(TAD_istruct qs, long id) {
 
 	struct user *ourUser = getUser(qs, id);
@@ -35,6 +58,24 @@ char* getContributorName(TAD_istruct qs, long id) {
 	}
 }
 
+/**
+ * @brief Função que obtém o top dos 10 melhores contribuidores.
+ *
+ * Cria um iterador da hashtable correspondente aos utilizadores.
+ * Cria e inicializa um array de 10 utilizadores.
+ * Itera pela hashtable e compara o número de contribuições do utilizador a ser iterado
+ * com o top, começando pelo último lugar deste.
+ * Caso seja maior ou igual que o último, continua a fazer comparações com os acima.
+ * Caso o número de contribuições entre dois utilizadores forem iguais, é feita a decisão
+ * pelo ID destes.
+ * Caso entre no top, é feito o reajuste dos lugares abaixo.
+ *
+ * @see getHashtableIterator()
+ * @see getNextFromIterator()
+ *
+ * @param qs A estrutura geral do programa.
+ * @return Um array com os IDs dos 10 melhores contribuidores.
+ */
 long* getTop10Contributors(TAD_istruct qs) {
 
 	// Getting top 10 contributors.

@@ -6,11 +6,16 @@
 #include "articles.h"
 
 
-/*
-	Conta as palavras de um artigo e, através de sizeBytes, passa o comprimento total.
-	Função 2 em 1, que nos dá alguma eficiência por evitarmos usar o strlen.
-	Chamada em onPageArticles.
-*/
+/**
+ * @brief Conta o número de palavras e o tamanho do texto.
+ *
+ * Utiliza flags para contar palavras e ignorar espaços entre elas e carateres especiais.
+ * Atualiza o valor de sizeBytes para não se perder tempo com strlen, ou seja, é 2 em 1.
+ *
+ * @param revisionText O texto a analisar, correspondente ao conteúdo do artigo.
+ * @param sizeBytes Apontador a atualizar para dar o tamanho do artigo.
+ * @return O número de palavras do artigo.
+ */
 long wordCounter(char *revisionText, long *sizeBytes) {
 	char *str = revisionText;
 	long i = 0;
@@ -34,10 +39,15 @@ long wordCounter(char *revisionText, long *sizeBytes) {
 	return count;
 }
 
-/*
-	Retorna 1 caso aquele prefixo seja do título passado e 0 se não.
-	Chamada em getTitlesWithPrefix.
-*/
+/**
+ * @brief Verifica que aquele título tem aquele prefixo.
+ *
+ * Compara char a charm, tendo em conta também o tamanho, com vista à determinação pedida.
+ *
+ * @param prefix O prefixo em conta.
+ * @param title O título a comparar.
+ * @return O valor 1 caso seja e 0 caso não seja prefixo.
+ */
 int isTitlePrefix(char* prefix, char* title) {
 
 	char* prefixo = prefix;
@@ -64,14 +74,28 @@ int isTitlePrefix(char* prefix, char* title) {
 
 }
 
+/**
+ * @brief Função que trata os dados relativos a artigos, recebidos do parsing
+ * do XML, e os envia para a hashtable.
+ *
+ * Obtém informação sobre número de palavras e sobre tamanho do artigo recebido através
+ * da função wordCounter e chama as funções de update da hashtable, com as informações que obteve.
+ * Dependendo de ter atualizado ou não determinados campos da hashtable,
+ * atualiza os diversos contadores de articles.
+ *
+ * @see wordCounter()
+ * @see insertOrUpdateArticle()
+ *
+ * @param qs A estrutura geral do programa.
+ * @param articleId A ID do artigo.
+ * @param title O título do artigo.
+ * @param revisionText O conteúdo do artigo.
+ * @param revisionId O ID da revisão.
+ * @param revisionParentId O ID da revisão pai.
+ * @param revisionTimestamp O timestamp da revisão.
+ * @return A estrutura geral atualizada.
+ */
 
-/*
-	Recebe as informações do parser, obtém informação sobre nº de palavras
-	e sobre tamanho dos artigos.
-	Faz a chamada à função que insere informação na hashtable.
-	Dependendo de ter atualizado ou não determinados campos da hashtable,
-	atualiza os contadores de articles.
-*/
 TAD_istruct onPageArticles(
     TAD_istruct qs,
     long articleId,
@@ -120,9 +144,14 @@ TAD_istruct onPageArticles(
 }
 
 
-/*
-	Vai buscar à hashtable o valor de all articles
-*/
+/**
+ * @brief Função que obtém o número total de artigos analisados no decurso da execução.
+ *
+ * Retorna o seu campo allArticles.
+ *
+ * @param qs A estrutura geral do programa.
+ * @return O número de artigos analisados.
+ */
 long get_all_articles(TAD_istruct qs) {
 	struct TCD_istruct *ourTable = qs;
 
@@ -130,9 +159,14 @@ long get_all_articles(TAD_istruct qs) {
 }
 
 
-/*
-	Vai buscar à hashtable o valor de unique articles
-*/
+/**
+ * @brief Função que obtém o número de artigos únicos existentes no decurso da execução.
+ *
+ * Retorna o seu campo uniqueArticles.
+ *
+ * @param qs A estrutura geral do programa.
+ * @return O número de artigos únicos.
+ */
 long get_unique_articles(TAD_istruct qs) {
 	struct TCD_istruct *ourTable = qs;
 
@@ -140,9 +174,14 @@ long get_unique_articles(TAD_istruct qs) {
 }
 
 
-/*
-	Vai buscar à hashtable o valor de all revisions
-*/
+/**
+ * @brief Função que obtém o número de revisões feitas no decurso da execução.
+ *
+ * Retorna o seu campo allRevisions.
+ *
+ * @param qs A estrutura geral do programa.
+ * @return O número de revisões.
+ */
 long get_all_revisions(TAD_istruct qs) {
 	struct TCD_istruct *ourTable = qs;
 
@@ -150,10 +189,17 @@ long get_all_revisions(TAD_istruct qs) {
 }
 
 
-/*
-	Vai buscar à hashtable de artigos com o id x o seu título.
-	Retorna NULL caso este não exista.
-*/
+/**
+ * @brief Função que obtém o título de um artigo através do seu ID.
+ *
+ * Verifica se aquele artigo existe e, caso exista, retorna o seu campo título.
+ *
+ * @see getArticle()
+ *
+ * @param article_id O ID do artigo.
+ * @param qs A estrutura geral do programa.
+ * @return O título do artigo ou @c NULL.
+ */
 char* get_article_title(long article_id, TAD_istruct qs) {
 	struct article *ourArticle = getArticle(qs, article_id);
 
@@ -165,10 +211,19 @@ char* get_article_title(long article_id, TAD_istruct qs) {
 }
 
 
-/*
-	Vai buscar à hashtable de revisões do artigo com o id x, cuja revisao é y, o timestamp.
-	Retorna NULL caso este não exista.
-*/
+/**
+ * @brief Função que obtém o timestamp de um artigo através do seu ID de artigo e de revisão.
+ *
+ * Verifica se aquele artigo existe e, caso exista, retorna o seu campo timestamp.
+ *
+ * @see getArticle()
+ * @see getRevision()
+ *
+ * @param article_id O ID do artigo.
+ * @param revision_id o ID da revisão.
+ * @param qs A estrutura geral do programa.
+ * @return O timestamp do artigo ou @c NULL.
+ */
 char* get_article_timestamp(long article_id, long revision_id, TAD_istruct qs) {
 	struct article *ourArticle = getArticle(qs, article_id);
 
@@ -183,11 +238,23 @@ char* get_article_timestamp(long article_id, long revision_id, TAD_istruct qs) {
 }
 
 
-/*
-	Itera pela hashtable e procura pelo size dos artigos.
-	Compara com o top.
-	Altera em tempo de execução o top.
-*/
+/**
+ * @brief Função que obtém o top dos 20 maiores artigos.
+ *
+ * Cria um iterador da hashtable correspondente aos artigos.
+ * Cria e inicializa um array de 20 artigos.
+ * Itera pela hashtable e compara o tamanho do artigo a ser iterado
+ * com o top, começando pelo último lugar deste.
+ * Caso seja maior ou igual que o último, continua a fazer comparações com os acima.
+ * Caso o tamanho dos artigos forem iguais, é feita a decisão pelo ID destes.
+ * Caso entre no top, é feito o reajuste dos lugares abaixo.
+ *
+ * @see getHashtableIterator()
+ * @see getNextFromIterator()
+ *
+ * @param qs A estrutura geral do programa.
+ * @return Um array com os IDs dos 20 maiores artigos.
+ */
 long* getTop20LargestArticles(TAD_istruct qs) {
 
 	// Getting top 20 largest articles.
@@ -288,11 +355,24 @@ long* getTop20LargestArticles(TAD_istruct qs) {
 }
 
 
-/*
-	Itera pela hashtable e procura pelo nWords dos artigos.
-	Compara com o top.
-	Altera em tempo de execução o top.
-*/
+/**
+ * @brief Função que obtém o top dos N artigos com mais palavras.
+ *
+ * Cria um iterador da hashtable correspondente aos artigos.
+ * Cria e inicializa um array de N artigos.
+ * Itera pela hashtable e compara o número de palavras do artigo a ser iterado
+ * com o top, começando pelo último lugar deste.
+ * Caso seja maior ou igual que o último, continua a fazer comparações com os acima.
+ * Caso o número de palavras dos artigos forem iguais, é feita a decisão pelo ID destes.
+ * Caso entre no top, é feito o reajuste dos lugares abaixo.
+ *
+ * @see getHashtableIterator()
+ * @see getNextFromIterator()
+ *
+ * @param n O tamanho do top.
+ * @param qs A estrutura geral do programa.
+ * @return Um array com os IDs dos N artigos com mais palavras.
+ */
 long* getTopNArticlesWithMoreWords(int n, TAD_istruct qs) {
 
 	// Getting top n articles with more words.
@@ -390,6 +470,22 @@ long* getTopNArticlesWithMoreWords(int n, TAD_istruct qs) {
 }
 
 
+/**
+ * @brief Função que obtém o top dos N artigos com mais palavras.
+ *
+ * Cria um iterador da hashtable correspondente aos artigos.
+ * Itera pela hashtable e verifica através da função isTitlePrefix se aquele título tem aquele prefixo.
+ * Caso tenha, aumenta o array e guarda o título.
+ * No fim, é ordenado o array.
+ *
+ * @see isTitlePrefix()
+ * @see getHashtableIterator()
+ * @see getNextFromIterator()
+ *
+ * @param prefix O prefixo a ser pesquisado.
+ * @param qs A estrutura geral do programa.
+ * @return Um array com os títulos dos artigos com aquele prefixo, ou NULL, caso não hajam.
+ */
 char** getTitlesWithPrefix(char* prefix, TAD_istruct qs) {
 
 	char** articlesWithPrefix = NULL;

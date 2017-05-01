@@ -4,6 +4,12 @@
 
 #include "hashtable.h"
 
+/**
+ * @brief Inicia a estrutura geral do programa.
+ *
+ * @param qs A estrutura geral do programa que é nula ainda.
+ * @return A estrutura iniciada.
+ */
 TAD_istruct initHashtables(TAD_istruct qs) {
 
 	GHashTable *users = g_hash_table_new_full(g_int64_hash, g_int64_equal, free, free);
@@ -15,6 +21,19 @@ TAD_istruct initHashtables(TAD_istruct qs) {
 	return qs;
 }
 
+/**
+ * @brief Insere ou atualiza um utilizador na hashtable de utilizadores.
+ *
+ * Procurar pelo utilizador na hash table e, caso o utilizador não foi encontrado,
+ * criar e inserir novo utilizador.
+ * Caso tenha sido encontrado, apenas aumentar uma contribuição ao utilizador.
+ *
+ * @param qs A estrutura geral do programa.
+ * @param id A ID do contribuidor.
+ * @param username O username do contribuidor.
+ * @param userWasFound Passado para fazer controlo.
+ * @return A estrutura atualizada.
+ */
 TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username, int *userWasFound) {
 
 	//printf("hashtable.c - Received user data\n");
@@ -63,6 +82,26 @@ TAD_istruct insertOrUpdateUser(TAD_istruct qs, long id, char *username, int *use
 	return qs;
 }
 
+/**
+ * @brief Insere ou atualiza um artigo na hashtable de utilizadores.
+ *
+ * Copiar strings porque o parser pode apagá-las e a hash table só guarda um pointer.
+ * Copiar longs usadas como key também, porque keys são usadas a partir dos seus pointers.
+ * Criar nova revisão (necessária caso o artigo já exista ou não).
+ * Informar se o artigo foi encontrado ou não através de articleFound e articleUpdated.
+ * Criar ou atualizar o artigo dependendo se este foi encontrado ou não.
+ *
+ * @param qs A estrutura geral do programa.
+ * @param id A ID do artigo.
+ * @param title O título do artigo.
+ * @param revisionId O ID da revisão.
+ * @param revisionTimestamp O timestamp da revisão.
+ * @param sizeBytes O tamanho do artigo.
+ * @param nWords O número de palavras do artigo.
+ * @param articleFound Passado para fazer controlo nos contadores de articles.
+ * @param articleUpdated Passado para fazer controlo nos contadores de articles.
+ * @return A estrutura atualizada.
+ */
 TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long revisionId, char *revisionTimestamp, long sizeBytes, long nWords, int *articleFound, int *articleUpdated) {
 
 	//printf("hashtable.c - Received article revision data\n");
@@ -166,6 +205,12 @@ TAD_istruct insertOrUpdateArticle(TAD_istruct qs, long id, char *title, long rev
 	return qs;
 }
 
+/**
+ * @brief Limpa a estrutura geral do programa.
+ *
+ * @param qs A estrutura geral do programa.
+ * @return A estrutura vazia.
+ */
 TAD_istruct clean_everything(TAD_istruct qs) {
 
 	// Remover todas as hash tables de revisões
@@ -189,21 +234,45 @@ TAD_istruct clean_everything(TAD_istruct qs) {
 	return qs;
 }
 
+/**
+ * @brief Obtém um utilizador de acordo com a ID.
+ *
+ * @param qs A hashtable.
+ * @param id O ID do utilizador a obter.
+ * @return O utilizador.
+ */
 struct user * getUser(TAD_istruct qs, long id) {
 
 	return (struct user*) g_hash_table_lookup(qs->users, &id);
 }
 
+/**
+ * @brief Obtém um artigo de acordo com a ID.
+ *
+ * @param qs A hashtable.
+ * @param id O ID do artigo a obter.
+ * @return O artigo.
+ */
 struct article * getArticle(TAD_istruct qs, long id) {
 
 	return (struct article*) g_hash_table_lookup(qs->articles, &id);
 }
 
+/**
+ * @brief Obtém uma revisão de acordo com a ID.
+ *
+ * @param revisionsHashTable A hashtable de revisões.
+ * @param revisionId O ID da revisão a obter.
+ * @return A revisão.
+ */
 struct revision * getRevision(void *revisionsHashTable, long revisionId) {
 
 	return (struct revision*) g_hash_table_lookup(revisionsHashTable, &revisionId);
 }
 
+/**
+ * @brief Obtém um iterador.
+ */
 void * getHashtableIterator(GHashTable *hashtable) {
 
 	GHashTableIter *iter = malloc(sizeof(GHashTableIter));
@@ -213,6 +282,9 @@ void * getHashtableIterator(GHashTable *hashtable) {
 	return (void*) iter;
 }
 
+/**
+ * @brief Obtém o próximo elemento a partir de um iterador.
+ */
 int getNextFromIterator(void *iterator, void *key, void *value) {
 
 	int result = (int) g_hash_table_iter_next(iterator, (gpointer) key, (gpointer) value);
@@ -220,6 +292,9 @@ int getNextFromIterator(void *iterator, void *key, void *value) {
 	return result;
 }
 
+/**
+ * @brief Liberta a memória de um iterador.
+ */
 void freeIterator(void *iterator) {
 	free(iterator);
 }

@@ -3,10 +3,6 @@
 #include <time.h>
 #include "interface.h"
 
-#define NUM_ALL_ARTICLES 1987654
-#define NUM_UNIQUE_ARTICLES 1234567
-#define NUM_ALL_REVISIONS 1347356
-
 
 /*
 	Este ficheiro vai ser substituído pelos professores.

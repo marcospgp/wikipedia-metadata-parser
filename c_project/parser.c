@@ -8,6 +8,22 @@
 
 #include "parser.h"
 
+/**
+ * @brief Função que faz o parse das revisions do XML.
+ *
+ * Verifica os campos id, parentid, timestamp, text e contributor (e neste, username e id),
+ * e atualiza os apontadores que recebeu de parsePage.
+ *
+ * @see parsePage()
+ *
+ * @param doc O documento.
+ * @param cur O local atual do documento.
+ * @param revisionId O apontador para o ID da revisao.
+ * @param revisionParentId O apontador para o ID da revisao pai.
+ * @param revisionTimestamp O apontador para a timestamp da revisao.
+ * @param revisionContributorId O apontador para o ID do contribuidor da revisao.
+ * @param revisionContributorUsername O apontador para o username do contribuidor.
+ */
 static void parseRevision(
 	xmlDocPtr doc,
 	xmlNodePtr cur,
@@ -82,6 +98,18 @@ static void parseRevision(
 	}
 }
 
+/**
+ * @brief Função que faz o parse das pages do XML.
+ *
+ * Verifica os campos title, id, revision e chama a parseRevision.
+ *
+ * @see parseRevision()
+ *
+ * @param qs A estrutura geral do programa.
+ * @param doc O documento.
+ * @param cur O local atual do documento.
+ * @return A estrutura atualizada.
+ */
 static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 
 	char *title = NULL, *revisionContributorUsername = NULL, *revisionText = NULL, *revisionTimestamp = NULL;
@@ -145,6 +173,18 @@ static TAD_istruct parsePage(TAD_istruct qs, xmlDocPtr doc, xmlNodePtr cur) {
 	return qs;
 }
 
+/**
+ * @brief Função que carrega e distribui as pages.
+ *
+ * Verifica o correto carregamento do ficheiro e obtém a root,
+ * percorrendo após isso as pages e dando-as à funão parsePage para esta recolher dados.
+ *
+ * @see parsePage()
+ *
+ * @param qs A estrutura geral do programa.
+ * @param docname O nome do documento a carregar.
+ * @return A estrutura carregada.
+ */
 TAD_istruct parseWikiData(TAD_istruct qs, const char *docname) {
 
 	xmlDocPtr doc;
