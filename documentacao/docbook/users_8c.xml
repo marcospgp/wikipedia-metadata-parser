@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="users_8c">
+    <title>users.c File Reference</title>
+    <programlisting>#include &lt;stdio.h&gt;</programlisting>
+    <programlisting>#include &lt;stdlib.h&gt;</programlisting>
+    <programlisting>#include &lt;string.h&gt;</programlisting>
+    <programlisting>#include &quot;hashtable.h&quot;</programlisting>
+    <programlisting>#include &quot;users.h&quot;</programlisting>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="users_8c_1aa331e59a8e5d7c6c5ad482858e6c5bd7">onPageUsers</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs, long id, char * username, long articleId, long revisionId)<para><emphasis>Função que trata os dados relativos a users, recebidos do
+parsing do XML, e os envia para a hashtable.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char * <link linkend="users_8c_1aead9e3e65fbe13cf2c830d9f204907e0">getContributorName</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs, long id)<para><emphasis>Função que obtém o nome de um contribuidor através do seu ID.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long * <link linkend="users_8c_1affebf0e99a7d1e5adf9a6fc155f303d1">getTop10Contributors</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)<para><emphasis>Função que obtém o top dos 10 melhores contribuidores.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file C:/Users/Vitor Castro/Desktop/grupo69/users.c</para>
+    </simplesect>
+</section>

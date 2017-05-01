@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="parser_8h">
+    <title>parser.h File Reference</title>
+        <section>
+            <title>Typedefs</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="struct_t_c_d__istruct">TCD_istruct</link> *  <link linkend="parser_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="parser_8h_1a2865cdaa3e2555199b936e89c6ce19bc">parseWikiData</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs, const char * docname)<para><emphasis>Função que carrega e distribui as pages.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file C:/Users/Vitor Castro/Desktop/grupo69/parser.h</para>
+    </simplesect>
+</section>

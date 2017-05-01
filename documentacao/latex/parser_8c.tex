@@ -1,0 +1,47 @@
+\hypertarget{parser_8c}{}\section{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/parser.c File Reference}
+\label{parser_8c}\index{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/parser.\+c@{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/parser.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$libxml/tree.\+h$>$}\newline
+{\ttfamily \#include $<$libxml/parser.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}articles.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}users.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}parser.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} \hyperlink{parser_8c_a2865cdaa3e2555199b936e89c6ce19bc}{parse\+Wiki\+Data} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs, const char $\ast$docname)
+\begin{DoxyCompactList}\small\item\em Função que carrega e distribui as pages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{parser_8c_a2865cdaa3e2555199b936e89c6ce19bc}\label{parser_8c_a2865cdaa3e2555199b936e89c6ce19bc}} 
+\index{parser.\+c@{parser.\+c}!parse\+Wiki\+Data@{parse\+Wiki\+Data}}
+\index{parse\+Wiki\+Data@{parse\+Wiki\+Data}!parser.\+c@{parser.\+c}}
+\subsubsection{\texorpdfstring{parse\+Wiki\+Data()}{parseWikiData()}}
+{\footnotesize\ttfamily \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} parse\+Wiki\+Data (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs,  }\item[{const char $\ast$}]{docname }\end{DoxyParamCaption})}
+
+
+
+Função que carrega e distribui as pages. 
+
+Verifica o correto carregamento do ficheiro e obtém a root, percorrendo após isso as pages e dando-\/as à funão parse\+Page para esta recolher dados.
+
+\begin{DoxySeeAlso}{See also}
+parse\+Page()
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em qs} & A estrutura geral do programa. \\
+\hline
+{\em docname} & O nome do documento a carregar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A estrutura carregada. 
+\end{DoxyReturn}
+
+
+Definition at line 188 of file parser.\+c.
+

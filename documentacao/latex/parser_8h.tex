@@ -1,0 +1,57 @@
+\hypertarget{parser_8h}{}\section{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/parser.h File Reference}
+\label{parser_8h}\index{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/parser.\+h@{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/parser.\+h}}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_t_c_d__istruct}{T\+C\+D\+\_\+istruct} $\ast$ \hyperlink{parser_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} \hyperlink{parser_8h_a2865cdaa3e2555199b936e89c6ce19bc}{parse\+Wiki\+Data} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs, const char $\ast$docname)
+\begin{DoxyCompactList}\small\item\em Função que carrega e distribui as pages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{parser_8h_ab844cf6cf3de58f1817000b4bf9ea008}\label{parser_8h_ab844cf6cf3de58f1817000b4bf9ea008}} 
+\index{parser.\+h@{parser.\+h}!T\+A\+D\+\_\+istruct@{T\+A\+D\+\_\+istruct}}
+\index{T\+A\+D\+\_\+istruct@{T\+A\+D\+\_\+istruct}!parser.\+h@{parser.\+h}}
+\subsubsection{\texorpdfstring{T\+A\+D\+\_\+istruct}{TAD\_istruct}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct_t_c_d__istruct}{T\+C\+D\+\_\+istruct}$\ast$ \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}
+
+
+
+Definition at line 4 of file parser.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{parser_8h_a2865cdaa3e2555199b936e89c6ce19bc}\label{parser_8h_a2865cdaa3e2555199b936e89c6ce19bc}} 
+\index{parser.\+h@{parser.\+h}!parse\+Wiki\+Data@{parse\+Wiki\+Data}}
+\index{parse\+Wiki\+Data@{parse\+Wiki\+Data}!parser.\+h@{parser.\+h}}
+\subsubsection{\texorpdfstring{parse\+Wiki\+Data()}{parseWikiData()}}
+{\footnotesize\ttfamily \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} parse\+Wiki\+Data (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs,  }\item[{const char $\ast$}]{docname }\end{DoxyParamCaption})}
+
+
+
+Função que carrega e distribui as pages. 
+
+Verifica o correto carregamento do ficheiro e obtém a root, percorrendo após isso as pages e dando-\/as à funão parse\+Page para esta recolher dados.
+
+\begin{DoxySeeAlso}{See also}
+parse\+Page()
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em qs} & A estrutura geral do programa. \\
+\hline
+{\em docname} & O nome do documento a carregar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A estrutura carregada. 
+\end{DoxyReturn}
+
+
+Definition at line 188 of file parser.\+c.
+

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <info>
+    <title>LI3 Project - MiEI 16/17</title>
+    </info>
+    <chapter>
+        <title>Data Structure Documentation</title>
+        <xi:include href="structarticle.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="structrevision.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="struct_t_c_d__istruct.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="structuser.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    </chapter>
+    <chapter>
+        <title>File Documentation</title>
+        <xi:include href="articles_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="articles_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="hashtable_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="hashtable_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="interface_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="interface_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="parser_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="parser_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="program_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="users_8c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+        <xi:include href="users_8h.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    </chapter>
+</book>

@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="interface_8h">
+    <title>interface.h File Reference</title>
+        <section>
+            <title>Typedefs</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef struct <link linkend="struct_t_c_d__istruct">TCD_istruct</link> *  <link linkend="interface_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="interface_8h_1ae0a6710bdf7c01480545b0c466522659">init</link> (
+)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="interface_8h_1ad4bddbe64b190d9512baa9872d3b0bfa">load</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs, int nsnaps, char * snaps_paths)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long <link linkend="interface_8h_1a29aec2da0c08c10b18ef83ee5feab3f4">all_articles</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long <link linkend="interface_8h_1a8a9fd6929a9fa3cf389437b913cc3ebe">unique_articles</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long <link linkend="interface_8h_1a92fea6d0b31738aa1be43e492c37cb3d">all_revisions</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long * <link linkend="interface_8h_1a9b560c6efcb5086e1a3d8c8110299b99">top_10_contributors</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char * <link linkend="interface_8h_1a60e4a732b81c55c58d3317fb2bb92bea">contributor_name</link> (
+long contributor_id, <link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long * <link linkend="interface_8h_1a30d89a1074bbcda5407309039755bec2">top_20_largest_articles</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char * <link linkend="interface_8h_1affb3723e978e6bb1d0d4e2c20cf0b704">article_title</link> (
+long article_id, <link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long * <link linkend="interface_8h_1a81eec377c60c4a9226ec16f0359b3c74">top_N_articles_with_more_words</link> (
+int n, <link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char ** <link linkend="interface_8h_1aa7a11eadf8007c27828c4e9d141c76d3">titles_with_prefix</link> (
+char * prefix, <link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char * <link linkend="interface_8h_1ad4fc297c2cde96e5ed09f21fe0fda0cf">article_timestamp</link> (
+long article_id, long revision_id, <link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="interface_8h_1a6ac726e0a97fb44123e664bfa35d1aab">clean</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file C:/Users/Vitor Castro/Desktop/grupo69/interface.h</para>
+    </simplesect>
+</section>

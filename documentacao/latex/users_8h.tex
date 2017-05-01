@@ -1,0 +1,104 @@
+\hypertarget{users_8h}{}\section{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/users.h File Reference}
+\label{users_8h}\index{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/users.\+h@{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/users.\+h}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} \hyperlink{users_8h_aa331e59a8e5d7c6c5ad482858e6c5bd7}{on\+Page\+Users} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs, long id, char $\ast$username, long article\+Id, long revision\+Id)
+\begin{DoxyCompactList}\small\item\em Função que trata os dados relativos a users, recebidos do parsing do X\+ML, e os envia para a hashtable. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{users_8h_aead9e3e65fbe13cf2c830d9f204907e0}{get\+Contributor\+Name} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs, long id)
+\begin{DoxyCompactList}\small\item\em Função que obtém o nome de um contribuidor através do seu ID. \end{DoxyCompactList}\item 
+long $\ast$ \hyperlink{users_8h_affebf0e99a7d1e5adf9a6fc155f303d1}{get\+Top10\+Contributors} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\begin{DoxyCompactList}\small\item\em Função que obtém o top dos 10 melhores contribuidores. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{users_8h_aead9e3e65fbe13cf2c830d9f204907e0}\label{users_8h_aead9e3e65fbe13cf2c830d9f204907e0}} 
+\index{users.\+h@{users.\+h}!get\+Contributor\+Name@{get\+Contributor\+Name}}
+\index{get\+Contributor\+Name@{get\+Contributor\+Name}!users.\+h@{users.\+h}}
+\subsubsection{\texorpdfstring{get\+Contributor\+Name()}{getContributorName()}}
+{\footnotesize\ttfamily char$\ast$ get\+Contributor\+Name (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs,  }\item[{long}]{id }\end{DoxyParamCaption})}
+
+
+
+Função que obtém o nome de um contribuidor através do seu ID. 
+
+Verifica se aquele contributor existe e, caso exista, retorna o seu campo username.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{hashtable_8c_a58c794fd94055e35a2786fc4e387d082}{get\+User()}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em qs} & A estrutura geral do programa. \\
+\hline
+{\em id} & O ID do contribuidor a pesquisar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O username do contribuidor ou {\ttfamily N\+U\+LL}. 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file users.\+c.
+
+\mbox{\Hypertarget{users_8h_affebf0e99a7d1e5adf9a6fc155f303d1}\label{users_8h_affebf0e99a7d1e5adf9a6fc155f303d1}} 
+\index{users.\+h@{users.\+h}!get\+Top10\+Contributors@{get\+Top10\+Contributors}}
+\index{get\+Top10\+Contributors@{get\+Top10\+Contributors}!users.\+h@{users.\+h}}
+\subsubsection{\texorpdfstring{get\+Top10\+Contributors()}{getTop10Contributors()}}
+{\footnotesize\ttfamily long$\ast$ get\+Top10\+Contributors (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Função que obtém o top dos 10 melhores contribuidores. 
+
+Cria um iterador da hashtable correspondente aos utilizadores. Cria e inicializa um array de 10 utilizadores. Itera pela hashtable e compara o número de contribuições do utilizador a ser iterado com o top, começando pelo último lugar deste. Caso seja maior ou igual que o último, continua a fazer comparações com os acima. Caso o número de contribuições entre dois utilizadores forem iguais, é feita a decisão pelo ID destes. Caso entre no top, é feito o reajuste dos lugares abaixo.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{hashtable_8c_af39e54df71e07bf7c60a539737d7b820}{get\+Hashtable\+Iterator()} 
+
+\hyperlink{hashtable_8c_a82dcbbf9783d831c259c3725e7365e47}{get\+Next\+From\+Iterator()}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em qs} & A estrutura geral do programa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um array com os I\+Ds dos 10 melhores contribuidores. 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file users.\+c.
+
+\mbox{\Hypertarget{users_8h_aa331e59a8e5d7c6c5ad482858e6c5bd7}\label{users_8h_aa331e59a8e5d7c6c5ad482858e6c5bd7}} 
+\index{users.\+h@{users.\+h}!on\+Page\+Users@{on\+Page\+Users}}
+\index{on\+Page\+Users@{on\+Page\+Users}!users.\+h@{users.\+h}}
+\subsubsection{\texorpdfstring{on\+Page\+Users()}{onPageUsers()}}
+{\footnotesize\ttfamily \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} on\+Page\+Users (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs,  }\item[{long}]{id,  }\item[{char $\ast$}]{username,  }\item[{long}]{article\+Id,  }\item[{long}]{revision\+Id }\end{DoxyParamCaption})}
+
+
+
+Função que trata os dados relativos a users, recebidos do parsing do X\+ML, e os envia para a hashtable. 
+
+Verifica se aquele artigo existe e se aquela revisão também já existe e, nesse caso, não modifica nada. Caso contrário, chama as funções de update da hashtable.
+
+
+\begin{DoxyParams}{Parameters}
+{\em qs} & A estrutura geral do programa. \\
+\hline
+{\em id} & A ID do contribuidor da revisão. \\
+\hline
+{\em username} & O username do contribuidor da revisão. \\
+\hline
+{\em article\+Id} & O ID do artigo. \\
+\hline
+{\em revision\+Id} & O ID da revisão. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A estrutura geral atualizada. 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file users.\+c.
+

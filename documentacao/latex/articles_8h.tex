@@ -1,0 +1,295 @@
+\hypertarget{articles_8h}{}\section{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/articles.h File Reference}
+\label{articles_8h}\index{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/articles.\+h@{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/articles.\+h}}
+{\ttfamily \#include \char`\"{}hashtable.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} \hyperlink{articles_8h_ae93b8ddf20076077374d1a6d260f8cd5}{on\+Page\+Articles} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs, long article\+Id, char $\ast$title, char $\ast$revision\+Text, long revision\+Id, long revision\+Parent\+Id, char $\ast$revision\+Timestamp)
+\begin{DoxyCompactList}\small\item\em Função que trata os dados relativos a artigos, recebidos do parsing do X\+ML, e os envia para a hashtable. \end{DoxyCompactList}\item 
+long \hyperlink{articles_8h_ab219a9eeb5ffa990c32168764b69915a}{get\+\_\+all\+\_\+articles} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\begin{DoxyCompactList}\small\item\em Função que obtém o número total de artigos analisados no decurso da execução. \end{DoxyCompactList}\item 
+long \hyperlink{articles_8h_addae859f2596e343440120ec498972b4}{get\+\_\+unique\+\_\+articles} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\begin{DoxyCompactList}\small\item\em Função que obtém o número de artigos únicos existentes no decurso da execução. \end{DoxyCompactList}\item 
+long \hyperlink{articles_8h_a0176b886a55f6b2b1139901d750a2ac8}{get\+\_\+all\+\_\+revisions} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\begin{DoxyCompactList}\small\item\em Função que obtém o número de revisões feitas no decurso da execução. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{articles_8h_ad811a6ccac1634fea2e380218dd87455}{get\+\_\+article\+\_\+title} (long article\+\_\+id, \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\begin{DoxyCompactList}\small\item\em Função que obtém o título de um artigo através do seu ID. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{articles_8h_a9a40d9c8da0bfc3fd7eed533c6271a1d}{get\+\_\+article\+\_\+timestamp} (long article\+\_\+id, long revision\+\_\+id, \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\begin{DoxyCompactList}\small\item\em Função que obtém o timestamp de um artigo através do seu ID de artigo e de revisão. \end{DoxyCompactList}\item 
+long $\ast$ \hyperlink{articles_8h_a2fcbe4e44d7f6ef6f068f2efa800b7b2}{get\+Top20\+Largest\+Articles} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\begin{DoxyCompactList}\small\item\em Função que obtém o top dos 20 maiores artigos. \end{DoxyCompactList}\item 
+long $\ast$ \hyperlink{articles_8h_a2d1f2058d8bcb95a9ce19fafce724166}{get\+Top\+N\+Articles\+With\+More\+Words} (int n, \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\begin{DoxyCompactList}\small\item\em Função que obtém o top dos N artigos com mais palavras. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{articles_8h_a130465d426edf1569baabbd3ffc762e2}{get\+Titles\+With\+Prefix} (char $\ast$prefix, \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\begin{DoxyCompactList}\small\item\em Função que obtém o top dos N artigos com mais palavras. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{articles_8h_ab219a9eeb5ffa990c32168764b69915a}\label{articles_8h_ab219a9eeb5ffa990c32168764b69915a}} 
+\index{articles.\+h@{articles.\+h}!get\+\_\+all\+\_\+articles@{get\+\_\+all\+\_\+articles}}
+\index{get\+\_\+all\+\_\+articles@{get\+\_\+all\+\_\+articles}!articles.\+h@{articles.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+all\+\_\+articles()}{get\_all\_articles()}}
+{\footnotesize\ttfamily long get\+\_\+all\+\_\+articles (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Função que obtém o número total de artigos analisados no decurso da execução. 
+
+Retorna o seu campo all\+Articles.
+
+
+\begin{DoxyParams}{Parameters}
+{\em qs} & A estrutura geral do programa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O número de artigos analisados. 
+\end{DoxyReturn}
+
+
+Definition at line 155 of file articles.\+c.
+
+\mbox{\Hypertarget{articles_8h_a0176b886a55f6b2b1139901d750a2ac8}\label{articles_8h_a0176b886a55f6b2b1139901d750a2ac8}} 
+\index{articles.\+h@{articles.\+h}!get\+\_\+all\+\_\+revisions@{get\+\_\+all\+\_\+revisions}}
+\index{get\+\_\+all\+\_\+revisions@{get\+\_\+all\+\_\+revisions}!articles.\+h@{articles.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+all\+\_\+revisions()}{get\_all\_revisions()}}
+{\footnotesize\ttfamily long get\+\_\+all\+\_\+revisions (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Função que obtém o número de revisões feitas no decurso da execução. 
+
+Retorna o seu campo all\+Revisions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em qs} & A estrutura geral do programa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O número de revisões. 
+\end{DoxyReturn}
+
+
+Definition at line 185 of file articles.\+c.
+
+\mbox{\Hypertarget{articles_8h_a9a40d9c8da0bfc3fd7eed533c6271a1d}\label{articles_8h_a9a40d9c8da0bfc3fd7eed533c6271a1d}} 
+\index{articles.\+h@{articles.\+h}!get\+\_\+article\+\_\+timestamp@{get\+\_\+article\+\_\+timestamp}}
+\index{get\+\_\+article\+\_\+timestamp@{get\+\_\+article\+\_\+timestamp}!articles.\+h@{articles.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+article\+\_\+timestamp()}{get\_article\_timestamp()}}
+{\footnotesize\ttfamily char$\ast$ get\+\_\+article\+\_\+timestamp (\begin{DoxyParamCaption}\item[{long}]{article\+\_\+id,  }\item[{long}]{revision\+\_\+id,  }\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Função que obtém o timestamp de um artigo através do seu ID de artigo e de revisão. 
+
+Verifica se aquele artigo existe e, caso exista, retorna o seu campo timestamp.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{hashtable_8c_a47b45be8ca1d3b47b21751941d5593cc}{get\+Article()} 
+
+\hyperlink{hashtable_8c_a8bc8f659bbc25a67635342276fd2893f}{get\+Revision()}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em article\+\_\+id} & O ID do artigo. \\
+\hline
+{\em revision\+\_\+id} & o ID da revisão. \\
+\hline
+{\em qs} & A estrutura geral do programa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O timestamp do artigo ou {\ttfamily N\+U\+LL}. 
+\end{DoxyReturn}
+
+
+Definition at line 227 of file articles.\+c.
+
+\mbox{\Hypertarget{articles_8h_ad811a6ccac1634fea2e380218dd87455}\label{articles_8h_ad811a6ccac1634fea2e380218dd87455}} 
+\index{articles.\+h@{articles.\+h}!get\+\_\+article\+\_\+title@{get\+\_\+article\+\_\+title}}
+\index{get\+\_\+article\+\_\+title@{get\+\_\+article\+\_\+title}!articles.\+h@{articles.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+article\+\_\+title()}{get\_article\_title()}}
+{\footnotesize\ttfamily char$\ast$ get\+\_\+article\+\_\+title (\begin{DoxyParamCaption}\item[{long}]{article\+\_\+id,  }\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Função que obtém o título de um artigo através do seu ID. 
+
+Verifica se aquele artigo existe e, caso exista, retorna o seu campo título.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{hashtable_8c_a47b45be8ca1d3b47b21751941d5593cc}{get\+Article()}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em article\+\_\+id} & O ID do artigo. \\
+\hline
+{\em qs} & A estrutura geral do programa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O título do artigo ou {\ttfamily N\+U\+LL}. 
+\end{DoxyReturn}
+
+
+Definition at line 203 of file articles.\+c.
+
+\mbox{\Hypertarget{articles_8h_addae859f2596e343440120ec498972b4}\label{articles_8h_addae859f2596e343440120ec498972b4}} 
+\index{articles.\+h@{articles.\+h}!get\+\_\+unique\+\_\+articles@{get\+\_\+unique\+\_\+articles}}
+\index{get\+\_\+unique\+\_\+articles@{get\+\_\+unique\+\_\+articles}!articles.\+h@{articles.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+unique\+\_\+articles()}{get\_unique\_articles()}}
+{\footnotesize\ttfamily long get\+\_\+unique\+\_\+articles (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Função que obtém o número de artigos únicos existentes no decurso da execução. 
+
+Retorna o seu campo unique\+Articles.
+
+
+\begin{DoxyParams}{Parameters}
+{\em qs} & A estrutura geral do programa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O número de artigos únicos. 
+\end{DoxyReturn}
+
+
+Definition at line 170 of file articles.\+c.
+
+\mbox{\Hypertarget{articles_8h_a130465d426edf1569baabbd3ffc762e2}\label{articles_8h_a130465d426edf1569baabbd3ffc762e2}} 
+\index{articles.\+h@{articles.\+h}!get\+Titles\+With\+Prefix@{get\+Titles\+With\+Prefix}}
+\index{get\+Titles\+With\+Prefix@{get\+Titles\+With\+Prefix}!articles.\+h@{articles.\+h}}
+\subsubsection{\texorpdfstring{get\+Titles\+With\+Prefix()}{getTitlesWithPrefix()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Titles\+With\+Prefix (\begin{DoxyParamCaption}\item[{char $\ast$}]{prefix,  }\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Função que obtém o top dos N artigos com mais palavras. 
+
+Cria um iterador da hashtable correspondente aos artigos. Itera pela hashtable e verifica através da função is\+Title\+Prefix se aquele título tem aquele prefixo. Caso tenha, aumenta o array e guarda o título. No fim, é ordenado o array.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{articles_8c_adb3f9855222f6ae0c4ac764d27f297b1}{is\+Title\+Prefix()} 
+
+\hyperlink{hashtable_8c_af39e54df71e07bf7c60a539737d7b820}{get\+Hashtable\+Iterator()} 
+
+\hyperlink{hashtable_8c_a82dcbbf9783d831c259c3725e7365e47}{get\+Next\+From\+Iterator()}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em prefix} & O prefixo a ser pesquisado. \\
+\hline
+{\em qs} & A estrutura geral do programa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um array com os títulos dos artigos com aquele prefixo, ou N\+U\+LL, caso não hajam. 
+\end{DoxyReturn}
+
+
+Definition at line 489 of file articles.\+c.
+
+\mbox{\Hypertarget{articles_8h_a2fcbe4e44d7f6ef6f068f2efa800b7b2}\label{articles_8h_a2fcbe4e44d7f6ef6f068f2efa800b7b2}} 
+\index{articles.\+h@{articles.\+h}!get\+Top20\+Largest\+Articles@{get\+Top20\+Largest\+Articles}}
+\index{get\+Top20\+Largest\+Articles@{get\+Top20\+Largest\+Articles}!articles.\+h@{articles.\+h}}
+\subsubsection{\texorpdfstring{get\+Top20\+Largest\+Articles()}{getTop20LargestArticles()}}
+{\footnotesize\ttfamily long$\ast$ get\+Top20\+Largest\+Articles (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Função que obtém o top dos 20 maiores artigos. 
+
+Cria um iterador da hashtable correspondente aos artigos. Cria e inicializa um array de 20 artigos. Itera pela hashtable e compara o tamanho do artigo a ser iterado com o top, começando pelo último lugar deste. Caso seja maior ou igual que o último, continua a fazer comparações com os acima. Caso o tamanho dos artigos forem iguais, é feita a decisão pelo ID destes. Caso entre no top, é feito o reajuste dos lugares abaixo.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{hashtable_8c_af39e54df71e07bf7c60a539737d7b820}{get\+Hashtable\+Iterator()} 
+
+\hyperlink{hashtable_8c_a82dcbbf9783d831c259c3725e7365e47}{get\+Next\+From\+Iterator()}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em qs} & A estrutura geral do programa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um array com os I\+Ds dos 20 maiores artigos. 
+\end{DoxyReturn}
+
+
+Definition at line 258 of file articles.\+c.
+
+\mbox{\Hypertarget{articles_8h_a2d1f2058d8bcb95a9ce19fafce724166}\label{articles_8h_a2d1f2058d8bcb95a9ce19fafce724166}} 
+\index{articles.\+h@{articles.\+h}!get\+Top\+N\+Articles\+With\+More\+Words@{get\+Top\+N\+Articles\+With\+More\+Words}}
+\index{get\+Top\+N\+Articles\+With\+More\+Words@{get\+Top\+N\+Articles\+With\+More\+Words}!articles.\+h@{articles.\+h}}
+\subsubsection{\texorpdfstring{get\+Top\+N\+Articles\+With\+More\+Words()}{getTopNArticlesWithMoreWords()}}
+{\footnotesize\ttfamily long$\ast$ get\+Top\+N\+Articles\+With\+More\+Words (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Função que obtém o top dos N artigos com mais palavras. 
+
+Cria um iterador da hashtable correspondente aos artigos. Cria e inicializa um array de N artigos. Itera pela hashtable e compara o número de palavras do artigo a ser iterado com o top, começando pelo último lugar deste. Caso seja maior ou igual que o último, continua a fazer comparações com os acima. Caso o número de palavras dos artigos forem iguais, é feita a decisão pelo ID destes. Caso entre no top, é feito o reajuste dos lugares abaixo.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{hashtable_8c_af39e54df71e07bf7c60a539737d7b820}{get\+Hashtable\+Iterator()} 
+
+\hyperlink{hashtable_8c_a82dcbbf9783d831c259c3725e7365e47}{get\+Next\+From\+Iterator()}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em n} & O tamanho do top. \\
+\hline
+{\em qs} & A estrutura geral do programa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um array com os I\+Ds dos N artigos com mais palavras. 
+\end{DoxyReturn}
+
+
+Definition at line 376 of file articles.\+c.
+
+\mbox{\Hypertarget{articles_8h_ae93b8ddf20076077374d1a6d260f8cd5}\label{articles_8h_ae93b8ddf20076077374d1a6d260f8cd5}} 
+\index{articles.\+h@{articles.\+h}!on\+Page\+Articles@{on\+Page\+Articles}}
+\index{on\+Page\+Articles@{on\+Page\+Articles}!articles.\+h@{articles.\+h}}
+\subsubsection{\texorpdfstring{on\+Page\+Articles()}{onPageArticles()}}
+{\footnotesize\ttfamily \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} on\+Page\+Articles (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs,  }\item[{long}]{article\+Id,  }\item[{char $\ast$}]{title,  }\item[{char $\ast$}]{revision\+Text,  }\item[{long}]{revision\+Id,  }\item[{long}]{revision\+Parent\+Id,  }\item[{char $\ast$}]{revision\+Timestamp }\end{DoxyParamCaption})}
+
+
+
+Função que trata os dados relativos a artigos, recebidos do parsing do X\+ML, e os envia para a hashtable. 
+
+Obtém informação sobre número de palavras e sobre tamanho do artigo recebido através da função word\+Counter e chama as funções de update da hashtable, com as informações que obteve. Dependendo de ter atualizado ou não determinados campos da hashtable, atualiza os diversos contadores de articles.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{articles_8c_a6682183d67092a9df62f9a53441b1468}{word\+Counter()} 
+
+\hyperlink{hashtable_8c_a6fd4ffa5eeaefecc9ad75ace2dc0f5ff}{insert\+Or\+Update\+Article()}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em qs} & A estrutura geral do programa. \\
+\hline
+{\em article\+Id} & A ID do artigo. \\
+\hline
+{\em title} & O título do artigo. \\
+\hline
+{\em revision\+Text} & O conteúdo do artigo. \\
+\hline
+{\em revision\+Id} & O ID da revisão. \\
+\hline
+{\em revision\+Parent\+Id} & O ID da revisão pai. \\
+\hline
+{\em revision\+Timestamp} & O timestamp da revisão. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A estrutura geral atualizada. 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file articles.\+c.
+

@@ -1,0 +1,182 @@
+\hypertarget{interface_8h}{}\section{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/interface.h File Reference}
+\label{interface_8h}\index{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/interface.\+h@{C\+:/\+Users/\+Vitor Castro/\+Desktop/grupo69/interface.\+h}}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_t_c_d__istruct}{T\+C\+D\+\_\+istruct} $\ast$ \hyperlink{interface_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} \hyperlink{interface_8h_ae0a6710bdf7c01480545b0c466522659}{init} ()
+\item 
+\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} \hyperlink{interface_8h_ad4bddbe64b190d9512baa9872d3b0bfa}{load} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs, int nsnaps, char $\ast$snaps\+\_\+paths\mbox{[}$\,$\mbox{]})
+\item 
+long \hyperlink{interface_8h_a29aec2da0c08c10b18ef83ee5feab3f4}{all\+\_\+articles} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\item 
+long \hyperlink{interface_8h_a8a9fd6929a9fa3cf389437b913cc3ebe}{unique\+\_\+articles} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\item 
+long \hyperlink{interface_8h_a92fea6d0b31738aa1be43e492c37cb3d}{all\+\_\+revisions} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\item 
+long $\ast$ \hyperlink{interface_8h_a9b560c6efcb5086e1a3d8c8110299b99}{top\+\_\+10\+\_\+contributors} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\item 
+char $\ast$ \hyperlink{interface_8h_a60e4a732b81c55c58d3317fb2bb92bea}{contributor\+\_\+name} (long contributor\+\_\+id, \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\item 
+long $\ast$ \hyperlink{interface_8h_a30d89a1074bbcda5407309039755bec2}{top\+\_\+20\+\_\+largest\+\_\+articles} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\item 
+char $\ast$ \hyperlink{interface_8h_affb3723e978e6bb1d0d4e2c20cf0b704}{article\+\_\+title} (long article\+\_\+id, \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\item 
+long $\ast$ \hyperlink{interface_8h_a81eec377c60c4a9226ec16f0359b3c74}{top\+\_\+\+N\+\_\+articles\+\_\+with\+\_\+more\+\_\+words} (int n, \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\item 
+char $\ast$$\ast$ \hyperlink{interface_8h_aa7a11eadf8007c27828c4e9d141c76d3}{titles\+\_\+with\+\_\+prefix} (char $\ast$prefix, \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\item 
+char $\ast$ \hyperlink{interface_8h_ad4fc297c2cde96e5ed09f21fe0fda0cf}{article\+\_\+timestamp} (long article\+\_\+id, long revision\+\_\+id, \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\item 
+\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} \hyperlink{interface_8h_a6ac726e0a97fb44123e664bfa35d1aab}{clean} (\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} qs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{interface_8h_ab844cf6cf3de58f1817000b4bf9ea008}\label{interface_8h_ab844cf6cf3de58f1817000b4bf9ea008}} 
+\index{interface.\+h@{interface.\+h}!T\+A\+D\+\_\+istruct@{T\+A\+D\+\_\+istruct}}
+\index{T\+A\+D\+\_\+istruct@{T\+A\+D\+\_\+istruct}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{T\+A\+D\+\_\+istruct}{TAD\_istruct}}
+{\footnotesize\ttfamily typedef struct \hyperlink{struct_t_c_d__istruct}{T\+C\+D\+\_\+istruct}$\ast$ \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}
+
+
+
+Definition at line 4 of file interface.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{interface_8h_a29aec2da0c08c10b18ef83ee5feab3f4}\label{interface_8h_a29aec2da0c08c10b18ef83ee5feab3f4}} 
+\index{interface.\+h@{interface.\+h}!all\+\_\+articles@{all\+\_\+articles}}
+\index{all\+\_\+articles@{all\+\_\+articles}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{all\+\_\+articles()}{all\_articles()}}
+{\footnotesize\ttfamily long all\+\_\+articles (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 49 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_a92fea6d0b31738aa1be43e492c37cb3d}\label{interface_8h_a92fea6d0b31738aa1be43e492c37cb3d}} 
+\index{interface.\+h@{interface.\+h}!all\+\_\+revisions@{all\+\_\+revisions}}
+\index{all\+\_\+revisions@{all\+\_\+revisions}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{all\+\_\+revisions()}{all\_revisions()}}
+{\footnotesize\ttfamily long all\+\_\+revisions (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 59 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_ad4fc297c2cde96e5ed09f21fe0fda0cf}\label{interface_8h_ad4fc297c2cde96e5ed09f21fe0fda0cf}} 
+\index{interface.\+h@{interface.\+h}!article\+\_\+timestamp@{article\+\_\+timestamp}}
+\index{article\+\_\+timestamp@{article\+\_\+timestamp}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{article\+\_\+timestamp()}{article\_timestamp()}}
+{\footnotesize\ttfamily char$\ast$ article\+\_\+timestamp (\begin{DoxyParamCaption}\item[{long}]{article\+\_\+id,  }\item[{long}]{revision\+\_\+id,  }\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 95 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_affb3723e978e6bb1d0d4e2c20cf0b704}\label{interface_8h_affb3723e978e6bb1d0d4e2c20cf0b704}} 
+\index{interface.\+h@{interface.\+h}!article\+\_\+title@{article\+\_\+title}}
+\index{article\+\_\+title@{article\+\_\+title}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{article\+\_\+title()}{article\_title()}}
+{\footnotesize\ttfamily char$\ast$ article\+\_\+title (\begin{DoxyParamCaption}\item[{long}]{article\+\_\+id,  }\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 80 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_a6ac726e0a97fb44123e664bfa35d1aab}\label{interface_8h_a6ac726e0a97fb44123e664bfa35d1aab}} 
+\index{interface.\+h@{interface.\+h}!clean@{clean}}
+\index{clean@{clean}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{clean()}{clean()}}
+{\footnotesize\ttfamily \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} clean (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 44 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_a60e4a732b81c55c58d3317fb2bb92bea}\label{interface_8h_a60e4a732b81c55c58d3317fb2bb92bea}} 
+\index{interface.\+h@{interface.\+h}!contributor\+\_\+name@{contributor\+\_\+name}}
+\index{contributor\+\_\+name@{contributor\+\_\+name}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{contributor\+\_\+name()}{contributor\_name()}}
+{\footnotesize\ttfamily char$\ast$ contributor\+\_\+name (\begin{DoxyParamCaption}\item[{long}]{contributor\+\_\+id,  }\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 70 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_ae0a6710bdf7c01480545b0c466522659}\label{interface_8h_ae0a6710bdf7c01480545b0c466522659}} 
+\index{interface.\+h@{interface.\+h}!init@{init}}
+\index{init@{init}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 11 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_ad4bddbe64b190d9512baa9872d3b0bfa}\label{interface_8h_ad4bddbe64b190d9512baa9872d3b0bfa}} 
+\index{interface.\+h@{interface.\+h}!load@{load}}
+\index{load@{load}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct} load (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs,  }\item[{int}]{nsnaps,  }\item[{char $\ast$}]{snaps\+\_\+paths\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 28 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_aa7a11eadf8007c27828c4e9d141c76d3}\label{interface_8h_aa7a11eadf8007c27828c4e9d141c76d3}} 
+\index{interface.\+h@{interface.\+h}!titles\+\_\+with\+\_\+prefix@{titles\+\_\+with\+\_\+prefix}}
+\index{titles\+\_\+with\+\_\+prefix@{titles\+\_\+with\+\_\+prefix}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{titles\+\_\+with\+\_\+prefix()}{titles\_with\_prefix()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ titles\+\_\+with\+\_\+prefix (\begin{DoxyParamCaption}\item[{char $\ast$}]{prefix,  }\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 90 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_a9b560c6efcb5086e1a3d8c8110299b99}\label{interface_8h_a9b560c6efcb5086e1a3d8c8110299b99}} 
+\index{interface.\+h@{interface.\+h}!top\+\_\+10\+\_\+contributors@{top\+\_\+10\+\_\+contributors}}
+\index{top\+\_\+10\+\_\+contributors@{top\+\_\+10\+\_\+contributors}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{top\+\_\+10\+\_\+contributors()}{top\_10\_contributors()}}
+{\footnotesize\ttfamily long$\ast$ top\+\_\+10\+\_\+contributors (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 65 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_a30d89a1074bbcda5407309039755bec2}\label{interface_8h_a30d89a1074bbcda5407309039755bec2}} 
+\index{interface.\+h@{interface.\+h}!top\+\_\+20\+\_\+largest\+\_\+articles@{top\+\_\+20\+\_\+largest\+\_\+articles}}
+\index{top\+\_\+20\+\_\+largest\+\_\+articles@{top\+\_\+20\+\_\+largest\+\_\+articles}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{top\+\_\+20\+\_\+largest\+\_\+articles()}{top\_20\_largest\_articles()}}
+{\footnotesize\ttfamily long$\ast$ top\+\_\+20\+\_\+largest\+\_\+articles (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 75 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_a81eec377c60c4a9226ec16f0359b3c74}\label{interface_8h_a81eec377c60c4a9226ec16f0359b3c74}} 
+\index{interface.\+h@{interface.\+h}!top\+\_\+\+N\+\_\+articles\+\_\+with\+\_\+more\+\_\+words@{top\+\_\+\+N\+\_\+articles\+\_\+with\+\_\+more\+\_\+words}}
+\index{top\+\_\+\+N\+\_\+articles\+\_\+with\+\_\+more\+\_\+words@{top\+\_\+\+N\+\_\+articles\+\_\+with\+\_\+more\+\_\+words}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{top\+\_\+\+N\+\_\+articles\+\_\+with\+\_\+more\+\_\+words()}{top\_N\_articles\_with\_more\_words()}}
+{\footnotesize\ttfamily long$\ast$ top\+\_\+\+N\+\_\+articles\+\_\+with\+\_\+more\+\_\+words (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 85 of file interface.\+c.
+
+\mbox{\Hypertarget{interface_8h_a8a9fd6929a9fa3cf389437b913cc3ebe}\label{interface_8h_a8a9fd6929a9fa3cf389437b913cc3ebe}} 
+\index{interface.\+h@{interface.\+h}!unique\+\_\+articles@{unique\+\_\+articles}}
+\index{unique\+\_\+articles@{unique\+\_\+articles}!interface.\+h@{interface.\+h}}
+\subsubsection{\texorpdfstring{unique\+\_\+articles()}{unique\_articles()}}
+{\footnotesize\ttfamily long unique\+\_\+articles (\begin{DoxyParamCaption}\item[{\hyperlink{hashtable_8h_ab844cf6cf3de58f1817000b4bf9ea008}{T\+A\+D\+\_\+istruct}}]{qs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 54 of file interface.\+c.
+

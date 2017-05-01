@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="articles_8c">
+    <title>articles.c File Reference</title>
+    <programlisting>#include &lt;stdio.h&gt;</programlisting>
+    <programlisting>#include &lt;stdlib.h&gt;</programlisting>
+    <programlisting>#include &lt;string.h&gt;</programlisting>
+    <programlisting>#include &quot;hashtable.h&quot;</programlisting>
+    <programlisting>#include &quot;articles.h&quot;</programlisting>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long <link linkend="articles_8c_1a6682183d67092a9df62f9a53441b1468">wordCounter</link> (
+char * revisionText, long * sizeBytes)<para><emphasis>Conta o número de palavras e o tamanho do texto.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="articles_8c_1adb3f9855222f6ae0c4ac764d27f297b1">isTitlePrefix</link> (
+char * prefix, char * title)<para><emphasis>Verifica que aquele título tem aquele prefixo.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="articles_8c_1ae93b8ddf20076077374d1a6d260f8cd5">onPageArticles</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs, long articleId, char * title, char * revisionText, long revisionId, long revisionParentId, char * revisionTimestamp)<para><emphasis>Função que trata os dados relativos a artigos, recebidos do parsing
+do XML, e os envia para a hashtable.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long <link linkend="articles_8c_1ab219a9eeb5ffa990c32168764b69915a">get_all_articles</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)<para><emphasis>Função que obtém o número total de artigos analisados no decurso da execução.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long <link linkend="articles_8c_1addae859f2596e343440120ec498972b4">get_unique_articles</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)<para><emphasis>Função que obtém o número de artigos únicos existentes no decurso da execução.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long <link linkend="articles_8c_1a0176b886a55f6b2b1139901d750a2ac8">get_all_revisions</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)<para><emphasis>Função que obtém o número de revisões feitas no decurso da execução.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char * <link linkend="articles_8c_1ad811a6ccac1634fea2e380218dd87455">get_article_title</link> (
+long article_id, <link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)<para><emphasis>Função que obtém o título de um artigo através do seu ID.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char * <link linkend="articles_8c_1a9a40d9c8da0bfc3fd7eed533c6271a1d">get_article_timestamp</link> (
+long article_id, long revision_id, <link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)<para><emphasis>Função que obtém o timestamp de um artigo através do seu ID de artigo e de revisão.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long * <link linkend="articles_8c_1a2fcbe4e44d7f6ef6f068f2efa800b7b2">getTop20LargestArticles</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)<para><emphasis>Função que obtém o top dos 20 maiores artigos.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>long * <link linkend="articles_8c_1a2d1f2058d8bcb95a9ce19fafce724166">getTopNArticlesWithMoreWords</link> (
+int n, <link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)<para><emphasis>Função que obtém o top dos N artigos com mais palavras.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char ** <link linkend="articles_8c_1a130465d426edf1569baabbd3ffc762e2">getTitlesWithPrefix</link> (
+char * prefix, <link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)<para><emphasis>Função que obtém o top dos N artigos com mais palavras.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file C:/Users/Vitor Castro/Desktop/grupo69/articles.c</para>
+    </simplesect>
+</section>

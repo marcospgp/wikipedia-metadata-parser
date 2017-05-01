@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="hashtable_8c">
+    <title>hashtable.c File Reference</title>
+    <programlisting>#include &lt;stdio.h&gt;</programlisting>
+    <programlisting>#include &lt;stdlib.h&gt;</programlisting>
+    <programlisting>#include &lt;glib.h&gt;</programlisting>
+    <programlisting>#include &quot;hashtable.h&quot;</programlisting>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="hashtable_8c_1a024d8c8693ed72f786c6d8883bd1e414">initHashtables</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)<para><emphasis>Inicia a estrutura geral do programa.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="hashtable_8c_1a6b79338793e75ea6f02a1bf47c539bcf">insertOrUpdateUser</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs, long id, char * username, int * userWasFound)<para><emphasis>Insere ou atualiza um utilizador na hashtable de utilizadores.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="hashtable_8c_1a6fd4ffa5eeaefecc9ad75ace2dc0f5ff">insertOrUpdateArticle</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs, long id, char * title, long revisionId, char * revisionTimestamp, long sizeBytes, long nWords, int * articleFound, int * articleUpdated)<para><emphasis>Insere ou atualiza um artigo na hashtable de utilizadores.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="hashtable_8c_1ac3bc98e0fef44fa0fe8eceae0c6fbd2f">clean_everything</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs)<para><emphasis>Limpa a estrutura geral do programa.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="structuser">user</link> * <link linkend="hashtable_8c_1a58c794fd94055e35a2786fc4e387d082">getUser</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs, long id)<para><emphasis>Obtém um utilizador de acordo com a ID.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="structarticle">article</link> * <link linkend="hashtable_8c_1a47b45be8ca1d3b47b21751941d5593cc">getArticle</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs, long id)<para><emphasis>Obtém um artigo de acordo com a ID.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="structrevision">revision</link> * <link linkend="hashtable_8c_1a8bc8f659bbc25a67635342276fd2893f">getRevision</link> (
+void * revisionsHashTable, long revisionId)<para><emphasis>Obtém uma revisão de acordo com a ID.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * <link linkend="hashtable_8c_1af39e54df71e07bf7c60a539737d7b820">getHashtableIterator</link> (
+GHashTable * hashtable)<para><emphasis>Obtém um iterador.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int <link linkend="hashtable_8c_1a82dcbbf9783d831c259c3725e7365e47">getNextFromIterator</link> (
+void * iterator, void * key, void * value)<para><emphasis>Obtém o próximo elemento a partir de um iterador.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="hashtable_8c_1ac43c0005ae285d969b5dac3315750744">freeIterator</link> (
+void * iterator)<para><emphasis>Liberta a memória de um iterador.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file C:/Users/Vitor Castro/Desktop/grupo69/hashtable.c</para>
+    </simplesect>
+</section>

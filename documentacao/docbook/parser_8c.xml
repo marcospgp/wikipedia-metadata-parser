@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="parser_8c">
+    <title>parser.c File Reference</title>
+    <programlisting>#include &lt;stdio.h&gt;</programlisting>
+    <programlisting>#include &lt;stdlib.h&gt;</programlisting>
+    <programlisting>#include &lt;string.h&gt;</programlisting>
+    <programlisting>#include &lt;libxml/tree.h&gt;</programlisting>
+    <programlisting>#include &lt;libxml/parser.h&gt;</programlisting>
+    <programlisting>#include &quot;articles.h&quot;</programlisting>
+    <programlisting>#include &quot;users.h&quot;</programlisting>
+    <programlisting>#include &quot;parser.h&quot;</programlisting>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static void <link linkend="parser_8c_1afea366f5dedf72fd6e64fcead5d68733">parseRevision</link> (
+xmlDocPtr doc, xmlNodePtr cur, long * revisionId, long * revisionParentId, char ** revisionTimestamp, long * revisionContributorId, char ** revisionContributorUsername, char ** revisionText)<para><emphasis>Função que faz o parse das revisions do XML.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>static <link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="parser_8c_1aa2554c1b59ad3be734e282e2c9b9890f">parsePage</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs, xmlDocPtr doc, xmlNodePtr cur)<para><emphasis>Função que faz o parse das pages do XML.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para><link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> <link linkend="parser_8c_1a2865cdaa3e2555199b936e89c6ce19bc">parseWikiData</link> (
+<link linkend="hashtable_8h_1ab844cf6cf3de58f1817000b4bf9ea008">TAD_istruct</link> qs, const char * docname)<para><emphasis>Função que carrega e distribui as pages.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+        <title>Detailed Description</title>
+    <para>Definition in file C:/Users/Vitor Castro/Desktop/grupo69/parser.c</para>
+    </simplesect>
+</section>
