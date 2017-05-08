@@ -42,7 +42,7 @@ public class Main {
         long allarticles = qe.all_articles();
         after = System.currentTimeMillis();
         logtime.writeLog("ALL_ARTICLES -> "+(after-before)+" ms");
-        log.writeLog("ALL_ARTICLES "+allarticles);
+        log.writeLog("all_articles() -> "+allarticles);
 
         /*
            Query 2
@@ -51,7 +51,7 @@ public class Main {
         long uniquearticles = qe.unique_articles();
         after = System.currentTimeMillis();
         logtime.writeLog("UNIQUE_ARTICLES -> "+(after-before)+" ms");
-        log.writeLog("UNIQUE_ARTICLES "+uniquearticles);
+        log.writeLog("unique_articles() -> "+uniquearticles);
 
         /*
            Query 3
@@ -60,7 +60,7 @@ public class Main {
         long all_revisions = qe.all_revisions();
         after = System.currentTimeMillis();
         logtime.writeLog("ALL_REVISIONS -> "+(after-before)+" ms");
-        log.writeLog("ALL_REVISIONS "+all_revisions);
+        log.writeLog("all_revisions() -> "+all_revisions);
 
         /*
            Query 4
@@ -73,7 +73,7 @@ public class Main {
         for(Long l : top_10_contrib) {
             top_10_contributors = top_10_contributors + l + " ";
         }
-        log.writeLog("ALL_REVISIONS " + top_10_contributors);
+        log.writeLog("top_10_contributors() -> " + top_10_contributors);
 
         /*
            Query 5
@@ -82,7 +82,7 @@ public class Main {
         String cname = qe.contributor_name(28903366);
         after = System.currentTimeMillis();
         logtime.writeLog("CONTRIBUTOR_NAME -> "+(after-before)+" ms");
-        log.writeLog("CONTRIBUTOR_NAME "+cname);
+        log.writeLog("contributor_name(28903366) -> "+cname);
 
         /*
            Query 6
@@ -95,7 +95,7 @@ public class Main {
         for(Long l : top_20_largest_articles) {
             top_20_larticles = top_20_larticles + l + " ";
         }
-        log.writeLog("TOP_20_LARGEST_ARTICLES " + top_20_larticles);
+        log.writeLog("top_20_largest_articles() -> " + top_20_larticles);
 
         /*
            Query 7
@@ -104,7 +104,7 @@ public class Main {
         String atitle = qe.article_title(15910);
         after = System.currentTimeMillis();
         logtime.writeLog("ARTICLE_TITLE -> "+(after-before)+" ms");
-        log.writeLog("ARTICLE_TITLE "+atitle);
+        log.writeLog("article_title(15910) -> "+atitle);
 
         /*
            Query 8
@@ -117,7 +117,7 @@ public class Main {
         for(Long l : top_n_words) {
             top_n_words_s = top_n_words_s + l + " ";
         }
-        log.writeLog("TOP_N_ARTICLES_WITH_MORE_WORDS " + top_n_words_s);
+        log.writeLog("top_N_articles_with_more_words(30) -> " + top_n_words_s);
 
         /*
            Query 9
@@ -130,7 +130,7 @@ public class Main {
         for(String s : titlespref) {
             titlespf = titlespf + s + " ";
         }
-        log.writeLog("TITLES_WITH_PREFIX " + titlespf);
+        log.writeLog("titles_with_prefix(Anax) -> " + titlespf);
 
         /*
            Query 10
@@ -139,7 +139,7 @@ public class Main {
         String atime = qe.article_timestamp(12,763082287);
         after = System.currentTimeMillis();
         logtime.writeLog("ARTICLE_TIMESTAMP -> "+(after-before)+" ms");
-        log.writeLog("ARTICLE_TIMESTAMP "+atime);
+        log.writeLog("article_timestamp(12,763082287) -> "+atime);
 
         /*
             CLEAN PHASE
