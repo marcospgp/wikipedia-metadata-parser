@@ -45,8 +45,8 @@ public class Parser {
         XMLEvent xmlEvent = xmlEventReader.nextEvent();
         if (xmlEvent.isStartElement()){
           StartElement startElement = xmlEvent.asStartElement();
-          // Obter a informação que nos interessa
-          if(startElement.getName().getLocalPart().equals("title")) {
+          // COMEÇA NOVA PAGE
+          if(startElement.getName().getLocalPart().equals("page")) {
             curArticle = new Article();
             curUser = new User();
           }
@@ -56,7 +56,8 @@ public class Parser {
           }
           else if(startElement.getName().getLocalPart().equals("id")) {
             xmlEvent = xmlEventReader.nextEvent();
-            curArticle.setId(Long.parseLong(xmlEvent.asCharacters().getData()));
+            curArticle.setArticleId(Long.parseLong(xmlEvent.asCharacters().getData()));
+            curUser.setArticleId(Long.parseLong(xmlEvent.asCharacters().getData()));
           }
           // PERCORRE A REVISION
           else if(startElement.getName().getLocalPart().equals("revision")){
@@ -65,15 +66,16 @@ public class Parser {
               XMLEvent xmlEvent = xmlEventReader.nextEvent();
               if(startElement.getName().getLocalPart().equals("id")) {
                 xmlEvent = xmlEventReader.nextEvent();
-                curArticle.setId(Long.parseLong(xmlEvent.asCharacters().getData()));
+                curArticle.setRevisionId(Long.parseLong(xmlEvent.asCharacters().getData()));
+                curUser.setRevisionId(Long.parseLong(xmlEvent.asCharacters().getData()));
               }
               else if(startElement.getName().getLocalPart().equals("parentid")) {
                     xmlEvent = xmlEventReader.nextEvent();
-                    curArticle.setId(Long.parseLong(xmlEvent.asCharacters().getData()));
+                    curArticle.setRevisionParentId(Long.parseLong(xmlEvent.asCharacters().getData()));
               }
               else if(startElement.getName().getLocalPart().equals("timestamp")) {
                     xmlEvent = xmlEventReader.nextEvent();
-                    curArticle.setTitle(xmlEvent.asCharacters().getData());
+                    curArticle.setRevisionTimestamp(xmlEvent.asCharacters().getData());
               }
               // PERCORRE O CONTRIBUTOR
               else if(startElement.getName().getLocalPart().equals("contributor")) {
@@ -82,11 +84,11 @@ public class Parser {
                       XMLEvent xmlEvent = xmlEventReader.nextEvent();
                       if(startElement.getName().getLocalPart().equals("username")) {
                         xmlEvent = xmlEventReader.nextEvent();
-                        curArticle.setTitle(xmlEvent.asCharacters().getData());
+                        curUser.setUsername(xmlEvent.asCharacters().getData());
                       }
-                      else if(startElement.getName().getLocalPart().equals("parentid")) {
+                      else if(startElement.getName().getLocalPart().equals("id")) {
                         xmlEvent = xmlEventReader.nextEvent();
-                        curArticle.setId(Long.parseLong(xmlEvent.asCharacters().getData()));
+                        curUser.setUserId(Long.parseLong(xmlEvent.asCharacters().getData()));
                       }
                     }
               }
@@ -98,7 +100,8 @@ public class Parser {
         if(xmlEvent.isEndElement()){
           EndElement endElement = xmlEvent.asEndElement();
           if(endElement.getName().getLocalPart().equals("page")){
-            // guardar dados nos HashMaps
+            articles.put(curArticle.getArticleId(), curArticle);
+            users.put(curUser.getUserId(), curUser);
           }
         }
       }
