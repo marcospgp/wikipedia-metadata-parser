@@ -81,14 +81,59 @@ public class Articles {
 	/**
 	 * @brief Função que obtém o número total de artigos analisados no decurso da execução.
 	 *
-	 * Retorna o seu campo allArticles.
+	 * Retorna o seu campo allArticles de uma hashtable de artigos.
 	 *
-	 * @param qs A estrutura geral do programa.
 	 * @return O número de artigos analisados.
 	 */
-	long get_all_articles(TAD_istruct qs) {
-		struct TCD_istruct *ourTable = qs;
+	long get_all_articles() {
 
-		return ourTable->allArticles;
+		return this.allArticles;
 	}
+
+	/**
+	 * @brief Função que obtém o número de artigos únicos existentes no decurso da execução.
+	 *
+	 * Retorna o seu campo uniqueArticles.
+	 *
+	 * @return O número de artigos únicos.
+	 */
+	long get_unique_articles() {
+
+		return uniqueArticles;
+	}
+
+	/**
+	 * @brief Função que obtém o número de revisões feitas no decurso da execução.
+	 *
+	 * Retorna o seu campo allRevisions.
+	 *
+	 * @return O número de revisões.
+	 */
+	long get_all_revisions() {
+
+		return allRevisions;
+	}
+
+	/**
+	 * @brief Função que obtém o título de um artigo através do seu ID.
+	 *
+	 * Verifica se aquele artigo existe e, caso exista, retorna o seu campo título.
+	 *
+	 * @see getArticle()
+	 *
+	 * @param article_id O ID do artigo.
+	 * @param qs A estrutura geral do programa.
+	 * @return O título do artigo ou @c NULL.
+	 */
+	char* get_article_title(long article_id, HashMap<Article> articles) {
+		Article ourArticle = articles.get(article_id);
+
+		if (ourArticle != null) {
+			return ourArticle.getArticleTitle();
+		} else {
+			return null;
+		}
+	}
+
+
 }
