@@ -40,6 +40,10 @@ public class Article {
         this.title = newTitle;
     }
 
+    public HashMap<long, Revision> getRevisionsHash() {
+        return this.revisions;
+    }
+
 
     @Override
     public String toString() {
