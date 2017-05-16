@@ -1,7 +1,7 @@
 public class Article {
-    Long id, size, nWords;
+    long id, size, nWords;
     String title;
-    HashMap<Long, Revision> revisions;
+    HashMap<long, Revision> revisions;
 
 
     public Article() {
@@ -9,27 +9,27 @@ public class Article {
         this.size = null;
         this.nWords = null;
         this.title = null;
-        this.revisions = new HashMap<Long, Revision>();
+        this.revisions = new HashMap<long, Revision>();
     }
 
-    public Long getArticleId() {
+    public long getArticleId() {
         return id;
     }
-    public void setArticleId(Long newId) {
+    public void setArticleId(long newId) {
         this.id = newId;
     }
 
-    public Long getArticleSize() {
+    public long getArticleSize() {
         return size;
     }
-    public void setArticleSize(Long newSize) {
+    public void setArticleSize(long newSize) {
         this.size = newSize;
     }
 
-    public Long getArticleNWords() {
+    public long getArticleNWords() {
         return nWords;
     }
-    public void setArticleNWords(Long newNWords) {
+    public void setArticleNWords(long newNWords) {
         this.nWords = newNWords;
     }
 

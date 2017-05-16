@@ -1,5 +1,5 @@
 public class Revision {
-    Long id;
+    long id;
     String timestamp;
 
 
@@ -9,10 +9,10 @@ public class Revision {
     }
 
 
-    public Long getRevisionId() {
+    public long getRevisionId() {
         return id;
     }
-    public void setRevisionId(Long newId) {
+    public void setRevisionId(long newId) {
         this.id = newId;
     }
 

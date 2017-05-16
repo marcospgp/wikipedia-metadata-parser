@@ -1,5 +1,7 @@
 public class Articles {
 
+	private long allArticles = 0, uniqueArticles = 0, allRevisions = 0;
+
 
 	/**
 	 * @brief Conta o número de palavras e o tamanho do texto.
@@ -11,10 +13,10 @@ public class Articles {
 	 * @param sizeBytes Apontador a atualizar para dar o tamanho do artigo.
 	 * @return O número de palavras do artigo.
 	 */
-	Long wordCounter(String revisionText, Long sizeBytes) {
+	long wordCounter(String revisionText, long sizeBytes) {
 		String str = revisionText.clone();
-		Long i = 0;
-		Long count = 0;
+		long i = 0;
+		long count = 0;
 		int foundLetter = 0;
 
 		if (str) {
@@ -37,17 +39,17 @@ public class Articles {
 
 	public static void onPageArticles(
 		HashMap<Article> articles,
-		Long articleId,
+		long articleId,
 	    String title,
 	    String revisionText,
-	    Long revisionId,
-	    Long revisionParentId,
+	    long revisionId,
+	    long revisionParentId,
 	    String revisionTimestamp
 	) {
 
 		// nWords é atualizado pelo return do wordCounter que também dá o número de bytes do artigo pelo apontador
-		Long sizeBytes;
-		Long nWords = wordCounter(revisionText, sizeBytes);
+		long sizeBytes;
+		long nWords = wordCounter(revisionText, sizeBytes);
 
 		/* este int serve para a função da hash poder dizer se encontrou ou não o artigo,
 		 * deste modo é possível dar update dos contadores dos articles
@@ -64,15 +66,15 @@ public class Articles {
 		Hastable.insertOrUpdateArticle(articles, articleId, title, revisionId, revisionTimestamp, sizeBytes, nWords, articleWasFound, articleWasUpdated);
 
 		// Aumenta o allArticles sempre
-		qs->allArticles++;
+		allArticles++;
 
 		// Aumenta o caso de ser a primeira vez que o artigo entra
 		if (!(articleWasFound)) {
-			qs->uniqueArticles++;
+			uniqueArticles++;
 		}
 		// Para o caso de ser revisão
 		if(articleWasUpdated) {
-			qs->allRevisions++;
+			allRevisions++;
 		}
 	}
 

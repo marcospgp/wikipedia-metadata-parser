@@ -1,5 +1,5 @@
 public class User {
-    Long id, contributions;
+    long id, contributions;
     String username;
 
 
@@ -10,14 +10,14 @@ public class User {
     }
 
 
-    public Long getUserId() {
+    public long getUserId() {
         return id;
     }
-    public void setUserId(Long newId) {
+    public void setUserId(long newId) {
         this.id = newId;
     }
 
-    public Long getUserContributions() {
+    public long getUserContributions() {
         return contributions;
     }
     public void addUserContribution() {
