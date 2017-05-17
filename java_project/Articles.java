@@ -13,7 +13,7 @@ public class Articles {
 	 * @param sizeBytes Apontador a atualizar para dar o tamanho do artigo.
 	 * @return O número de palavras do artigo.
 	 */
-	long wordCounter(String revisionText, long sizeBytes) {
+	public static long wordCounter(String revisionText, long sizeBytes) {
 		String str = revisionText.clone();
 		long i = 0;
 		long count = 0;
@@ -34,6 +34,41 @@ public class Articles {
 		sizeBytes = i;
 
 		return count;
+	}
+
+	/**
+	 * @brief Verifica que aquele título tem aquele prefixo.
+	 *
+	 * Compara char a charm, tendo em conta também o tamanho, com vista à determinação pedida.
+	 *
+	 * @param prefix O prefixo em conta.
+	 * @param title O título a comparar.
+	 * @return O valor 1 caso seja e 0 caso não seja prefixo.
+	 */
+	public static int isTitlePrefix(String prefix, String title) {
+
+		String prefixo = prefix.clone();
+		String string = title.clone();
+		int i;
+
+		for (i = 0; (prefixo[i] != '\0'); i++) {
+			if (string[i] != '\0') {
+				if (prefixo[i] == string[i]) continue;
+				else {
+					//printf("0\n");
+					return 0;
+				}
+			}
+			// caso o prefix seja maior que o titulo
+			else {
+				//printf("0\n");
+				return 0;
+			}
+		}
+
+		//printf("1\n");
+		return 1;
+
 	}
 
 
@@ -86,7 +121,7 @@ public class Articles {
 	 *
 	 * @return O número de artigos analisados.
 	 */
-	long get_all_articles() {
+	public static long get_all_articles() {
 
 		return allArticles;
 	}
@@ -99,7 +134,7 @@ public class Articles {
 	 *
 	 * @return O número de artigos únicos.
 	 */
-	long get_unique_articles() {
+	public static long get_unique_articles() {
 
 		return uniqueArticles;
 	}
@@ -112,7 +147,7 @@ public class Articles {
 	 *
 	 * @return O número de revisões.
 	 */
-	long get_all_revisions() {
+	public static long get_all_revisions() {
 
 		return allRevisions;
 	}
@@ -129,7 +164,7 @@ public class Articles {
 	 * @param qs A estrutura geral do programa.
 	 * @return O título do artigo ou @c NULL.
 	 */
-	char* get_article_title(long article_id, HashMap<Article> articles) {
+	public static String get_article_title(long article_id, HashMap<Article> articles) {
 		Article ourArticle = articles.get(article_id);
 
 		if (ourArticle != null) {
@@ -153,7 +188,7 @@ public class Articles {
 	 * @param qs A estrutura geral do programa.
 	 * @return O timestamp do artigo ou @c NULL.
 	 */
-	char* get_article_timestamp(long article_id, long revision_id, HashMap<Article> articles) {
+	public static String get_article_timestamp(long article_id, long revision_id, HashMap<Article> articles) {
 		Article ourArticle = articles.get(article_id);
 
 		if (ourArticle != null) {
@@ -191,6 +226,13 @@ public class Articles {
 			for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
 			    System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
 			}
+		*/
+
+		/*
+		// Iterating over values only
+		for (Integer value : map.values()) {
+		    System.out.println("Value = " + value);
+		}
 		*/
 
 		// Getting top 20 largest articles.
