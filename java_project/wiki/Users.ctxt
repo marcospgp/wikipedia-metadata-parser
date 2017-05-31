@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Users
+comment1.params=users\ articles\ id\ username\ articleId\ revisionId
+comment1.target=void\ onPageUsers(java.util.HashMap,\ java.util.HashMap,\ long,\ java.lang.String,\ long,\ long)
+comment1.text=\r\n\ @brief\ Fun\u00E7\u00E3o\ que\ trata\ os\ dados\ relativos\ a\ users,\ recebidos\ do\r\n\ parsing\ do\ XML,\ e\ os\ envia\ para\ a\ hashtable.\r\n\r\n\ Verifica\ se\ aquele\ artigo\ existe\ e\ se\ aquela\ revis\u00E3o\ tamb\u00E9m\ j\u00E1\ existe\ e,\r\n\ nesse\ caso,\ n\u00E3o\ modifica\ nada.\r\n\ Caso\ contr\u00E1rio,\ chama\ as\ fun\u00E7\u00F5es\ de\ update\ da\ hashtable.\r\n\r\n\ @param\ users\ A\ hashtable\ de\ utilizadores.\r\n\ @param\ id\ A\ ID\ do\ contribuidor\ da\ revis\u00E3o.\r\n\ @param\ username\ O\ username\ do\ contribuidor\ da\ revis\u00E3o.\r\n\ @param\ articleId\ O\ ID\ do\ artigo.\r\n\ @param\ revisionId\ O\ ID\ da\ revis\u00E3o.\r\n\ @return\ A\ estrutura\ geral\ atualizada.\r\n
+comment2.params=users\ id
+comment2.target=java.lang.String\ getContributorName(java.util.HashMap,\ long)
+comment2.text=\r\n\ @brief\ Fun\u00E7\u00E3o\ que\ obt\u00E9m\ o\ nome\ de\ um\ contribuidor\ atrav\u00E9s\ do\ seu\ ID.\r\n\r\n\ Verifica\ se\ aquele\ contributor\ existe\ e,\ caso\ exista,\ retorna\ o\ seu\ campo\ username.\r\n\r\n\ @see\ getUser()\r\n\r\n\ @param\ qs\ A\ estrutura\ geral\ do\ programa.\r\n\ @param\ id\ O\ ID\ do\ contribuidor\ a\ pesquisar.\r\n\ @return\ O\ username\ do\ contribuidor\ ou\ @c\ NULL.\r\n
+numComments=3

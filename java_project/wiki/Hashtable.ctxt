@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Hashtable
+comment0.text=\r\n\ Escreva\ a\ descri\u00E7\u00E3o\ da\ classe\ Hashtable\ aqui.\r\n\ \r\n\ @author\ (seu\ nome)\ \r\n\ @version\ (n\u00FAmero\ de\ vers\u00E3o\ ou\ data)\r\n
+comment1.params=users\ id\ username\ userWasFound
+comment1.target=void\ insertOrUpdateUser(java.util.HashMap,\ long,\ java.lang.String,\ int)
+comment1.text=\r\n\ @brief\ Insere\ ou\ atualiza\ um\ utilizador\ na\ hashtable\ de\ utilizadores.\r\n\r\n\ Procurar\ pelo\ utilizador\ na\ hash\ table\ e,\ caso\ o\ utilizador\ n\u00E3o\ foi\ encontrado,\r\n\ criar\ e\ inserir\ novo\ utilizador.\r\n\ Caso\ tenha\ sido\ encontrado,\ apenas\ aumentar\ uma\ contribui\u00E7\u00E3o\ ao\ utilizador.\r\n\r\n\ @param\ qs\ A\ estrutura\ geral\ do\ programa.\r\n\ @param\ id\ A\ ID\ do\ contribuidor.\r\n\ @param\ username\ O\ username\ do\ contribuidor.\r\n\ @param\ userWasFound\ Passado\ para\ fazer\ controlo.\r\n\ @return\ A\ estrutura\ atualizada.\r\n
+numComments=2
