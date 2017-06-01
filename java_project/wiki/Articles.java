@@ -73,22 +73,22 @@ public class Articles {
     ) {
 
         // nWords é atualizado pelo return do wordCounter que também dá o número de bytes do artigo pelo apontador
-        long sizeBytes;
+        long sizeBytes = 0L;
         long nWords = wordCounter(revisionText, sizeBytes);
 
         /* este int serve para a função da hash poder dizer se encontrou ou não o artigo,
          * deste modo é possível dar update dos contadores dos articles
          * --------- só está inicializado para não dar warning
          */
-        int articleWasFound;
-        int articleWasUpdated;
+        int articleWasFound = -1;
+        int articleWasUpdated = -1;
 
         /* Esta função deve ser chamada quando é encontrada uma revisão de um artigo.
          * A função cria ou atualiza um artigo já existente na tabela. Caso seja feita uma
          * atualização, o tamanho do artigo e número de palavras só é atualizado se for
          * maior que o anterior. Os valores restantes são sempre atualizados.
          */
-        Hashtable.insertOrUpdateArticle(articles, articleId, title, revisionId, revisionTimestamp, sizeBytes, nWords, articleWasFound, articleWasUpdated);
+        Hashtable.insertOrUpdateArticle(articles, articleId, title, revisionId, revisionParentId, revisionTimestamp, sizeBytes, nWords, articleWasFound, articleWasUpdated);
 
         // Aumenta o allArticles sempre
         allArticles++;
@@ -178,11 +178,11 @@ public class Articles {
      * @param qs A estrutura geral do programa.
      * @return O timestamp do artigo ou @c NULL.
      */
-    public static String get_article_timestamp(long article_id, long revision_id, HashMap<Article> articles) {
+    public static String get_article_timestamp(long article_id, long revision_id, HashMap<Long, Article> articles) {
         Article ourArticle = articles.get(article_id);
 
         if (ourArticle != null) {
-            Revision ourRevision = articles.getRevisionsHash().get(revision_id);
+            Revision ourRevision = articles.get(article_id).getRevisionsHash().get(revision_id);
             if (ourRevision != null) {
                 return ourRevision.getTimestamp();
             }
