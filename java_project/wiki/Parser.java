@@ -15,9 +15,15 @@ import javax.xml.stream.events.XMLEvent;
 
 public class Parser {
 
-  public static void parseWikiData(HashMap<Long, Article> articles, HashMap<Long, User> users, String[] args) {
-    String fileName = args[0];
-    parseXML(articles, users, fileName);
+  public static void parseWikiData(HashMap<Long, Article> articles, HashMap<Long, User> users, int nsnaps, ArrayList<String> snaps_paths) {
+
+    String fileName;
+    int i;
+
+    for (i = 0; i < nsnaps; i++) {
+      fileName = snaps_paths.get(i);
+      parseXML(articles, users, fileName);
+    }
 
     // Testar recolha de dados de artigos
     for(Article curArticle : articles.values()){
