@@ -1,10 +1,10 @@
-all_articles() -> 0
+all_articles() -> 59593
 unique_articles() -> 0
 all_revisions() -> 0
 top_10_contributors() -> 
 contributor_name(28903366) -> null
 top_20_largest_articles() -> 
-article_title(15910) -> null
+article_title(15910) -> List of compositions by Johann Sebastian Bach
 top_N_articles_with_more_words(30) -> 
 titles_with_prefix(Anax) -> 
-article_timestamp(12,763082287) -> null
+article_timestamp(12,763082287) -> 2017-02-01T06:11:56Z
