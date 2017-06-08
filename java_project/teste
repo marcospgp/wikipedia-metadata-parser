@@ -461,4 +461,48 @@ DMOZ (dmoz.org) and link there using {{Dmoz}}.
       <sha1>d4tdz2eojqzamnuockahzcbrgd1t9oi</sha1>
     </revision>
   </page>
+  <page>
+    <title>AccessibleComputing</title>
+    <ns>0</ns>
+    <id>10</id>
+    <redirect title="Computer accessibility" />
+    <revision>
+      <id>631144794</id>
+      <parentid>381202555</parentid>
+      <timestamp>2014-10-26T04:50:23Z</timestamp>
+      <contributor>
+        <username>Paine Ellsworth</username>
+        <id>9092818</id>
+      </contributor>
+      <comment>add [[WP:RCAT|rcat]]s</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">#REDIRECT [[Computer accessibility]]
+
+{{Redr|move|from CamelCase|up}}</text>
+      <sha1>4ro7vvppa5kmm0o1egfjztzcwd0vabw</sha1>
+    </revision>
+  </page>
+  <page>
+    <title>AccessibleComputing</title>
+    <ns>0</ns>
+    <id>10</id>
+    <redirect title="Computer accessibility" />
+    <revision>
+      <id>333333333</id>
+      <parentid>381202555</parentid>
+      <timestamp>2014-10-26T04:50:23Z</timestamp>
+      <contributor>
+        <username>Paine Ellsworth</username>
+        <id>9092818</id>
+      </contributor>
+      <comment>add [[WP:RCAT|rcat]]s</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">#REDIRECT [[Computer accessibility]]
+
+{{Redr|move|from CamelCase|up}}</text>
+      <sha1>4ro7vvppa5kmm0o1egfjztzcwd0vabw</sha1>
+    </revision>
+  </page>
 </mediawiki>

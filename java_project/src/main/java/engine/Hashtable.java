@@ -117,10 +117,12 @@ public class Hashtable {
     		newArticle.setArticleSize(sizeBytes);
     		newArticle.setArticleNWords(nWords);
     		newArticle.setArticleTitle(title);
-    		newArticle.getRevisionsHash().put(revisionId, newRevision);
+    		newArticle.getRevisionsHash().put(newRevision.getRevisionId(), newRevision);
 
     		// Adicionar novo artigo à hashtable
-    		articles.put(id, newArticle);
+    		articles.put(newArticle.getArticleId(), newArticle);
+    		// DEBUG
+    		System.out.println(newArticle.toString());
 
     	} else {
 
@@ -158,7 +160,7 @@ public class Hashtable {
     		} else {
 
     			//printf("Adding revision...\n");
-    			articleData.getRevisionsHash().put(revisionId, newRevision);
+    			articleData.getRevisionsHash().put(newRevision.getRevisionId(), newRevision);
     			Articles.setArticleWasUpdated(1);
     		}
     	}

@@ -5,7 +5,7 @@ import static java.util.stream.Collectors.toCollection;;
 
 public class Articles {
 
-    private static long allArticles = 0, uniqueArticles = 0, allRevisions = 0;
+    private static long allArticles = 0L, uniqueArticles = 0L, allRevisions = 0L, sizeBytes = 0L;
     private static int articleWasFound = -1, articleWasUpdated = -1;
     /* este int serve para a função da hash poder dizer se encontrou ou não o artigo,
      * deste modo é possível dar update dos contadores dos articles
@@ -20,6 +20,14 @@ public class Articles {
     	articleWasUpdated = was;
     }
 
+    public static void setSizeBytes(long size) {
+    	sizeBytes = size;
+    }
+
+    public static long getSizeBytes() {
+    	return sizeBytes;
+    }
+
     /**
      * @brief Conta o número de palavras e o tamanho do texto.
      *
@@ -30,7 +38,7 @@ public class Articles {
      * @param sizeBytes Apontador a atualizar para dar o tamanho do artigo.
      * @return O número de palavras do artigo.
      */
-    public static long wordCounter(String revisionText, long sizeBytes) {
+    public static long wordCounter(String revisionText) {
         String str = revisionText;
         long size = 0L;
         long count = 0L;
@@ -49,7 +57,7 @@ public class Articles {
             }
         }
 
-        sizeBytes = size;
+        setSizeBytes(size);
 
         return count;
     }
@@ -88,8 +96,7 @@ public class Articles {
     ) {
 
         // nWords é atualizado pelo return do wordCounter que também dá o número de bytes do artigo pelo apontador
-        long sizeBytes = 0L;
-        long nWords = wordCounter(revisionText, sizeBytes);
+        long nWords = wordCounter(revisionText);
 
 
         /* Esta função deve ser chamada quando é encontrada uma revisão de um artigo.
@@ -97,7 +104,7 @@ public class Articles {
          * atualização, o tamanho do artigo e número de palavras só é atualizado se for
          * maior que o anterior. Os valores restantes são sempre atualizados.
          */
-        Hashtable.insertOrUpdateArticle(articles, articleId, title, revisionId, revisionParentId, revisionTimestamp, sizeBytes, nWords, articleWasFound, articleWasUpdated);
+        Hashtable.insertOrUpdateArticle(articles, articleId, title, revisionId, revisionParentId, revisionTimestamp, getSizeBytes(), nWords, articleWasFound, articleWasUpdated);
 
         // Aumenta o allArticles sempre
         allArticles++;

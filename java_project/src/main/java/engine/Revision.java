@@ -37,7 +37,8 @@ public class Revision {
     public String toString() {
         return "Revision::" +
                 " ID=" + this.id +
-                " Timestamp=" + this.timestamp;
+                " Timestamp=" + this.timestamp +
+                " Parent ID=" + this.parentId;
     }
 
 }
