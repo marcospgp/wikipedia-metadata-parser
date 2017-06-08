@@ -1,3 +1,5 @@
+package engine;
+
 import java.util.*;
 
 public class Users {
@@ -57,7 +59,7 @@ public class Users {
         }
     }
 
-    
+
     /**
      * @brief Função que obtém o top dos 10 melhores contribuidores.
      *

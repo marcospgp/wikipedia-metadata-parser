@@ -54,3 +54,6 @@ dkms.conf
 exemplos/
 datasets/
 *.stackdump
+java_project/dec16
+java_project/fev17
+java_project/jan17

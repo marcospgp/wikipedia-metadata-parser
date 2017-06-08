@@ -1,3 +1,5 @@
+package engine;
+
 public class User {
     long id, contributions;
     String username;

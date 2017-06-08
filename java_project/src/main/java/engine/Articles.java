@@ -1,3 +1,5 @@
+package engine;
+
 import java.util.*;
 
 public class Articles {
@@ -31,7 +33,7 @@ public class Articles {
                     foundLetter = 1;
                 }
                 size++;
-            }      
+            }
         }
 
         sizeBytes = size;
@@ -55,7 +57,7 @@ public class Articles {
         int i;
 
         if (prefixo.length() > string.length()) return 0;
-        
+
         if (prefixo.equals(string.substring(0, prefixo.length()))) return 1;
         else return 0;
 
@@ -209,6 +211,6 @@ public class Articles {
      * @param qs A estrutura geral do programa.
      * @return Um array com os IDs dos 20 maiores artigos.
      */
-    
+
 
 }

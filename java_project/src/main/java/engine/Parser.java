@@ -1,3 +1,5 @@
+package engine;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -22,18 +24,23 @@ public class Parser {
 
     for (i = 0; i < nsnaps; i++) {
       fileName = snaps_paths.get(i);
+      System.out.println(fileName);
       parseXML(articles, users, fileName);
     }
 
     // Testar recolha de dados de artigos
+    /*
     for(Article curArticle : articles.values()){
       System.out.println(curArticle.toString()); // tenho de definir toString do articles
     }
+    */
 
     // Testar recolha de dados de users
+    /*
     for(User curContributor : users.values()){
       System.out.println(curContributor.toString()); // tenho de definir toString do articles
     }
+    */
   }
 
 

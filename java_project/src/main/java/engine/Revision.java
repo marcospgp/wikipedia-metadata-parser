@@ -1,3 +1,5 @@
+package engine;
+
 public class Revision {
     long id, parentId;
     String timestamp;
@@ -15,14 +17,14 @@ public class Revision {
     public void setRevisionId(long newId) {
         this.id = newId;
     }
-    
+
     public long getRevisionParentId() {
         return parentId;
     }
     public void setRevisionParentId(long newParentId) {
         this.parentId = newParentId;
     }
-    
+
     public String getTimestamp() {
         return timestamp;
     }

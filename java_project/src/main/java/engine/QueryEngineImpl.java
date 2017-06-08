@@ -2,15 +2,18 @@ package engine;
 
 import li3.Interface;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class QueryEngineImpl implements Interface {
+
+	private HashMap<Long, Article> articles;
+    private HashMap<Long, User> users;
 
 
     public void init() {
 
-    	HashMap<Long, Article> articles = new HashMap<Long, Article>();
-    	HashMap<Long, User> users = new HashMap<Long, User>();
+    	articles = new HashMap<Long, Article>();
+    	users = new HashMap<Long, User>();
     }
 
     public void load(int nsnaps, ArrayList<String> snaps_paths) {
