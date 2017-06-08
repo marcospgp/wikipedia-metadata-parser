@@ -1,5 +1,5 @@
-INIT -> 1 ms
-LOAD -> 72906 ms
+INIT -> 0 ms
+LOAD -> 84435 ms
 ALL_ARTICLES -> 0 ms
 UNIQUE_ARTICLES -> 0 ms
 ALL_REVISIONS -> 0 ms

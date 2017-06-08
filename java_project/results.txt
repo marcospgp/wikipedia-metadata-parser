@@ -1,6 +1,6 @@
 all_articles() -> 59593
-unique_articles() -> 0
-all_revisions() -> 0
+unique_articles() -> 19094
+all_revisions() -> 42254
 top_10_contributors() -> 
 contributor_name(28903366) -> null
 top_20_largest_articles() -> 

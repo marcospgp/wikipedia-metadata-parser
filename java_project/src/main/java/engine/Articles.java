@@ -5,7 +5,19 @@ import java.util.*;
 public class Articles {
 
     private static long allArticles = 0, uniqueArticles = 0, allRevisions = 0;
+    private static int articleWasFound = -1, articleWasUpdated = -1;
+    /* este int serve para a função da hash poder dizer se encontrou ou não o artigo,
+     * deste modo é possível dar update dos contadores dos articles
+     * --------- só está inicializado para não dar warning
+   	 */
 
+    public static void setArticleWasFound(int was) {
+    	articleWasFound = was;
+    }
+
+    public static void setArticleWasUpdated(int was) {
+    	articleWasUpdated = was;
+    }
 
     /**
      * @brief Conta o número de palavras e o tamanho do texto.
@@ -78,12 +90,6 @@ public class Articles {
         long sizeBytes = 0L;
         long nWords = wordCounter(revisionText, sizeBytes);
 
-        /* este int serve para a função da hash poder dizer se encontrou ou não o artigo,
-         * deste modo é possível dar update dos contadores dos articles
-         * --------- só está inicializado para não dar warning
-         */
-        int articleWasFound = -1;
-        int articleWasUpdated = -1;
 
         /* Esta função deve ser chamada quando é encontrada uma revisão de um artigo.
          * A função cria ou atualiza um artigo já existente na tabela. Caso seja feita uma

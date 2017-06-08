@@ -105,8 +105,8 @@ public class Hashtable {
     		//printf("Creating new article and adding revision...\n");
 
     		// Informar que o artigo não foi encontrado
-    		articleFound = 0;
-    		articleUpdated = 1;
+    		Articles.setArticleWasFound(0);
+    		Articles.setArticleWasUpdated(1);
 
 
     		// Criar novo artigo
@@ -127,7 +127,7 @@ public class Hashtable {
     		//printf("Updating article...\n");
 
     		// Informar que o artigo foi encontrado
-    		articleFound = 1;
+    		Articles.setArticleWasFound(1);
 
     		// Atualizar artigo já existente
     		// Apenas atualizar tamanho e nº de palavras do artigo se for maior que o anterior
@@ -153,13 +153,13 @@ public class Hashtable {
     		if (articleData.getRevisionsHash().get(revisionId) != null) {
 
     			//printf("Duplicated revision. Skipping...\n");
-    			articleUpdated = 0;
+    			Articles.setArticleWasUpdated(0);
 
     		} else {
 
     			//printf("Adding revision...\n");
     			articleData.getRevisionsHash().put(revisionId, newRevision);
-    			articleUpdated = 1;
+    			Articles.setArticleWasUpdated(1);
     		}
     	}
 
