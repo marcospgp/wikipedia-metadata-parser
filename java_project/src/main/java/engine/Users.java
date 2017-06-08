@@ -64,14 +64,7 @@ public class Users {
     /**
      * @brief Função que obtém o top dos 10 melhores contribuidores.
      *
-     * Cria um iterador da hashtable correspondente aos utilizadores.
-     * Cria e inicializa um array de 10 utilizadores.
-     * Itera pela hashtable e compara o número de contribuições do utilizador a ser iterado
-     * com o top, começando pelo último lugar deste.
-     * Caso seja maior ou igual que o último, continua a fazer comparações com os acima.
-     * Caso o número de contribuições entre dois utilizadores forem iguais, é feita a decisão
-     * pelo ID destes.
-     * Caso entre no top, é feito o reajuste dos lugares abaixo.
+     * FALTA EXPLICAR A FUNCAO
      *
      * @see getHashtableIterator()
      * @see getNextFromIterator()
@@ -83,8 +76,12 @@ public class Users {
     public static ArrayList<Long> getTop_10_contributors(HashMap<Long, User> users) {
 
         ArrayList<User> top10sorted = new ArrayList<User>();
+
+        Comparator<User> comparator = Comparator.comparingLong(User::getUserContributions);
+        Comparator<User> reverseComparator = comparator.reversed();
+
         top10sorted = users.values().stream()
-            .sorted(Comparator.comparing(User::getUserContributions))
+            .sorted(reverseComparator)
             .limit(10)
             .collect(toCollection(ArrayList::new));
 

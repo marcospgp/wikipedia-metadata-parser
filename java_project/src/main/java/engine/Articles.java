@@ -204,13 +204,7 @@ public class Articles {
     /**
      * @brief Função que obtém o top dos 20 maiores artigos.
      *
-     * Cria um iterador da hashtable correspondente aos artigos.
-     * Cria e inicializa um array de 20 artigos.
-     * Itera pela hashtable e compara o tamanho do artigo a ser iterado
-     * com o top, começando pelo último lugar deste.
-     * Caso seja maior ou igual que o último, continua a fazer comparações com os acima.
-     * Caso o tamanho dos artigos forem iguais, é feita a decisão pelo ID destes.
-     * Caso entre no top, é feito o reajuste dos lugares abaixo.
+     * FALTA EXPLICAR A FUNCAO
      *
      * @see getHashtableIterator()
      * @see getNextFromIterator()
@@ -222,18 +216,56 @@ public class Articles {
     public static ArrayList<Long> getTop_20_largest_articles(HashMap<Long, Article> articles) {
 
         ArrayList<Article> top20sorted = new ArrayList<Article>();
+
+        Comparator<Article> comparator = Comparator.comparingLong(Article::getArticleSize);
+        Comparator<Article> reverseComparator = comparator.reversed();
+
         top20sorted = articles.values().stream()
-            .sorted(Comparator.comparing(Article::getArticleSize))
+            .sorted(reverseComparator)
             .limit(20)
             .collect(toCollection(ArrayList::new));
 
         ArrayList<Long> top20 = new ArrayList<Long>();
 
-        for(Article u: top20sorted) {
-            top20.add(u.getArticleId());
+        for(Article a: top20sorted) {
+            top20.add(a.getArticleId());
         }
 
         return top20;
+    }
+
+
+    /**
+     * @brief Função que obtém o top N dos artigos com mais palavras.
+     *
+     * FALTA EXPLICAR A FUNCAO
+     *
+     * @see getHashtableIterator()
+     * @see getNextFromIterator()
+     *
+     * @param qs A estrutura geral do programa.
+     * @return Um array com os IDs dos 20 maiores artigos.
+     */
+
+    public static ArrayList<Long> getTop_N_largest_articles(HashMap<Long, Article> articles, int n) {
+
+        ArrayList<Article> topnsorted = new ArrayList<Article>();
+
+        Comparator<Article> comparator = Comparator.comparingLong(Article::getArticleNWords);
+        Comparator<Article> reverseComparator = comparator.reversed();
+
+        topnsorted = articles.values().stream()
+            .sorted(reverseComparator)
+            .limit(n)
+            .collect(toCollection(ArrayList::new));
+
+        ArrayList<Long> topn = new ArrayList<Long>();
+
+        for(Article a: topnsorted) {
+            topn.add(a.getArticleId());
+        }
+
+        return topn;
     }
 
 }

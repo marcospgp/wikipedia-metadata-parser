@@ -58,7 +58,7 @@ public class QueryEngineImpl implements Interface {
 
     public ArrayList<Long> top_N_articles_with_more_words(int n) {
 
-        return new ArrayList<Long>();
+        return Articles.getTop_N_largest_articles(articles,n);
     }
 
     public ArrayList<String> titles_with_prefix(String prefix) {
