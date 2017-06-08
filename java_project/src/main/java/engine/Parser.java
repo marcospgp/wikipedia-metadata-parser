@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 
-import javax.xml.stream.XMLEventReader;
+import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
@@ -50,104 +50,68 @@ public class Parser {
 
     String title = null, revisionContributorUsername = null, revisionText = null, revisionTimestamp = null;
     long articleId = -1, revisionId = -1, revisionParentId = -1, revisionContributorId = -1;
-    Article curArticle = null;
-    User curUser = null;
-    Revision curRevision = null;
-    boolean hasPageTitle = false, hasPageId = false,
-            hasRevisionId = false, hasRevisionParentId = false, hasRevisionTimestamp = false,
-            hasContributorUsername = false, hasContributorId = false,
-            onContributor = false, onRevision = false;
+    boolean onContributor = false, onRevision = false;
 
 
     System.out.println("Comecei o parse.\n");
 
     try {
         XMLInputFactory factory = XMLInputFactory.newInstance();
-        XMLEventReader eventReader = factory.createXMLEventReader(new FileReader(fileName));
+        XMLStreamReader xmlStreamReader = factory.createXMLStreamReader(new FileInputStream(fileName));
 
-            while(eventReader.hasNext()){
-              XMLEvent event = eventReader.nextEvent();
-              switch(event.getEventType()){
+            while(xmlStreamReader.hasNext()){
+              int event = xmlStreamReader.getEventType();
+              switch(event){
                   case XMLStreamConstants.START_ELEMENT:
-                    StartElement startElement = event.asStartElement();
-                    String qName = startElement.getName().getLocalPart();
-                    if (qName.equalsIgnoreCase("page")) {
-                      curArticle = new Article();
-                      curUser = new User();
+
+                    if (xmlStreamReader.getLocalName().equals("page")) {
                       System.out.println("Start Element : page");
-                    } else if (qName.equalsIgnoreCase("title")) {
-                        hasPageTitle = true;
-                    } else if (qName.equalsIgnoreCase("id") && onContributor) {
-                        hasContributorId = true;
-                    } else if (qName.equalsIgnoreCase("revision")) {
+                    } else if (xmlStreamReader.getLocalName().equals("title")) {
+                        title = xmlStreamReader.getElementText();
+                        System.out.println("Title: " + title);
+                    } else if (xmlStreamReader.getLocalName().equals("id") && onContributor) {
+                        revisionContributorId = Long.parseLong(xmlStreamReader.getElementText());
+                        System.out.println("User id: " + revisionContributorId);
+                        onContributor = false;
+                    } else if (xmlStreamReader.getLocalName().equals("revision")) {
                         onRevision = true;
-                        curRevision = new Revision();
                         System.out.println("Start Element : revision");
-                    } else if (qName.equalsIgnoreCase("id") && onRevision) {
-                        hasRevisionId = true;
-                    } else if (qName.equalsIgnoreCase("parentid")) {
-                        hasRevisionParentId = true;
-                    } else if (qName.equalsIgnoreCase("timestamp")) {
-                        hasRevisionTimestamp = true;
-                    } else if (qName.equalsIgnoreCase("contributor")) {
+                    } else if (xmlStreamReader.getLocalName().equals("id") && onRevision) {
+                        revisionId = Long.parseLong(xmlStreamReader.getElementText());
+                        System.out.println("Revision id: " + revisionId);
+                        onRevision = false;
+                    } else if (xmlStreamReader.getLocalName().equals("parentid")) {
+                        revisionParentId = Long.parseLong(xmlStreamReader.getElementText());
+                        System.out.println("Revision Parent id: " + revisionParentId);
+                    } else if (xmlStreamReader.getLocalName().equals("timestamp")) {
+                        revisionTimestamp = xmlStreamReader.getElementText();
+                        System.out.println("Revision timestamp: " + revisionTimestamp);
+                    } else if (xmlStreamReader.getLocalName().equals("contributor")) {
                         onContributor = true;
                         System.out.println("Start Element : contributor");
-                    } else if (qName.equalsIgnoreCase("username")) {
-                        hasContributorUsername = true;
-                    } else if (qName.equalsIgnoreCase("id")) {
-                        hasPageId = true;
+                    } else if (xmlStreamReader.getLocalName().equals("username")) {
+                        revisionContributorUsername = xmlStreamReader.getElementText();
+                        System.out.println("User name: " + revisionContributorUsername);
+                    } else if (xmlStreamReader.getLocalName().equals("id")) {
+                        articleId = Long.parseLong(xmlStreamReader.getElementText());
+                        System.out.println("Article id: " + articleId);
+                    } else if (xmlStreamReader.getLocalName().equals("text")) {
+                        revisionText = xmlStreamReader.getElementText();
+                        System.out.println("Text: " + revisionText);
                     }
                     break;
-                  case XMLStreamConstants.CHARACTERS:
-                    Characters characters = event.asCharacters();
-                    if(hasPageTitle){
-                        curArticle.setArticleTitle(characters.getData());
-                        System.out.println("Title: " + curArticle.getArticleTitle() + "\n");
-                        hasPageTitle = false;
-                    }
-                    if(hasPageId){
-                        curArticle.setArticleId(Long.parseLong(characters.getData()));
-                        System.out.println("Article id: " + curArticle.getArticleId() + "\n");
-                        hasPageId = false;
-                    }
-                    if(hasRevisionId){
-                        curRevision.setRevisionId(Long.parseLong(characters.getData()));
-                        System.out.println("Revision id: " + curRevision.getRevisionId() + "\n");
-                        hasRevisionId = false;
-                        onRevision = false;
-                    }
-                    if(hasRevisionParentId){
-                        curRevision.setRevisionParentId(Long.parseLong(characters.getData()));
-                        System.out.println("Revision Parent id: " + curRevision.getRevisionParentId() + "\n");
-                        hasRevisionParentId = false;
-                    }
-                    if(hasRevisionTimestamp){
-                        curRevision.setTimestamp(characters.getData());
-                        System.out.println("Revision timestamp: " + curRevision.getTimestamp() + "\n");
-                        hasRevisionTimestamp = false;
-                    }
-                    if(hasContributorUsername){
-                        curUser.setUsername(characters.getData());
-                        System.out.println("User name: " + curUser.getUsername() + "\n");
-                        hasContributorUsername = false;
-                    }
-                    if(hasContributorId){
-                        curUser.setUserId(Long.parseLong(characters.getData()));
-                        System.out.println("User id: " + curUser.getUserId() + "\n");
-                        hasContributorId = false;
-                        onContributor = false;
-                    }
-                    break;
+
                   case  XMLStreamConstants.END_ELEMENT:
-                    EndElement endElement = event.asEndElement();
-                    if(endElement.getName().getLocalPart().equalsIgnoreCase("page")){
-                        articles.put(curArticle.getArticleId(), curArticle);
-                        users.put(curUser.getUserId(), curUser);
+                    if(xmlStreamReader.getLocalName().equals("page")){
+                        //articles.put(curArticle.getArticleId(), curArticle);
+                        //users.put(curUser.getUserId(), curUser);
                         System.out.println("End Element : page");
                         System.out.println();
                     }
                     break;
               }
+
+              event = xmlStreamReader.next();
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
