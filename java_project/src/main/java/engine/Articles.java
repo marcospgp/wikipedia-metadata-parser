@@ -1,6 +1,7 @@
 package engine;
 
 import java.util.*;
+import static java.util.stream.Collectors.toCollection;;
 
 public class Articles {
 
@@ -218,5 +219,21 @@ public class Articles {
      * @return Um array com os IDs dos 20 maiores artigos.
      */
 
+    public static ArrayList<Long> getTop_20_largest_articles(HashMap<Long, Article> articles) {
+
+        ArrayList<Article> top20sorted = new ArrayList<Article>();
+        top20sorted = articles.values().stream()
+            .sorted(Comparator.comparing(Article::getArticleSize))
+            .limit(20)
+            .collect(toCollection(ArrayList::new));
+
+        ArrayList<Long> top20 = new ArrayList<Long>();
+
+        for(Article u: top20sorted) {
+            top20.add(u.getArticleId());
+        }
+
+        return top20;
+    }
 
 }

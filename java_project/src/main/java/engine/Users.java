@@ -1,6 +1,7 @@
 package engine;
 
 import java.util.*;
+import static java.util.stream.Collectors.toCollection;;
 
 public class Users {
 
@@ -79,4 +80,21 @@ public class Users {
      * @return Um array com os IDs dos 10 melhores contribuidores.
      */
 
+    public static ArrayList<Long> getTop_10_contributors(HashMap<Long, User> users) {
+
+        ArrayList<User> top10sorted = new ArrayList<User>();
+        top10sorted = users.values().stream()
+            .sorted(Comparator.comparing(User::getUserContributions))
+            .limit(10)
+            .collect(toCollection(ArrayList::new));
+
+        ArrayList<Long> top10 = new ArrayList<Long>();
+
+        for(User u: top10sorted) {
+            top10.add(u.getUserId());
+        }
+
+
+        return top10;
+    }
 }

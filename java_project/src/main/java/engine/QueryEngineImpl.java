@@ -38,7 +38,7 @@ public class QueryEngineImpl implements Interface {
 
     public ArrayList<Long> top_10_contributors() {
 
-        return new ArrayList<Long>();
+        return Users.getTop_10_contributors(users);
     }
 
     public String contributor_name(long contributor_id) {
@@ -48,7 +48,7 @@ public class QueryEngineImpl implements Interface {
 
     public ArrayList<Long> top_20_largest_articles() {
 
-        return new ArrayList<Long>();
+        return Articles.getTop_20_largest_articles(articles);
     }
 
     public String article_title(long article_id) {
