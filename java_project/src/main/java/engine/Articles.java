@@ -73,13 +73,7 @@ public class Articles {
      */
     public static int isTitlePrefix(String prefix, String title) {
 
-        String prefixo = prefix;
-        String string = title;
-        int i;
-
-        if (prefixo.length() > string.length()) return 0;
-
-        if (prefixo.equals(string.substring(0, prefixo.length()))) return 1;
+        if (title.startsWith(prefix)) return 1;
         else return 0;
 
     }
@@ -273,6 +267,25 @@ public class Articles {
         }
 
         return topn;
+    }
+
+    public static ArrayList<String> getTitlesWithPrefix(HashMap<Long, Article> articles, String prefix) {
+
+        ArrayList<Article> articletitles = new ArrayList<Article>();
+
+        articletitles = articles.values().stream()
+        .filter(a -> isTitlePrefix(prefix,a.getArticleTitle()) == 1) 
+        .collect(toCollection(ArrayList::new));
+
+        ArrayList<String> titles = new ArrayList<String>();
+
+        for(Article a: articletitles) {
+            titles.add(a.getArticleTitle());
+        }
+
+        Collections.sort(titles);
+
+        return titles;
     }
 
 }

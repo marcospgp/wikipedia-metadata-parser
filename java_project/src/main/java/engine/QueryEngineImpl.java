@@ -63,7 +63,7 @@ public class QueryEngineImpl implements Interface {
 
     public ArrayList<String> titles_with_prefix(String prefix) {
 
-        return new ArrayList<String>();
+        return Articles.getTitlesWithPrefix(articles,prefix);
     }
 
     public String article_timestamp(long article_id, long revision_id) {
