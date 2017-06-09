@@ -3,9 +3,9 @@ package engine;
 import java.util.*;
 
 public class Article {
-    long id, size, nWords;
-    String title;
-    HashMap<Long, Revision> revisions;
+    private long id, size, nWords;
+    private String title;
+    private HashMap<Long, Revision> revisions;
 
 
     public Article() {

@@ -1,8 +1,8 @@
 package engine;
 
 public class User {
-    long id, contributions;
-    String username;
+    private long id, contributions;
+    private String username;
 
 
     public User() {

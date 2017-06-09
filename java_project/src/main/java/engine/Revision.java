@@ -1,8 +1,8 @@
 package engine;
 
 public class Revision {
-    long id, parentId;
-    String timestamp;
+    private long id, parentId;
+    private String timestamp;
 
 
     public Revision() {
