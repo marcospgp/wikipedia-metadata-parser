@@ -23,16 +23,26 @@ public class Users {
      */
     public static void onPageUsers(HashMap<Long, User> users, HashMap<Long, Article> articles, long id, String username, long articleId, long revisionId) {
 
-        Article article = articles.get(articleId);
+    	// DEBUG - Está tudo a ser passado bem.
+    	/*
+    	System.out.println("ID: " + id);
+    	System.out.println("Username: " + username);
+    	System.out.println("ArticleID: " + articleId);
+    	System.out.println("RevisionID: " + revisionId);
+    	*/
 
-        if ((article != null) && (article.getRevisionsHash().get(revisionId) != null)) {
 
-            return;
+    	boolean articleExists = articles.containsKey(articleId);
+        if (articleExists && articles.get(articleId).getRevisionsHash().containsKey(revisionId)) {
+
+        	System.out.println("ARTIGO REPETIDO");
+        	return; // SAÍMOS
         }
 
-        int userWasFound = -1;
-
-        Hashtable.insertOrUpdateUser(users, id, username, userWasFound);
+        else {
+        	System.out.println("insertOrUpdateUser");
+        	Hashtable.insertOrUpdateUser(users, id, username);
+        }
 
         return;
     }

@@ -69,17 +69,9 @@ public class Parser {
                     } else if (xmlStreamReader.getLocalName().equals("title")) {
                         title = xmlStreamReader.getElementText();
                         // System.out.println("Title: " + title);
-                    } else if (xmlStreamReader.getLocalName().equals("id") && onContributor) {
-                        revisionContributorId = Long.parseLong(xmlStreamReader.getElementText());
-                        // System.out.println("User id: " + revisionContributorId);
-                        onContributor = false;
                     } else if (xmlStreamReader.getLocalName().equals("revision")) {
                         onRevision = true;
                         // System.out.println("Start Element : revision");
-                    } else if (xmlStreamReader.getLocalName().equals("id") && onRevision) {
-                        revisionId = Long.parseLong(xmlStreamReader.getElementText());
-                        // System.out.println("Revision id: " + revisionId);
-                        onRevision = false;
                     } else if (xmlStreamReader.getLocalName().equals("parentid")) {
                         revisionParentId = Long.parseLong(xmlStreamReader.getElementText());
                         // System.out.println("Revision Parent id: " + revisionParentId);
@@ -92,6 +84,14 @@ public class Parser {
                     } else if (xmlStreamReader.getLocalName().equals("username")) {
                         revisionContributorUsername = xmlStreamReader.getElementText();
                         // System.out.println("User name: " + revisionContributorUsername);
+                    } else if (xmlStreamReader.getLocalName().equals("id") && onContributor) {
+                        revisionContributorId = Long.parseLong(xmlStreamReader.getElementText());
+                        // System.out.println("User id: " + revisionContributorId);
+                        onContributor = false;
+                    } else if (xmlStreamReader.getLocalName().equals("id") && onRevision) {
+                        revisionId = Long.parseLong(xmlStreamReader.getElementText());
+                        // System.out.println("Revision id: " + revisionId);
+                        onRevision = false;
                     } else if (xmlStreamReader.getLocalName().equals("id")) {
                         articleId = Long.parseLong(xmlStreamReader.getElementText());
                         // System.out.println("Article id: " + articleId);
@@ -103,8 +103,10 @@ public class Parser {
 
                   case  XMLStreamConstants.END_ELEMENT:
                     if(xmlStreamReader.getLocalName().equals("page")){
-                        Articles.onPageArticles(articles, articleId, title, revisionText, revisionId, revisionParentId, revisionTimestamp);
+                    	//System.out.println("Calling onPageUsers");
                         Users.onPageUsers(users, articles, revisionContributorId, revisionContributorUsername, articleId, revisionId);
+                    	//System.out.println("Calling onPageArticles");
+                        Articles.onPageArticles(articles, articleId, title, revisionText, revisionId, revisionParentId, revisionTimestamp);
                         // System.out.println("End Element : page");
                         // System.out.println();
                     }

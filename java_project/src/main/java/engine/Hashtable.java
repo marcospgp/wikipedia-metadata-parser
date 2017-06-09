@@ -20,37 +20,43 @@ public class Hashtable {
      * @param qs A estrutura geral do programa.
      * @param id A ID do contribuidor.
      * @param username O username do contribuidor.
-     * @param userWasFound Passado para fazer controlo.
      * @return A estrutura atualizada.
      */
-    public static void insertOrUpdateUser(HashMap<Long, User> users, long id, String username, int userWasFound) {
+    public static void insertOrUpdateUser(HashMap<Long, User> users, long id, String username) {
+
+    	// DEBUG - passa direito os argumentos
+    	/*
+    	System.out.println("id: " + id);
+    	System.out.println("username: " + username);
+    	*/
+
 
     	//printf("hashtable.c - Received user data\n");
 
     	// Procurar pelo utilizador na hash table
     	User userData = users.get(id);
+    	// System.out.println("1");
 
     	if (userData == null) {
 
     		//printf("Creating new user with id %ld\n", id);
-
-    		// Informar que o utilizador não foi encontrado
-    		userWasFound = 0;
 
     		User newUser = new User();
     		newUser.setUserId(id);
     		newUser.addUserContribution();
     		newUser.setUsername(username);
 
+    		users.put(newUser.getUserId(), newUser);
+    		// DEBUG
+    		// System.out.println(newUser.toString());
+
     	} else {
 
     		//printf("Updating user with id %ld\n", id);
 
-    		// Informar que o utilizador foi encontrado
-    		userWasFound = 1;
-
     		// Contar uma contribuição do utilizador
     		userData.addUserContribution();
+    		// System.out.println(userData.getUserContributions());
 
     		// Nota - não é preciso inserir de novo na hashtable porque o que
     		// está lá é o endereço para a estrutura que alteramos
@@ -79,14 +85,19 @@ public class Hashtable {
      * @param articleUpdated Passado para fazer controlo nos contadores de articles.
      * @return A estrutura atualizada.
      */
-    public static void insertOrUpdateArticle(HashMap<Long, Article> articles, long id, String title, long revisionId, long revisionParentId, String revisionTimestamp, long sizeBytes, long nWords, int articleFound, int articleUpdated) {
+    public static void insertOrUpdateArticle(HashMap<Long, Article> articles, long id, String title, long revisionId, long revisionParentId, String revisionTimestamp, long sizeBytes, long nWords) {
 
     	//printf("hashtable.c - Received article revision data\n");
 
-    	// Copiar strings porque o parser pode apagá-las
-    	// E a hash table só guarda um pointer
-    	// Copiar longs usadas como key também, porque keys
-    	// são usadas a partir dos seus pointers
+    	// DEBUG - Estão a entrar bem os elementos
+    	/*
+        System.out.println("Article ID: " + id);
+        System.out.println("title: " + title);
+        System.out.println("revisionId: " + revisionId);
+        System.out.println("revisionParentId: " + revisionParentId);
+        System.out.println("revisionTimestamp: " + revisionTimestamp +"\n");
+        */
+
 
 
     	// Criar nova revisão (necessária caso o artigo já exista ou não)
@@ -121,8 +132,12 @@ public class Hashtable {
 
     		// Adicionar novo artigo à hashtable
     		articles.put(newArticle.getArticleId(), newArticle);
-    		// DEBUG
-    		System.out.println(newArticle.toString());
+    		// DEBUG PUT
+    		System.out.println("PUT with id: " + newArticle.getArticleId());
+    		//System.out.println(newArticle.toString());
+    		// GET
+    		//System.out.println("GET");
+    		//System.out.println(articles.get(id).toString());
 
     	} else {
 
@@ -156,13 +171,21 @@ public class Hashtable {
 
     			//printf("Duplicated revision. Skipping...\n");
     			Articles.setArticleWasUpdated(0);
+    			System.out.println("DUPLICATED");
+
 
     		} else {
 
     			//printf("Adding revision...\n");
     			articleData.getRevisionsHash().put(newRevision.getRevisionId(), newRevision);
     			Articles.setArticleWasUpdated(1);
+    			System.out.println("UPDATED");
     		}
+    		// DEBUG
+    		//System.out.println(articleData.toString());
+    		// GET
+    		//System.out.println("GET");
+    		//System.out.println(articles.get(id).toString() + "\n");
     	}
 
     	return;

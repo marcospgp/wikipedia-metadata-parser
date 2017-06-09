@@ -1,10 +1,10 @@
 all_articles() -> 59593
 unique_articles() -> 19094
 all_revisions() -> 42254
-top_10_contributors() -> 
-contributor_name(28903366) -> null
-top_20_largest_articles() -> 4025 4040 13144 4562 8108 8819 12378 12380 15370 17024 17425 19899 20644 26406 28274 29030 4276 6076 7360 10137 
+top_10_contributors() -> 28903366 13286072 27823944 194203 212624 27015025 7852030 7328338 7611264 14508071 
+contributor_name(28903366) -> Bender the Bot
+top_20_largest_articles() -> 15910 23234 23235 11812 28678 14604 14602 23440 26847 25507 23438 26908 26909 18166 4402 14884 14883 14889 23805 7023 
 article_title(15910) -> List of compositions by Johann Sebastian Bach
-top_N_articles_with_more_words(30) -> 
-titles_with_prefix(Anax) -> 
+top_N_articles_with_more_words(30) -> 15910 25507 23234 11812 13224 23235 26847 14884 14883 14889 7023 14604 7021 13288 13289 14602 18166 4402 12157 13854 23805 25401 10186 23041 18048 16772 22936 28678 27069 9515 
+titles_with_prefix(Anax) -> Anaxagoras Anaxagoras Anaxarchus Anaximander Anaximenes of Lampsacus Anaximenes of Miletus 
 article_timestamp(12,763082287) -> 2017-02-01T06:11:56Z

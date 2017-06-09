@@ -92,13 +92,21 @@ public class Articles {
         // nWords é atualizado pelo return do wordCounter que também dá o número de bytes do artigo pelo apontador
         long nWords = wordCounter(revisionText);
 
+        // DEBUG - Estão a entrar bem os elementos
+        /*
+        System.out.println("Article ID: " + articleId);
+        System.out.println("title: " + title);
+        System.out.println("revisionId: " + revisionId);
+        System.out.println("revisionParentId: " + revisionParentId);
+        System.out.println("revisionTimestamp: " + revisionTimestamp +"\n");
+        */
 
         /* Esta função deve ser chamada quando é encontrada uma revisão de um artigo.
          * A função cria ou atualiza um artigo já existente na tabela. Caso seja feita uma
          * atualização, o tamanho do artigo e número de palavras só é atualizado se for
          * maior que o anterior. Os valores restantes são sempre atualizados.
          */
-        Hashtable.insertOrUpdateArticle(articles, articleId, title, revisionId, revisionParentId, revisionTimestamp, getSizeBytes(), nWords, articleWasFound, articleWasUpdated);
+        Hashtable.insertOrUpdateArticle(articles, articleId, title, revisionId, revisionParentId, revisionTimestamp, getSizeBytes(), nWords);
 
         // Aumenta o allArticles sempre
         allArticles++;
@@ -274,7 +282,7 @@ public class Articles {
         ArrayList<Article> articletitles = new ArrayList<Article>();
 
         articletitles = articles.values().stream()
-        .filter(a -> isTitlePrefix(prefix,a.getArticleTitle()) == 1) 
+        .filter(a -> isTitlePrefix(prefix,a.getArticleTitle()) == 1)
         .collect(toCollection(ArrayList::new));
 
         ArrayList<String> titles = new ArrayList<String>();

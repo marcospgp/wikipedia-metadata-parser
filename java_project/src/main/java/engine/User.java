@@ -8,7 +8,7 @@ public class User {
     public User() {
         this.id = 0L;
         this.contributions = 0L;
-        this.username = null;
+        this.username = "";
     }
 
 
