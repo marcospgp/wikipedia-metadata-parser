@@ -119,6 +119,8 @@ public class Articles {
         if(articleWasUpdated == 1) {
             allRevisions++;
         }
+
+        return;
     }
 
 

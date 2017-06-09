@@ -49,7 +49,7 @@ public class Parser {
   private static void parseXML(HashMap<Long, Article> articles, HashMap<Long, User> users, String fileName) {
 
     String title = null, revisionContributorUsername = null, revisionText = null, revisionTimestamp = null;
-    long articleId = -1, revisionId = -1, revisionParentId = -1, revisionContributorId = -1;
+    long articleId = -1L, revisionId = -1L, revisionParentId = -1L, revisionContributorId = -1L;
     boolean onContributor = false, onRevision = false;
 
 
@@ -60,11 +60,13 @@ public class Parser {
         XMLStreamReader xmlStreamReader = factory.createXMLStreamReader(new FileInputStream(fileName));
 
             while(xmlStreamReader.hasNext()){
+
               int event = xmlStreamReader.getEventType();
               switch(event){
                   case XMLStreamConstants.START_ELEMENT:
 
                     if (xmlStreamReader.getLocalName().equals("page")) {
+                    	revisionContributorId = -1L; // Resetar revisionContributorId
                       // System.out.println("Start Element : page");
                     } else if (xmlStreamReader.getLocalName().equals("title")) {
                         title = xmlStreamReader.getElementText();
@@ -103,8 +105,11 @@ public class Parser {
 
                   case  XMLStreamConstants.END_ELEMENT:
                     if(xmlStreamReader.getLocalName().equals("page")){
-                    	//System.out.println("Calling onPageUsers");
-                        Users.onPageUsers(users, articles, revisionContributorId, revisionContributorUsername, articleId, revisionId);
+                        // Ignorar contributor caso apenas tenha <ip> e não <username> + <id>
+                        if (revisionContributorId != -1L) {
+                        	//System.out.println("Calling onPageUsers");
+                            Users.onPageUsers(users, articles, revisionContributorId, revisionContributorUsername, articleId, revisionId);
+                        }
                     	//System.out.println("Calling onPageArticles");
                         Articles.onPageArticles(articles, articleId, title, revisionText, revisionId, revisionParentId, revisionTimestamp);
                         // System.out.println("End Element : page");

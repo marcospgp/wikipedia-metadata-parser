@@ -110,8 +110,8 @@ public class Hashtable {
     	// Verificar se este artigo já existe na hash table
 
     	Article articleData = articles.get(id);
-
-    	if (articleData == null) {
+        // Já t
+    	if (articleData == null) { // Já testei com contaisKey(id) e o resultado não muda, portanto isto está OK
 
     		//printf("Creating new article and adding revision...\n");
 
