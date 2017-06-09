@@ -4,12 +4,17 @@ public class Revision {
     private long id, parentId;
     private String timestamp;
 
-
     public Revision() {
         this.id = 0L;
+        this.parentId = 0L;
         this.timestamp = "";
     }
 
+    public Revision(long id, long parentId, String timestamp) {
+        this.id = id;
+        this.parentId = parentId;
+        this.timestamp = timestamp;
+    }
 
     public long getRevisionId() {
         return id;

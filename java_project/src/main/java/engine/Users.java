@@ -40,7 +40,7 @@ public class Users {
         }
 
         else {
-        	System.out.println("insertOrUpdateUser");
+        	//System.out.println("insertOrUpdateUser");
         	Hashtable.insertOrUpdateUser(users, id, username);
         }
 

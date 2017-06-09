@@ -10,187 +10,180 @@ import java.util.*;
  */
 public class Hashtable {
 
-    /**
-     * @brief Insere ou atualiza um utilizador na hashtable de utilizadores.
-     *
-     * Procurar pelo utilizador na hash table e, caso o utilizador não foi encontrado,
-     * criar e inserir novo utilizador.
-     * Caso tenha sido encontrado, apenas aumentar uma contribuição ao utilizador.
-     *
-     * @param qs A estrutura geral do programa.
-     * @param id A ID do contribuidor.
-     * @param username O username do contribuidor.
-     * @return A estrutura atualizada.
-     */
-    public static void insertOrUpdateUser(HashMap<Long, User> users, long id, String username) {
+	/**
+	 * @brief Insere ou atualiza um utilizador na hashtable de utilizadores.
+	 *
+	 * Procurar pelo utilizador na hash table e, caso o utilizador não foi encontrado,
+	 * criar e inserir novo utilizador.
+	 * Caso tenha sido encontrado, apenas aumentar uma contribuição ao utilizador.
+	 *
+	 * @param qs A estrutura geral do programa.
+	 * @param id A ID do contribuidor.
+	 * @param username O username do contribuidor.
+	 * @return A estrutura atualizada.
+	 */
+	public static void insertOrUpdateUser(HashMap<Long, User> users, long id, String username) {
 
-    	// DEBUG - passa direito os argumentos
-    	/*
-    	System.out.println("id: " + id);
-    	System.out.println("username: " + username);
-    	*/
-
-
-    	//printf("hashtable.c - Received user data\n");
-
-    	// Procurar pelo utilizador na hash table
-    	User userData = users.get(id);
-    	// System.out.println("1");
-
-    	if (userData == null) {
-
-    		//printf("Creating new user with id %ld\n", id);
-
-    		User newUser = new User();
-    		newUser.setUserId(id);
-    		newUser.addUserContribution();
-    		newUser.setUsername(username);
-
-    		users.put(newUser.getUserId(), newUser);
-    		// DEBUG
-    		// System.out.println(newUser.toString());
-
-    	} else {
-
-    		//printf("Updating user with id %ld\n", id);
-
-    		// Contar uma contribuição do utilizador
-    		userData.addUserContribution();
-    		// System.out.println(userData.getUserContributions());
-
-    		// Nota - não é preciso inserir de novo na hashtable porque o que
-    		// está lá é o endereço para a estrutura que alteramos
-    	}
-
-    	return;
-    }
-
-        /**
-     * @brief Insere ou atualiza um artigo na hashtable de utilizadores.
-     *
-     * Copiar strings porque o parser pode apagá-las e a hash table só guarda um pointer.
-     * Copiar longs usadas como key também, porque keys são usadas a partir dos seus pointers.
-     * Criar nova revisão (necessária caso o artigo já exista ou não).
-     * Informar se o artigo foi encontrado ou não através de articleFound e articleUpdated.
-     * Criar ou atualizar o artigo dependendo se este foi encontrado ou não.
-     *
-     * @param qs A estrutura geral do programa.
-     * @param id A ID do artigo.
-     * @param title O título do artigo.
-     * @param revisionId O ID da revisão.
-     * @param revisionTimestamp O timestamp da revisão.
-     * @param sizeBytes O tamanho do artigo.
-     * @param nWords O número de palavras do artigo.
-     * @param articleFound Passado para fazer controlo nos contadores de articles.
-     * @param articleUpdated Passado para fazer controlo nos contadores de articles.
-     * @return A estrutura atualizada.
-     */
-    public static void insertOrUpdateArticle(HashMap<Long, Article> articles, long id, String title, long revisionId, long revisionParentId, String revisionTimestamp, long sizeBytes, long nWords) {
-
-    	//printf("hashtable.c - Received article revision data\n");
-
-    	// DEBUG - Estão a entrar bem os elementos
-    	/*
-        System.out.println("Article ID: " + id);
-        System.out.println("title: " + title);
-        System.out.println("revisionId: " + revisionId);
-        System.out.println("revisionParentId: " + revisionParentId);
-        System.out.println("revisionTimestamp: " + revisionTimestamp +"\n");
-        */
+		// DEBUG - passa direito os argumentos
+		/*
+		System.out.println("id: " + id);
+		System.out.println("username: " + username);
+		*/
 
 
+		//printf("hashtable.c - Received user data\n");
 
-    	// Criar nova revisão (necessária caso o artigo já exista ou não)
-    	Revision newRevision = new Revision();
+		// Procurar pelo utilizador na hash table
+		User userData = users.get(id);
+		// System.out.println("1");
 
-    	newRevision.setRevisionId(revisionId);
-    	newRevision.setTimestamp(revisionTimestamp);
-    	newRevision.setRevisionParentId(revisionParentId);
+		if (userData == null) {
 
-    	// Verificar se este artigo já existe na hash table
+			//printf("Creating new user with id %ld\n", id);
 
-    	Article articleData = articles.get(id);
-        // Já t
-    	if (articleData == null) { // Já testei com contaisKey(id) e o resultado não muda, portanto isto está OK
+			User newUser = new User();
+			newUser.setUserId(id);
+			newUser.addUserContribution();
+			newUser.setUsername(username);
 
-    		//printf("Creating new article and adding revision...\n");
+			users.put(newUser.getUserId(), newUser);
+			// DEBUG
+			// System.out.println(newUser.toString());
 
-    		// Informar que o artigo não foi encontrado
-    		Articles.setArticleWasFound(0);
-    		Articles.setArticleWasUpdated(1);
+		} else {
 
+			//printf("Updating user with id %ld\n", id);
 
-    		// Criar novo artigo
+			// Contar uma contribuição do utilizador
+			userData.addUserContribution();
+			// System.out.println(userData.getUserContributions());
 
-    		Article newArticle = new Article();
+			// Nota - não é preciso inserir de novo na hashtable porque o que
+			// está lá é o endereço para a estrutura que alteramos
+		}
 
-    		newArticle.setArticleId(id);
-    		newArticle.setArticleSize(sizeBytes);
-    		newArticle.setArticleNWords(nWords);
-    		newArticle.setArticleTitle(title);
-    		newArticle.getRevisionsHash().put(newRevision.getRevisionId(), newRevision);
+		return;
+	}
 
-    		// Adicionar novo artigo à hashtable
-    		articles.put(newArticle.getArticleId(), newArticle);
-    		// DEBUG PUT
-    		System.out.println("PUT with id: " + newArticle.getArticleId());
-    		//System.out.println(newArticle.toString());
-    		// GET
-    		//System.out.println("GET");
-    		//System.out.println(articles.get(id).toString());
+		/**
+	 * @brief Insere ou atualiza um artigo na hashtable de utilizadores.
+	 *
+	 * Copiar strings porque o parser pode apagá-las e a hash table só guarda um pointer.
+	 * Copiar longs usadas como key também, porque keys são usadas a partir dos seus pointers.
+	 * Criar nova revisão (necessária caso o artigo já exista ou não).
+	 * Informar se o artigo foi encontrado ou não através de articleFound e articleUpdated.
+	 * Criar ou atualizar o artigo dependendo se este foi encontrado ou não.
+	 *
+	 * @param qs A estrutura geral do programa.
+	 * @param id A ID do artigo.
+	 * @param title O título do artigo.
+	 * @param revisionId O ID da revisão.
+	 * @param revisionParentId O ID do pai da revisão.
+	 * @param revisionTimestamp O timestamp da revisão.
+	 * @param sizeBytes O tamanho do artigo.
+	 * @param nWords O número de palavras do artigo.
+	 * @param articleFound Passado para fazer controlo nos contadores de articles.
+	 * @param articleUpdated Passado para fazer controlo nos contadores de articles.
+	 * @return 0 se foi inserido, 1 se foi atualizado, 2 se é duplicado
+	 */
 
-    	} else {
+	private static ArrayList<Long> teste;
 
-    		//printf("Updating article...\n");
+	public static int insertOrUpdateArticle(HashMap<Long, Article> articles, long id, String title, long revisionId, long revisionParentId, String revisionTimestamp, long sizeBytes, long nWords) {
 
-    		// Informar que o artigo foi encontrado
-    		Articles.setArticleWasFound(1);
+		if (id == 39) {
+			System.out.println("Received article 39");
+		}
 
-    		// Atualizar artigo já existente
-    		// Apenas atualizar tamanho e nº de palavras do artigo se for maior que o anterior
+		//printf("hashtable.c - Received article revision data\n");
 
-    		long currentSizeBytes = articleData.getArticleSize();
+		// DEBUG - Estão a entrar bem os elementos
+		/*
+		System.out.println("Article ID: " + id);
+		System.out.println("title: " + title);
+		System.out.println("revisionId: " + revisionId);
+		System.out.println("revisionParentId: " + revisionParentId);
+		System.out.println("revisionTimestamp: " + revisionTimestamp +"\n");
+		*/
 
-    		long currentNWords = articleData.getArticleNWords();
+		// Criar nova revisão (necessária caso o artigo já exista ou não)
+		Revision newRevision = new Revision(revisionId, revisionParentId, revisionTimestamp);
 
-    		if (sizeBytes > currentSizeBytes) {
-    			articleData.setArticleSize(sizeBytes);
-    		}
+		// Verificar se este artigo já existe na hash table
 
-    		if (nWords > currentNWords) {
-    			articleData.setArticleNWords(nWords);
-    		}
+		Article articleData = articles.get(id);
 
-    		// Atualizar título
+		if (articleData == null) { // Já testei com contaisKey(id) e o resultado não muda, portanto isto está OK
 
-    		articleData.setArticleTitle(title);
+			//printf("Creating new article and adding revision...\n");
 
-    		// Adicionar revisão
+			// Criar novo artigo
+			Article newArticle = new Article(id, sizeBytes, nWords, title);
 
-    		if (articleData.getRevisionsHash().get(revisionId) != null) {
+			newArticle.addRevision(newRevision.getRevisionId(), newRevision);
 
-    			//printf("Duplicated revision. Skipping...\n");
-    			Articles.setArticleWasUpdated(0);
-    			System.out.println("DUPLICATED");
+			// Adicionar novo artigo à hashtable
+			articles.put(newArticle.getArticleId(), newArticle);
 
+			// DEBUG PUT
+			//System.out.println("PUT with id: " + newArticle.getArticleId());
+			//System.out.println(newArticle.toString());
+			// GET
+			//System.out.println("GET");
+			//System.out.println(articles.get(id).toString());
 
-    		} else {
+			// Informar que o artigo foi inserido
+			return 0;
 
-    			//printf("Adding revision...\n");
-    			articleData.getRevisionsHash().put(newRevision.getRevisionId(), newRevision);
-    			Articles.setArticleWasUpdated(1);
-    			System.out.println("UPDATED");
-    		}
-    		// DEBUG
-    		//System.out.println(articleData.toString());
-    		// GET
-    		//System.out.println("GET");
-    		//System.out.println(articles.get(id).toString() + "\n");
-    	}
+		} else {
 
-    	return;
-    }
+			System.out.println("Updating article... id: \n" + String.valueOf(id) + " revision id: " + String.valueOf(revisionId));
 
+			// Atualizar artigo já existente
+			// Apenas atualizar tamanho e nº de palavras do artigo se for maior que o anterior
+
+			long currentSizeBytes = articleData.getArticleSize();
+
+			long currentNWords = articleData.getArticleNWords();
+
+			if (sizeBytes > currentSizeBytes) {
+				articleData.setArticleSize(sizeBytes);
+			}
+
+			if (nWords > currentNWords) {
+				articleData.setArticleNWords(nWords);
+			}
+
+			// Atualizar título
+
+			articleData.setArticleTitle(title);
+
+			// Adicionar revisão
+
+			if (articleData.getRevisionsHash().get(revisionId) != null) {
+
+				//printf("Duplicated revision. Skipping...\n");
+
+				System.out.println("DUPLICATED");
+
+				// Informar que é duplicado
+				return 2;
+
+			} else {
+
+				//printf("Adding revision...\n");
+				articleData.addRevision(newRevision.getRevisionId(), newRevision);
+
+				//System.out.println("UPDATED");
+
+				// Informar que foi atualizado
+				return 1;
+			}
+			// DEBUG
+			//System.out.println(articleData.toString());
+			// GET
+			//System.out.println("GET");
+			//System.out.println(articles.get(id).toString() + "\n");
+		}
+	}
 }
-
-
