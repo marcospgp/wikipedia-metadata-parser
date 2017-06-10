@@ -1,0 +1,162 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel}
+\usepackage{a4wide}
+\usepackage{multicol}
+\usepackage{spverbatim}
+\usepackage{graphicx}
+
+\title{Projeto de LI3 - Java\\Grupo 69}
+\author{Sérgio Jorge (A77730) \and Vítor Castro (A77870) \and Marcos Pereira (A79116)}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Neste relatório faremos uma análise da segunda parte do projeto de Laboratórios de Informática III, no qual, o objetivo era desenvolver de novo um programa que fizesse a leitura de \textit{backups} em XML da \textit{Wikipedia} respondendo a diversas interrogações propostas mas, desta vez, em Java.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introdução}
+\label{sec:intro}
+Este projeto foi realizado com o objetivo de compor um programa, em Java, que fosse capaz de fazer a análise dos \textit{backups} da \textit{Wikipedia}, indicando informações úteis acerca destes.
+Foram, então, propostas dez tarefas computacionais às quais o nosso programa deve responder. 
+A realização deste trabalho conduziu a uma melhoria na consolidação dos conhecimentos adquiridos na UC de Programação Orientada aos Objetos (POO) e, para além disso, incentivou à exploração de APIs que são característicos da linguagem de programação em uso.
+Assim, de modo a facilitar a compreensão do projeto, o relatório está dividido da seguinte forma:
+
+
+\begin{description}
+    \item[Secção 2 :] Problema;
+    \item[Secção 3 :] Solução;
+    \item[Secção 4 :] Conclusão.
+\end{description}
+
+\section{Problema}
+\label{sec:problema}
+Neste projeto de LI3, é-nos pedido para a partir de \textit{backups} da \textit{Wikipedia}, fornecidos pelos professores, fazermos a leitura dos dados e a extração de informação que a equipa docente considera relevante. Assim, a informação que devemos gerar é:
+\begin{description}
+    \item[1 - All articles]\hfill \\
+    devolver o número de artigos analisados nos \textit{backups}.
+    \item[2 - Unique articles]\hfill \\
+    devolver o número de artigos únicos (com ID único) encontrados nos vários \textit{backups} analisados.
+    \item[3 - All revisions]\hfill \\
+    devolver quantas revisões foram efetuadas nos \textit{backups}.
+    \item[4 - Top 10 contributors]\hfill \\
+    devolver um \textit{array} com os identificadores dos 10 autores que mais contribuíram, quer em artigos únicos, quer em revisões de artigos já existentes. O resultado deve ser ordenado pelos autores com mais contribuições, sendo que se existirem autores com o mesmo número de contribuições, o resultado deve apresentar primeiro os autores com um identificador menor.
+    \item[5 - Contributor name]\hfill \\
+    devolver o nome do autor com um determinado identificador, ou \textbf{NULL} caso não exista.
+    \item[6 - Top 20 largest articles]\hfill \\
+    devolver um \textit{array} com os identificadores dos 20 artigos que possuem textos com um maior tamanho em bytes. Para cada artigo deve ser contabilizado o maior texto encontrado nas diversas versões (revisões) do mesmo. O resultado deve ser ordenado pelos artigos com maior tamanho. Se existirem artigos com o mesmo tamanho, o resultado deve apresentar primeiro os artigos com um identificador menor.
+    \item[7 - Article title]\hfill \\
+    devolver o título do artigo com um determinado identificador, ou \textbf{NULL} caso não exista.
+    \item[8 - Top N articles with more words]\hfill \\
+    devolver um \textit{array} com os identificadores dos N (passado como argumento) artigos que possuem textos com o maior número de palavras e o resultado deve ser ordenado pelos artigos com maior número de palavras.
+    \item[9 - Titles with prefix]\hfill \\
+    devolver um \textit{array} de títulos de artigos que começam com um prefixo passado como argumento e o resultado deve ser ordenado por ordem alfabética, ou \textbf{NULL} caso não existam artigos com esse prefixo.
+    \item[10 - Article timestamp]\hfill \\
+    devolver o \textit{timestamp} para uma certa revisão de um artigo, ou \textbf{NULL} caso não haja essa revisão.
+\end{description}
+
+\section{Solução}
+\subsection{Estruturas de Dados}
+Dado o tamanho dos backups e da necessidade de fazer procuras rápidas, o uso de \textit{HashMap}s fez sentido e é com elas que vamos fazer todo o armazenamento de dados.
+
+\begin{description}
+    \item[\textit{HashMap} \textit{articles}] Este Map armazena a ID de cada artigo, o tamanho do texto em \textit{bytes}, o número de palavras do texto, o título, e além disso cria, caso o artigo não exista ainda, uma \textit{\textit{HashMap} revisions} onde é inserida informação relativamente à revisão que está a ser processada.
+
+    \item[\textit{HashMap} \textit{revisions}] Cada artigo tem a ele associado uma estrutura de dados deste tipo com as revisões.
+
+    \item[\textit{HashMap} \textit{users}] Esta estrutura de dados armazena o ID de cada contribuidor, o \textit{username} do contribuidor e o seu número de contribuições.
+
+\end{description}
+
+\subsection{Classes usadas}
+
+A nossa solução foi implementada com base em diferentes classes:
+
+\begin{itemize}
+    \item Article;
+    \item Articles;
+    \item HashMap
+    \item Parser;
+    \item Revision;
+    \item User;
+    \item Users.
+\end{itemize}
+\label{sec:solucao}
+
+\subsubsection{Article}
+Na classe Article estão as variáveis relativas a ID do artigo, tamanho do artigo, número de palavras e título. Está também associada a \textit{HashMap} de revisões dado que nós, a cada artigo, temos associado uma estrutura de dados com as revisões que foram feitas a este.
+
+\subsubsection{Articles}
+Esta classe calcula as respostas às \textit{queries} que são relativas a artigos. Além disso, liga a classe \textit{Parser} à classe \textit{\textit{HashMap}}, passando a esta última, apenas a informação que é importante guardar na estrutura de dados, tal como o número de palavras ou o tamanho em bytes do texto.
+ 
+\subsubsection{HashMap}
+Esta é a classe responsável pela inserção de artigos na estrutura de dados de artigos e pela inserção de contribuidores na estrutura de dados de contribuidores.
+
+\subsubsection{Parser}
+Classe que funciona com base numa API de JAVA. A \textit{StAX} é uma API que nos permite trabalhar com ficheiros .xml e, assim, podemos percorrer o ficheiro de nodo em nodo, iterar pelas páginas e retirar conteúdos como: \textit{Title}, \textit{ID} e \textit{Revision} (a cada \textit{Revision} está associado: \textit{ID}, \textit{ParentID}, \textit{Timestamp}, \textit{ContributorID}, \textit{ContributorUsername}, \textit{Text}).
+A informação vai sendo transferida para a memória, que se concretiza na forma de \textit{\textit{HashMap}s}.
+
+\subsubsection{Revision}
+Na classe Revision estão as variáveis relativas a ID da revisão, ID do pai e timestamp.
+
+\subsubsection{User}
+Em User, classe relativa aos contribuidores, são definidas variáveis como: id do contribuidor, número de contribuições e username.
+
+\subsubsection{Users}
+Esta classe calcula as respostas às \textit{queries} que são relativas a contribuidores. Além disso, liga a classe \textit{Parser} à classe \textit{\textit{HashMap}}, passando a esta última, apenas a informação que é importante guardar na estrutura de dados.
+
+\subsection{Implementação}
+
+\subsubsection{All articles, Unique articles e All revisions}
+Para resolvermos esta interrogação, colocámos o método que insere artigos (presente na classe \textit{HashMap}) a retornar 0 se o artigo foi inserido, 1 se foi atualizado e 2 se é duplicado. Os artigos são inseridos se ainda não existir nenhum com o ID na estrutura de dados que armazena os artigos, são atualizados se a revisão introduziu algo de diferente no artigo ou são duplicados se se verifica que a revisão não faz surgir nada de diferente no artigo.
+All articles é incrementado sempre que se chama o método que insere os artigos.
+
+Assim, é feito o seguinte:
+\begin{description}
+\item[devolvido 0] Incrementa-se Unique Articles e All Revisions;
+\item[devolvido 1] Incrementa-se apenas All Revisions porque o artigo já existe;
+\item[devolvido 2] Nada é feito porque é duplicado.
+\end{description}
+
+\subsubsection{Top 10 contributors}
+Para resolvermos esta interrogação, usámos \textit{streams} de Java 8. É definido um \textit{comparator} que se baseia no método getUserContributions de cada contribuidor e é feito o \textit{reverse} desse \textit{comparator} porque queremos uma ordenação decrescente. Críamos também um ArrayList que vai receber o output da \textit{streams} na qual estabelecemos um limite de 10. Uma vez que a lista entretanto preenchida pelo \textit{sort}, é uma lista de objetos (contribuidores), então é criada outra lista para a qual passamos o \textit{getUserId()} de cada contribuidor. É retornada esta última lista de \textit{longs}.
+
+\subsubsection{Contributor name}
+É feita a procura verificando se o ID está contido na \textit{HashMap} de contribuidores. Em caso afirmativo, acede-se ao contribuidor em questão e chama-se o método getUsername(). Caso não exista na estrutura de dados, retorna-se \textit{null}.
+
+\subsubsection{Top 20 largest articles}
+Para resolvermos esta interrogação, usámos \textit{streams} de Java 8. É definido um \textit{comparator} que se baseia no método \textit{getArticleSize} de cada artigo e é feito o \textit{reverse} desse \textit{comparator} porque queremos uma ordenação decrescente. Críamos também um \textit{ArrayList} que vai receber o output da \textit{streams} na qual estabelecemos um limite de 20. Uma vez que a lista entretanto preenchida pelo \textit{sort}, é uma lista de objetos (artigos), então é criada outra lista para a qual passamos o \textit{getArticleId()} de cada artigo. É retornada esta última lista de \textit{longs}.
+
+\subsubsection{Article title}
+É feita a procura verificando se o ID está contido na \textit{HashMap} de artigos. Em caso afirmativo, acede-se ao artigo em questão e chama-se o método \textit{getArticleTitle()}. Caso não exista na estrutura de dados, retorna-se \textit{null}.
+
+\subsubsection{Top N articles with more words}
+Para resolvermos esta interrogação, usámos \textit{streams} de Java 8. É definido um \textit{comparator} que se baseia no método \textit{getArticleNWords} de cada artigo e é feito o \textit{reverse} desse \textit{comparator} porque queremos uma ordenação decrescente. Críamos também um \textit{ArrayList} que vai receber o output da \textit{streams} na qual estabelecemos um limite de N. Uma vez que a lista entretanto preenchida pelo \textit{sort}, é uma lista de objetos (artigos), então é criada outra lista para a qual passamos o \textit{getArticleId()} de cada artigo. É retornada esta última lista de \textit{longs}.
+
+\subsubsection{Titles with prefix}
+Para resolvermos esta interrogação, usámos \textit{streams} de Java 8. É definido um método que recebe um prefixo e um título e devolve 1 se o título começa com o prefixo e 0 se o título não começa com o prefixo. Críamos também um \textit{ArrayList} que vai receber o output da \textit{streams} na qual estabelecemos um filtro no qual cada artigo só passa se for retornado 1 do método inicialmente definido (são passados como argumentos o prefixo e o título do artigo a ser analisado). Uma vez que a lista entretanto preenchida, é uma lista de objetos (artigos), então é criada outra lista para a qual passamos o \textit{getArticleTitle()} de cada artigo. É retornada esta última lista de \textit{strings}.
+
+\subsubsection{Article timestamp} 
+É feita a procura verificando se o ID está contido na \textit{HashMap} de artigos. Em caso afirmativo, acede-se ao artigo em questão e à sua \textit{HashMap} de revisões. Se a ID da revisão estiver contido nessa estrutura de dados, então acede-se à revisão e chama-se o método \textit{getTimestamp()}. Caso não exista na estrutura de dados, retorna-se \textit{null}.
+
+\pagebreak
+\subsection{Resultado Final}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width = 420pt, height = 230pt]{}
+\end{figure}
+
+\section{Conclusões}
+\label{sec:conclusao}
+Este projeto serviu para aprofundarmos o conhecimento da linguagem JAVA, assim como as APIs que lhe estão associadas. Achamos que a realização de um trabalho deste tipo permite uma consolidação proveitosa da linguagem, não só em termos teóricos como também em termos práticos. Permite também melhorar as habilidades na resolução de problemas. ACABAR
+
+
+\end{document}
